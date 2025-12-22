@@ -5,6 +5,7 @@ import Faq from "@/components/faq";
 import { IndividualRooms } from "@/components/home/individual-rooms";
 import CMSHero from "@/components/rooms/cms-hero";
 import aboutFaqData from "@/data/aboutFaqs.json";
+import Header from "@/components/Header";
 
 
 export default function Rooms() {
@@ -23,6 +24,7 @@ export default function Rooms() {
           onContentChange={() => {}}
         />
       </div>
+      <Header/>
       <IndividualRooms/>
       <Faq {...aboutFaqData} />
     </div>

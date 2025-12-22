@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-
 import { HeroSession } from "@/components/gallery/HeroSession";
 import ImageSession from "@/components/gallery/ImageSession";
 

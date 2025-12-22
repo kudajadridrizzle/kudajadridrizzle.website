@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import ContactClient from "./components/ContactClient";
-import { Header } from "@/components/Header";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Online booking of homestay, cottages, rooms in Wayanad for group",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Header type="black" />
+      <Header />
       <ContactClient />
     </>
   );
