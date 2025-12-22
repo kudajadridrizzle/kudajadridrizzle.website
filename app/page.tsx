@@ -1,42 +1,41 @@
-"use client";
+import { Metadata } from "next";
+import HomeClient from "@/components/home/home-client";
 
-import AboutSession from "@/components/home/about-section";
-import Amenities from "@/components/home/ameties";
-import { ContentSection } from "@/components/home/content-section";
-import Direction from "@/components/direction";
-import GallarySession from "@/components/home/gallery-section";
-import GuestTestimonials from "@/components/home/guest-terminologies";
-import { IndividualRooms } from "@/components/home/individual-rooms";
-import LocationImage from "@/components/home/location-section";
-import ReviewSession from "@/components/home/review-section";
-import RoomSession from "@/components/home/room-section";
-import VideoBackground from "@/components/home/vedio-backgroud";
-import { useContentSection } from "./hooks/use-content-section";
-import CardSection from "@/components/home/card-section";
-import OurGallery from "@/components/home/our-gallery";
+const SITE_URL = "https://www.kudajadridrizzle.com";
+const OG_IMAGE = `${SITE_URL}/images/1%20(56).jpg`;
+
+export const metadata: Metadata = {
+  title: "Wayanad homestays: Best homestay in Wayanad for family, group",
+  description:
+    "Kudajadri Drizzle home stay in Wayanad: 100+ years old #1 heritage Wayanad Homestay. Book top rated nature friendly homestays in Wayanad for family & group.",
+
+  openGraph: {
+    title: "Best Homestay in Wayanad for Family & Group | Kudajadri Drizzle",
+    description:
+      "100+ years old heritage homestay in Wayanad. Nature-friendly stay perfect for families and groups.",
+    url: SITE_URL,
+    siteName: "Kudajadri Drizzle",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Kudajadri Drizzle Heritage Homestay, Wayanad",
+      },
+    ],
+    type: "website",
+    locale: "en_IN",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Best Homestay in Wayanad | Kudajadri Drizzle",
+    description:
+      "Experience a 100+ year old heritage homestay in Wayanad surrounded by nature.",
+    images: [OG_IMAGE],
+  },
+};
 
 export default function Home() {
-  const contentSection = useContentSection("home");
-
-  return (
-    <div>
-      <VideoBackground />
-      <AboutSession />
-      <GallarySession />
-      <RoomSession />
-      <IndividualRooms />
-      <Amenities />
-      <OurGallery/>
-      <GallarySession />
-      <ReviewSession />
-      <GuestTestimonials />
-      <LocationImage />
-      <Direction />
-      <ContentSection
-        title={contentSection?.title}
-        items={contentSection?.items ?? []}
-      />
-      <CardSection sectionKey="home" />
-    </div>
-  );
+  return <HomeClient />;
 }
