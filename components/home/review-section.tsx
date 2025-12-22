@@ -1,3 +1,4 @@
+"use client";
 
 interface ReviewSectionProps {
   rating?: string;
