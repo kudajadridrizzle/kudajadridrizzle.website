@@ -1,0 +1,5 @@
+---
+heading: 'Welcome to My Site'
+---
+
+This is the **body content**.
