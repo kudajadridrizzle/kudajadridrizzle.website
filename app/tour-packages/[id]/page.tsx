@@ -36,8 +36,8 @@ interface PackageDetailsData {
 }
 
 export default function TourPackageDetails() {
-  const { id } = useParams();
-  const navigate=useRouter()
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
   const getOriginalTitle = (urlTitle: string) => {
     const decodedTitle = decodeURIComponent(urlTitle);
     return decodedTitle
@@ -54,17 +54,18 @@ export default function TourPackageDetails() {
   );
   return (
     <div className="package-details mt-[60px] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-8 sm:py-12 md:py-16">
-      <PackageCard
-        title={selectedPackage?.title}
-        description={selectedPackage?.description}
-        price={selectedPackage?.price}
-        duration={selectedPackage?.duration}
-        pickupDrop={selectedPackage?.pickup_drop}
-        navigate={navigate} // ✅ pass navigate down
-      />
+      {selectedPackage && (
+        <PackageCard
+          title={selectedPackage.title}
+          description={selectedPackage.description}
+          price={selectedPackage.price}
+          duration={selectedPackage.duration}
+          pickupDrop={selectedPackage.pickup_drop}
+          navigate={(path: string) => router.push(path)}
+        />
+      )}
       <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 mt-12 sm:mt-16 md:mt-20 lg:mt-24">
-        {selectedPackage.details &&
-          selectedPackage.details.map((detail, index) => (
+        {selectedPackage?.details?.map((detail, index) => (
             <BodyCard
               key={index}
               title={detail.title}
