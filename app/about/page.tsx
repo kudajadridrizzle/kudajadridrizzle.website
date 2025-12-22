@@ -5,6 +5,7 @@ import RecognitionSession from "@/components/about/recognition-session";
 import Direction from "@/components/direction";
 import ReviewSession from "@/components/home/review-section";
 import aboutFaqData from "@/data/aboutFaqs.json";
+import { Header } from "@/components/Header";
 
 const Hero = () => {
   return (
@@ -34,6 +35,7 @@ export default function About() {
 
   return (
     <div>
+      <Header type="white" />
       <Hero />
       <AboutSection />
       <ReviewSession />

@@ -14,19 +14,20 @@ import VideoBackground from "@/components/home/vedio-backgroud";
 import { useContentSection } from "@/app/hooks/use-content-section";
 import CardSection from "@/components/home/card-section";
 import OurGallery from "@/components/home/our-gallery";
-
+import  { Header } from "@/components/Header";
 export default function HomeClient() {
   const contentSection = useContentSection("home");
 
   return (
     <div>
+      <Header type="white" />
       <VideoBackground />
       <AboutSession />
       <GallarySession />
       <RoomSession />
       <IndividualRooms />
       <Amenities />
-      <OurGallery/>
+      <OurGallery />
       <GallarySession />
       <ReviewSession />
       <GuestTestimonials />
