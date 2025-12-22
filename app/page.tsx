@@ -29,9 +29,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Best Homestay in Wayanad | Kudajadri Drizzle",
+    title: "Wayanad homestays: Best homestay in Wayanad for family, group",
     description:
-      "Experience a 100+ year old heritage homestay in Wayanad surrounded by nature.",
+      "Kudajadri Drizzle home stay in Wayanad: 100+ years old #1 heritage Wayanad Homestay. Book top rated nature friendly homestays in Wayanad for family & group.",
     images: [OG_IMAGE],
   },
 };
