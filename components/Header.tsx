@@ -1,6 +1,8 @@
-// components/Header.tsx
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const leftNav = [
   { name: "Wayanad Homestays", href: "/" },
@@ -15,55 +17,90 @@ const rightNav = [
 ];
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Change background + text color
+      setScrolled(currentScrollY > 50);
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="w-full bg-transparent text-white absolute top-0 left-0 z-50">
+    <header
+      className={`
+        fixed top-0 left-0 w-full z-50
+        transition-all duration-500 ease-in-out
+        ${hidden ? "-translate-y-full" : "translate-y-0"}
+        ${scrolled ? "bg-white text-black shadow-sm" : "bg-transparent text-white"}
+      `}
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="relative flex h-20 items-center justify-between">
 
-          {/* Left navigation */}
-          <nav className="hidden md:flex items-center gap-10">
+          {/* Left Navigation */}
+          <nav className="hidden md:flex items-center gap-10 text-sm tracking-wide">
             {leftNav.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm tracking-wide opacity-90 hover:opacity-100 transition"
+                className="hover:opacity-70 transition"
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          {/* Center logo */}
+          {/* Center Logo */}
           <div className="absolute left-1/2 -translate-x-1/2">
             <Link href="/">
               <Image
-                src="/header_logo.svg"
-                alt="Resort Logo"
+                src={
+                  scrolled
+                    ? "/HeaderLogoBlack.svg"
+                    : "/header_logo.svg"
+                }
+                alt="Chembarathi Wayanad Resort"
                 width={90}
                 height={90}
                 priority
+                className="transition-all duration-300"
               />
             </Link>
           </div>
 
-          {/* Right navigation */}
-          <nav className="hidden md:flex items-center gap-10">
+          {/* Right Navigation */}
+          <nav className="hidden md:flex items-center gap-10 text-sm tracking-wide">
             {rightNav.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm tracking-wide opacity-90 hover:opacity-100 transition"
+                className="hover:opacity-70 transition"
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          {/* Mobile menu */}
-          <div className="md:hidden">
-            <button aria-label="Open menu" className="text-white text-xl">
-              ☰
-            </button>
+          {/* Mobile Menu Icon */}
+          <div className="md:hidden text-xl cursor-pointer">
+            ☰
           </div>
 
         </div>
