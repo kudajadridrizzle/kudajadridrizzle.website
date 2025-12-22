@@ -1,5 +1,6 @@
 "use client";
 import Faq from "@/components/faq";
+import type { FaqFrontMatterAttributes } from "@/components/faq";
 import AnotherRoomSession from "@/components/room-details/components/AnotherRoomSession";
 import DeluxeRoomTips from "@/components/room-details/components/DeluxeRoomOverview";
 import Hero from "@/components/room-details/components/Hero";

@@ -2,7 +2,7 @@ import * as Accordion from '@radix-ui/react-accordion';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 
 // Define the shape of FAQ frontmatter
-interface FaqFrontMatterAttributes {
+export interface FaqFrontMatterAttributes {
   title: string;
   faqs: Array<{
     question: React.ReactNode;
