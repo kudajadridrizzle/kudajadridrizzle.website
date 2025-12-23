@@ -15,7 +15,7 @@ type RoomExperiences = {
 
 // Room experiences content
 const roomExperiences: RoomExperiences = {
-  'classic-rooms': {
+  'classic': {
     title: 'Local Experiences Around Our Budget Friendly Homestays in Wayanad',
     description: `
 ## Local Experiences Around Our Budget Friendly Homestays in Wayanad
@@ -41,7 +41,7 @@ After a day of sightseeing, you can return to your Classic Room and relax in com
     ],
   },
 
-  'premium-rooms': {
+  'premium': {
     title: 'Explore Wayanad While Staying in Premium Rooms',
     description: `
 ## Explore Wayanad While Staying in Premium Rooms
@@ -64,7 +64,7 @@ Staying in our **luxury homestays in Wayanad** places you close to some of the r
     ],
   },
 
-  'deluxe-heritage-rooms': {
+  'deluxe-heritage': {
     title: 'Explore Wayanad While Staying in Heritage Rooms',
     description: `
 ## Explore Wayanad While Staying in Heritage Rooms
@@ -87,7 +87,7 @@ Staying at our **heritage homestay in Wayanad** puts you close to nature and cul
     ],
   },
 
-  'deluxe-rooms': {
+  'deluxe': {
     title: 'Explore Wayanad from Our Cottages',
     description: `
 ## Explore Wayanad from Our Cottages

@@ -175,13 +175,13 @@ const Footer = () => {
                 Wayanad Accommodations
               </Link>
               <Link
-                href="/rooms/premium-rooms"
+                href="/rooms/premium"
                 className="no-underline hover:underline"
               >
                 Premium Homestays in Wayanad
               </Link>
               <Link
-                href="/rooms/deluxe-heritage-rooms"
+                href="/rooms/deluxe-heritage"
                 className="no-underline hover:underline"
               >
                 Heritage Homestays in Wayanad
@@ -196,25 +196,25 @@ const Footer = () => {
             </span>
             <div className="text-secondary font-albertSans sm:text-xl flex flex-col gap-2">
               <Link
-                href="/rooms/classic-rooms"
+                href="/rooms/classic"
                 className="no-underline hover:underline"
               >
                 Classic Rooms
               </Link>
               <Link
-                href="/rooms/deluxe-rooms"
+                href="/rooms/deluxe"
                 className="no-underline hover:underline"
               >
                 Deluxe Rooms
               </Link>
               <Link
-                href="/rooms/deluxe-heritage-rooms"
+                href="/rooms/deluxe-heritage"
                 className="no-underline hover:underline"
               >
                 Deluxe Heritage Rooms
               </Link>
               <Link
-                href="/rooms/premium-rooms"
+                href="/rooms/premium"
                 className="no-underline hover:underline"
               >
                 Premium Rooms
@@ -223,13 +223,13 @@ const Footer = () => {
                 Book Rooms in Wayanad
               </Link>
               <Link
-                href="/rooms/deluxe-rooms"
+                href="/rooms/deluxe"
                 className="no-underline hover:underline"
               >
                 Wayanad Cottage
               </Link>
               <Link
-                href="/rooms/premium-rooms"
+                href="/rooms/premium"
                 className="no-underline hover:underline"
               >
                 Luxury Wayanad Homestays

@@ -18,7 +18,7 @@ import { roomData } from "@/components/room-details/constants";
 import { useParams } from "next/navigation";
 
 const roomFaqs: Record<string, FaqFrontMatterAttributes> = {
-  'classic-rooms': {
+  'classic': {
     title: 'Affordable Homestays in Wayanad - FAQs',
     faqs: [
       {
@@ -31,7 +31,7 @@ const roomFaqs: Record<string, FaqFrontMatterAttributes> = {
       },
       {
         question: <span><strong>What amenities can I expect at a budget homestay in Wayanad?</strong></span>,
-        answer: <span>Affordable <a href="https://www.kudajadridrizzle.com/">homestays in Wayanad</a> typically include basic furniture, attached bathrooms, hot water, parking, and Wi-Fi. While they may not have <a href="https://www.kudajadridrizzle.com/rooms/premium-rooms">luxury homestay</a> features, they provide all the essentials for a comfortable and relaxing stay close to nature.</span>,
+        answer: <span>Affordable <a href="https://www.kudajadridrizzle.com/">homestays in Wayanad</a> typically include basic furniture, attached bathrooms, hot water, parking, and Wi-Fi. While they may not have <a href="https://www.kudajadridrizzle.com/rooms/premium">luxury homestay</a> features, they provide all the essentials for a comfortable and relaxing stay close to nature.</span>,
       },
       {
         question: <span><strong>Are meals included at low-cost homestays in Wayanad?</strong></span>,
@@ -63,7 +63,7 @@ const roomFaqs: Record<string, FaqFrontMatterAttributes> = {
       },
     ],
   },
-  'deluxe-heritage-rooms': {
+  'deluxe-heritage': {
     title: 'Heritage Homestays in  Wayanad - FAQs',
     faqs: [
       { question: 'What is a traditional homestay in Wayanad?', answer: 'A traditional homestay in Wayanad offers accommodation in locally built homes, often made of wood or mud with tiled roofs. These stays provide an authentic Kerala village experience, home-cooked food, and warm hospitality rooted in culture and simplicity.' },
@@ -78,7 +78,7 @@ const roomFaqs: Record<string, FaqFrontMatterAttributes> = {
       { question: 'Why choose a heritage or traditional homestay over a hotel?', answer: "These homestays offer deeper cultural connection, personalized service, and a peaceful setting not found in typical hotels. Staying in a traditional or heritage homestay in Wayanad means living like a local, not just visiting." },
     ],
   },
-  'deluxe-rooms': {
+  'deluxe': {
     title: 'Kudajadri Drizzle Cottages in Wayanad - FAQs',
     faqs: [
       { question: 'What makes Wayanad cottages a popular choice among travelers?', answer: 'Wayanad cottages are nestled in lush greenery, offering peaceful surroundings, traditional charm, and a relaxing environment. Ideal for nature lovers, they provide the perfect setting for a scenic and comfortable escape in the Western Ghats.' },
@@ -93,7 +93,7 @@ const roomFaqs: Record<string, FaqFrontMatterAttributes> = {
     { question: 'How can I book a cottage stay in Wayanad?', answer: 'You can book online through the property\'s official website or trusted platforms. Always check photos, amenities, and guest reviews to choose the right cottage that fits your needs and budget.' },
     ],
   },
-  'premium-rooms': {
+  'premium': {
     title: 'Luxury Homestays in Wayanad - FAQs',
     faqs: [
       { question: 'What defines a premium homestay in Wayanad?', answer: 'Premium homestays in Wayanad offer upscale amenities, stylish interiors, and personalized hospitality in serene natural settings. These properties often include private cottages, scenic views, modern comforts, and curated local experiences, delivering a luxury homestay with the warmth of a homestay.' },
@@ -111,10 +111,10 @@ const roomFaqs: Record<string, FaqFrontMatterAttributes> = {
 };
 export default function ClassicRooms() {
   const { id: roomId } = useParams();
-    const faqContent = roomFaqs[roomId as keyof typeof roomFaqs] || roomFaqs['classic-rooms'];
+    const faqContent = roomFaqs[roomId as keyof typeof roomFaqs] || roomFaqs['classic'];
 
   const roomDataItem =
-    roomData[roomId as keyof typeof roomData] || roomData["classic-rooms"];
+    roomData[roomId as keyof typeof roomData] || roomData["classic"];
 
   return (
     <div>

@@ -18,7 +18,7 @@ const ROOMS_CONTENT: RoomContent[] = [
       "Classic Rooms offer affordable **homestays in Wayanad**, combining comfort and convenience. Enjoy cozy interiors, essential amenities, and warm hospitality. Perfect for travelers seeking budget-friendly stays without compromising quality, these rooms provide a peaceful retreat while exploring Wayanad’s natural beauty and popular attractions.",
     image: "assets/roomOne.jpg",
     type: "reverse",
-    path: "/rooms/classic-rooms",
+    path: "/rooms/classic",
   },
   {
     title: "Deluxe Heritage Wayanad Homestay Rooms",
@@ -26,7 +26,7 @@ const ROOMS_CONTENT: RoomContent[] = [
       "Deluxe Heritage Rooms offer traditional homestays in Wayanad, combining heritage charm with modern comfort. Experience authentic Kerala-style interiors, cozy spaces, and warm hospitality. Ideal for travelers seeking a cultural and peaceful stay, these rooms let you enjoy Wayanad’s scenic beauty while immersing yourself in local traditions and heritage.",
     image: "assets/roomTwo.jpg",
     type: "default",
-    path: "/rooms/deluxe-heritage-rooms",
+    path: "/rooms/deluxe-heritage",
   },
   {
     title: "Premium Luxury Wayanad Homestay Rooms",
@@ -34,7 +34,7 @@ const ROOMS_CONTENT: RoomContent[] = [
       "Premium Rooms offer luxury homestays in Wayanad, featuring elegant interiors, modern amenities, and personalized services. Perfect for travelers seeking comfort and sophistication, these rooms provide a serene retreat amidst Wayanad’s natural beauty, ensuring a memorable and relaxing stay with stunning views and exceptional hospitality.",
     image: "assets/roomThree.jpg",
     type: "reverse",
-    path: "/rooms/premium-rooms",
+    path: "/rooms/premium",
   },
   {
     title: "Deluxe Wayanad Homestay Rooms",
@@ -42,7 +42,7 @@ const ROOMS_CONTENT: RoomContent[] = [
       "Deluxe Rooms provide cottage-style homestays in Wayanad, offering spacious interiors and modern amenities. Perfect for families and travelers seeking a blend of comfort and rustic charm, these rooms ensure a relaxing stay. Enjoy the serene surroundings, personalized hospitality, and easy access to Wayanad's scenic spots.",
     image: "assets/PremiumImg1.jpg",
     type: "default",
-    path: "/rooms/deluxe-rooms",
+    path: "/rooms/deluxe",
   },
 ];
 

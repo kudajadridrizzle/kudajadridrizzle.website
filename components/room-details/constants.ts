@@ -157,7 +157,7 @@ export const createRoomData = (
 });
 
 export const roomData: RoomData = {
-  'deluxe-rooms': createRoomData(
+  'deluxe': createRoomData(
     'Deluxe Rooms',
     duluxeRoomsImage1,
     duluxeRoomsImage2,
@@ -180,22 +180,22 @@ Features of Our Deluxe Rooms:<br/>
       roomType: 'Deluxe Heritage Rooms',
       description: 'An economic escape in a lush atmosphere. This is affordable luxury with no compromises.',
       image: deluxeHeritageRoomsImage1,
-      navigate: '/rooms/deluxe-heritage-rooms'
+      navigate: '/rooms/deluxe-heritage'
     },
     {
       roomType: 'Classic Rooms',
       description: 'Experience authentic Wayanad hospitality in our Classic Rooms, blending traditional charm with modern comforts.',
       image: classicRoomsImage1,
-      navigate: '/rooms/classic-rooms'
+      navigate: '/rooms/classic'
     },
     {
       roomType: 'Premium Rooms',
       description: 'Indulge in luxury with our Premium Rooms, featuring elegant interiors and premium amenities.',
       image: premiumRoomsImage22,
-      navigate: '/rooms/premium-rooms'
+      navigate: '/rooms/premium'
     }
   ),
-  'deluxe-heritage-rooms': createRoomData(
+  'deluxe-heritage': createRoomData(
     'Deluxe Heritage Rooms',
     deluxeHeritageRoomsImage1,
     deluxeHeritageRoomsImage2,
@@ -217,22 +217,22 @@ Features of Our Deluxe Rooms:<br/>
       roomType: 'Deluxe Room',
       description: 'An economic escape in a lush atmosphere. This is affordable luxury with no compromises.',
       image: duluxeRoomsImage1,
-      navigate: '/rooms/deluxe-rooms',
+      navigate: '/rooms/deluxe',
     },
     {
       roomType: 'Classic Rooms',
       description: 'Experience authentic Wayanad hospitality in our Classic Rooms, blending traditional charm with modern comforts.',
       image: classicRoomsImage1,
-      navigate: '/rooms/classic-rooms',
+      navigate: '/rooms/classic',
     },
     {
       roomType: 'Premium Rooms',
       description: 'Indulge in luxury with our Premium Rooms, featuring elegant interiors and premium amenities.',
       image: premiumRoomsImage22,
-      navigate: '/rooms/premium-rooms',
+      navigate: '/rooms/premium',
     }
   ),
-  'classic-rooms': createRoomData(
+  'classic': createRoomData(
     'Classic Rooms',
     classicRoomsImage1,
     classicRoomsImage2,
@@ -256,22 +256,22 @@ This makes our Classic Rooms one of the top budget friendly homestays in Wayanad
       roomType: 'Deluxe Heritage Rooms',
       description: 'An economic escape in a lush atmosphere. This is affordable luxury with no compromises.',
       image: deluxeHeritageRoomsImage1,
-      navigate: '/rooms/deluxe-heritage-rooms',
+      navigate: '/rooms/deluxe-heritage',
     },
     {
       roomType: 'Deluxe Rooms',
       description: 'Experience the perfect blend of comfort and style in our well-appointed Deluxe Rooms.',
       image: duluxeRoomsImage1,
-      navigate: '/rooms/deluxe-rooms',
+      navigate: '/rooms/deluxe',
     },
     {
       roomType: 'Premium Rooms',
       description: 'Indulge in luxury with our Premium Rooms, featuring elegant interiors and premium amenities.',
       image: premiumRoomsImage22,
-      navigate: '/rooms/premium-rooms',
+      navigate: '/rooms/premium',
     }
   ),
-  'premium-rooms': createRoomData(
+  'premium': createRoomData(
     'Premium Rooms',
     premiumRoomsImage22,
     premiumRoomsImage11,
@@ -294,19 +294,19 @@ This makes our Classic Rooms one of the top budget friendly homestays in Wayanad
       roomType: 'Deluxe Heritage Rooms',
       description: 'An economic escape in a lush atmosphere. This is affordable luxury with no compromises.',
       image: deluxeHeritageRoomsImage1,
-      navigate: '/rooms/deluxe-heritage-rooms',
+      navigate: '/rooms/deluxe-heritage',
     },
     {
       roomType: 'Deluxe Rooms',
       description: 'Experience the perfect blend of comfort and style in our well-appointed Deluxe Rooms.',
       image: duluxeRoomsImage1,
-      navigate: '/rooms/deluxe-rooms',
+      navigate: '/rooms/deluxe',
     },
     {
       roomType: 'Classic Rooms',
       description: 'Experience authentic Wayanad hospitality in our Classic Rooms, blending traditional charm with modern comforts.',
       image: classicRoomsImage1,
-      navigate: '/rooms/classic-rooms',
+      navigate: '/rooms/classic',
     }
   ),
 };
@@ -560,8 +560,8 @@ export const premiumRooms: RoomContent = {
 };
 
 export const roomDataMap: Record<string, RoomContent> = {
-  'classic-rooms': classicRooms,
-  'deluxe-heritage-rooms': deluxeHeritageRooms,
-  'deluxe-rooms': deluxeRooms,
-  'premium-rooms': premiumRooms,
+  'classic': classicRooms,
+  'deluxe-heritage': deluxeHeritageRooms,
+  'deluxe': deluxeRooms,
+  'premium': premiumRooms,
 };

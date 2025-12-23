@@ -5,8 +5,8 @@ import ReactMarkdown from 'react-markdown';
 const DeluxeRoomTips = () => {
   const pathname = usePathname();
 
-  // Only render for /rooms/deluxe-rooms
-  if (pathname !== '/rooms/deluxe-rooms') {
+  // Only render for /rooms/deluxe
+  if (pathname !== '/rooms/deluxe') {
     return null;
   }
 

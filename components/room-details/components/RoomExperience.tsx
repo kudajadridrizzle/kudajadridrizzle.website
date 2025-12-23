@@ -8,7 +8,7 @@ const RoomExperience = () => {
 
   // Map routes to room content and images
   const contentMap: Record<string, { content: string; image: string }> = {
-    'classic-rooms': {
+    'classic': {
         image: '/images/Rooms/classic/1 (6).jpg', 
         content: `
 ## Affordable Homestay in Wayanad with a Touch of Tradition
@@ -19,7 +19,7 @@ It’s not just about staying—it’s about feeling the culture of Wayanad whil
   
 `,
     },
-    'premium-rooms': {
+    'premium': {
         image: '/images/Rooms/premium/1 (2).jpg', 
       content: `
 ## Authentic Local Hospitality with Premium Comfort
@@ -34,8 +34,8 @@ A stay at our **premium homestays in Wayanad** is more than just a room—it’s
 - Personalized attention for a stress-free stay  
 `,
     },
-    'deluxe-heritage-rooms': {
-        image: '/images/Rooms/deluxe_heritage/1 (4).jpg', 
+    'deluxe-heritage': {
+        image: '/images/Rooms/deluxe-heritage/1 (4).jpg', 
       content: `
 ## Authentic Kerala Hospitality in a Traditional Homestay in Wayanad
 
@@ -49,7 +49,7 @@ One of the biggest draws of staying in our **traditional homestay in Wayanad** i
 - Peaceful, scenic surroundings away from crowds  
 `,
     },
-    'deluxe-rooms': {
+    'deluxe': {
       image: '/images/Rooms/deluxe/1 (4).jpg', 
       content: `
 ## Experience Local Hospitality in Our Wayanad Cottages 

@@ -13,7 +13,7 @@ type RoomServices = {
 };
 
 const roomServicesContents: RoomServices = {
-  "classic-rooms": {
+  "classic": {
     title: "Facilities at Our Affordable Homestay in Wayanad",
     description: `
 ## Facilities at Our Affordable Homestay in Wayanad
@@ -36,7 +36,7 @@ We believe in keeping things simple yet satisfying. Our Classic Rooms come with 
     `,
   },
 
-  "premium-rooms": {
+  "premium": {
     title: "Personalized Services at Our Luxury Homestays",
     description: `
 ## Personalized Services at Our Luxury Homestays in Wayanad
@@ -52,7 +52,7 @@ At our premium [Wayanad homestays](/), every guest is treated with care and atte
     `,
   },
 
-  "deluxe-heritage-rooms": {
+  "deluxe-heritage": {
     title: "Personalized Services in Our Traditional Homestay",
     description: `
 ## Personalized Services in Our Traditional Homestay in Wayanad
@@ -68,7 +68,7 @@ We ensure that your stay in our traditional homestay in Wayanad is comfortable a
     `,
   },
 
-  "deluxe-rooms": {
+  "deluxe": {
     title: "Modern Comfort in Traditional Cottages",
     description: `
 ## Modern Comfort in Traditional Cottages

@@ -8,7 +8,7 @@ const WhoShouldBook = () => {
 
   // All content in one place
   const contentMap: Record<string, string> = {
-    'classic-rooms': `
+    'classic': `
 ## Who Should Book Our Classic Rooms
 
 Our rooms are suited for a wide range of travelers. If you fall into any of these categories, you’ll find them ideal:
@@ -22,7 +22,7 @@ Our rooms are suited for a wide range of travelers. If you fall into any of thes
 No matter your travel purpose, our Classic Rooms give you the best of Wayanad without overspending.
 `,
 
-    'premium-rooms': `
+    'premium': `
 ## Ideal for Couples, Families, and Solo Travelers
 
 Whether you are traveling with family, a partner, or alone, our **luxury homestays in Wayanad** cater to everyone. Couples enjoy privacy and romance, families get spacious rooms and safety, and solo travelers find a peaceful environment for relaxation.
@@ -35,7 +35,7 @@ Whether you are traveling with family, a partner, or alone, our **luxury homesta
 - **Nature Lovers** – Wanting scenic surroundings  
 `,
 
-    'heritage-rooms': `
+    'deluxe-heritage': `
 ## Ideal for Families, Couples, and Cultural Travelers
 
 Our Deluxe Heritage Rooms are suitable for a variety of travelers. Families appreciate the space and safety, couples enjoy the romantic and peaceful atmosphere, and cultural enthusiasts find inspiration in the traditional décor and heritage vibe.
@@ -48,7 +48,7 @@ Our Deluxe Heritage Rooms are suitable for a variety of travelers. Families appr
 - **Nature & Culture Lovers** – Looking for authentic experiences  
 `,
 
-    cottages: `
+    deluxe: `
 ## Ideal Stay for Families, Couples, and Solo Travelers
 
 Our **cottages in Wayanad** are versatile enough to suit different types of travelers. Families love the space and privacy, couples enjoy a romantic and serene atmosphere, and solo travelers find a peaceful environment to relax.

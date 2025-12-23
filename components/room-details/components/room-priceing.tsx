@@ -14,8 +14,8 @@ import {
 
 export const RoomPriceSession = () => {
   const pathname = usePathname();
-  // Extract id from pathname: e.g., "/rooms/classic-rooms" -> "classic-rooms"
-  const id = pathname?.split("/").pop() || "classic-rooms";
+  // Extract id from pathname: e.g., "/rooms/classic" -> "classic"
+  const id = pathname?.split("/").pop() || "classic";
   const roomData = roomDataMap[id];
 
   const iconMap: {
@@ -34,7 +34,7 @@ export const RoomPriceSession = () => {
   // Function to get the display text for the offer
   const getDisplayText = (offer: string) => {
     if (
-      (id === "premium-rooms" || id === "deluxe-rooms") &&
+      (id === "premium" || id === "deluxe") &&
       offer === "Air Conditioning (on request)"
     ) {
       return "Bunker Beds";

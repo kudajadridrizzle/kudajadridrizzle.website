@@ -12,15 +12,15 @@ type RoomData = {
 type RoomContents = {
   [key: string]: RoomData;
 } & {
-  "classic-rooms": RoomData;
-  "premium-rooms": RoomData;
-  "deluxe-heritage-rooms": RoomData;
-  "deluxe-rooms": RoomData;
+  "classic": RoomData;
+  "premium": RoomData;
+  "deluxe-heritage": RoomData;
+  "deluxe": RoomData;
 };
 
 // Room contents
 const roomContents: RoomContents = {
-  "classic-rooms": {
+  "classic": {
     title: "Classic Rooms",
     description: `
 ## Why Choose Our Classic Rooms in Wayanad
@@ -44,7 +44,7 @@ Travelers often struggle to balance affordability and comfort. At Kudajadri Driz
     ],
   },
 
-  "premium-rooms": {
+  "premium": {
     title: "Premium Rooms",
     description: `
 ## Luxury Homestays in Wayanad with Scenic Views
@@ -64,7 +64,7 @@ Travelers often struggle to balance affordability and comfort. At Kudajadri Driz
     ],
   },
 
-  "deluxe-heritage-rooms": {
+  "deluxe-heritage": {
     title: "Heritage Rooms",
     description: `
 ## Heritage Homestays in Wayanad with Authentic Charm
@@ -79,12 +79,12 @@ A stay in our Deluxe Heritage Rooms is like stepping back in time while enjoying
 - Natural ventilation and sunlight for a refreshing stay
     `,
     images: [
-      "/images/Rooms/deluxe_heritage/1 (1).jpg",
-      "/images/Rooms/deluxe_heritage/1 (2).jpg",
+      "/images/Rooms/deluxe-heritage/1 (1).jpg",
+      "/images/Rooms/deluxe-heritage/1 (2).jpg",
     ],
   },
 
-  "deluxe-rooms": {
+  "deluxe": {
     title: "Deluxe Rooms",
     description: `
 ## Why Choose Our Cottages in Wayanad

@@ -8,7 +8,7 @@ const RoomTips = () => {
 
   // Map routes to room-specific tips content
   const tipsMap: Record<string, string> = {
-    'classic-rooms': `
+    'classic': `
 ## How to Make the Most of Your Stay in Wayanad
 
 If you’re planning your trip, here are a few tips to make it more enjoyable while staying at our budget friendly homestays in Wayanad:
@@ -19,7 +19,7 @@ If you’re planning your trip, here are a few tips to make it more enjoyable wh
 - Carry a camera to capture the scenic beauty around the homestay  
 - Spend your evenings enjoying the calmness instead of rushing around  
 `,
-    'premium-rooms': `
+    'premium': `
 ## Plan Your Stay in Our Luxury Homestays in Wayanad
 
 Booking our premium rooms in Wayanad ensures a memorable and comfortable stay. From scenic views to personalized services, every aspect of your experience is thoughtfully designed. Spend your days exploring Wayanad’s beauty and your evenings in the cozy ambiance of your premium room.
@@ -31,7 +31,7 @@ Booking our premium rooms in Wayanad ensures a memorable and comfortable stay. F
 - Personalized services and warm hospitality  
 - Peaceful, private, and secure environment  
 `,
-    'deluxe-heritage-rooms': `
+    'deluxe-heritage': `
 ## Plan Your Stay in Our Heritage Homestay in Wayanad
 
 Booking our Deluxe Heritage Rooms guarantees an unforgettable experience of Wayanad. With the perfect combination of culture, comfort, and scenic beauty, these rooms are ideal for those looking to enjoy both heritage and modern amenities.
@@ -43,7 +43,7 @@ Booking our Deluxe Heritage Rooms guarantees an unforgettable experience of Waya
 - Modern facilities for a comfortable stay  
 - Personal care and attention from hosts  
 `,
-    'deluxe-rooms': `
+    'deluxe': `
 ## Plan Your Stay in Our Wayanad Cottages
 
 Booking a Deluxe Room in our cottages in Wayanad guarantees a memorable and relaxing holiday. Whether you are exploring nature, enjoying family time, or on a romantic getaway, these rooms provide the perfect base for your adventures.

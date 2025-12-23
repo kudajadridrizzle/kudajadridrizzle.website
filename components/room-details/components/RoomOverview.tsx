@@ -9,7 +9,7 @@ type RouteContent = {
 };
 
 const contents: Record<string, RouteContent> = {
-  'classic-rooms': {
+  'classic': {
     title: 'The Charm of Staying in a Homestay in Wayanad',
     description: `
 ## The Charm of Staying in a Homestay in Wayanad
@@ -26,7 +26,7 @@ This is why travelers looking for an **affordable homestay in Wayanad** prefer o
     `,
   },
 
-  'premium-rooms': {
+  'premium': {
     title: 'Comfort and Elegance in Every Room',
     description: `
 ## Comfort and Elegance in Every Room
@@ -42,7 +42,7 @@ Our **premium rooms in Wayanad** are designed to provide a balance of luxury and
     `,
   },
 
-  'deluxe-heritage-rooms': {
+  'deluxe-heritage': {
     title: 'Comfort and Tradition Combined',
     description: `
 ## Comfort and Tradition Combined
@@ -58,7 +58,7 @@ Our Deluxe Heritage Rooms are designed to offer both luxury and the warmth of tr
     `,
   },
 
-  'deluxe-rooms': {
+  'deluxe': {
     title: 'Ideal Stay for Families, Couples, and Solo Travelers',
     description: `
 ## Ideal Stay for Families, Couples, and Solo Travelers
