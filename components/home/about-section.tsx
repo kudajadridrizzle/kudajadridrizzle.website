@@ -5,13 +5,13 @@ const AboutSession = () => {
   const router = useRouter();
 
   return (
-    <div className="sm:py-32 sm:px-[12%] px-4 py-14 large:px-[18%]">
+    <div className="px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[18%]">
       <div className="flex flex-col sm:flex-row gap-12">
 
         {/* LEFT – Sticky Pre-title + Title */}
         <div className="sm:w-[35%]">
           <div className="sm:sticky sm:top-32">
-            <p className="text-primary font-albertSans sm:text-base tracking-[1.6px] uppercase mobile:text-sm mb-4">
+            <p className="text-primary font-albertSans text-sm tracking-[1.6px] uppercase mb-4">
               About us
             </p>
 

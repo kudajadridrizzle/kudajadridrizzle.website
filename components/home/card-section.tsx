@@ -18,19 +18,19 @@ export const CardSection: React.FC<CardsSectionProps> = ({ sectionKey, className
   if (!section) return null;
 
   return (
-    <div className={`sm:px-[12%] sm:py-32 px-4 py-14 large:px-[18%] ${className}`}>
+    <div className={`px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[18%] ${className}`}>
       {/* Header Section */}
-      <div className="flex flex-col gap-6 sm:items-center mobile:items-start mb-16">
+      <div className="flex flex-col gap-6 items-start sm:items-center mb-16">
         {section.subtitle && (
           <p className="uppercase text-primary font-albertSans tracking-[1.6px] text-sm">
             {section.subtitle}
           </p>
         )}
-        <h2 className="sm:text-[44px] text-[32px] font-ivy text-primary text-center sm:text-center mobile:text-left">
+        <h2 className="text-[32px] sm:text-[44px] font-ivy text-primary text-left sm:text-center">
           {section.title}
         </h2>
         {section.subParagraph && (
-          <p className="font-albertSans text-lg text-gray-600 mt-2 max-w-3xl text-center sm:text-center mobile:text-left">
+          <p className="font-albertSans text-lg text-gray-600 mt-2 max-w-3xl text-left sm:text-center">
             {section.subParagraph}
           </p>
         )}

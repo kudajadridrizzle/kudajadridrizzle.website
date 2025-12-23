@@ -7,7 +7,7 @@ interface EnhancedHeroProps {
 
 export const EnhancedHero: React.FC<EnhancedHeroProps> = ({ heroTitle, heroImage }) => {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative min-h-[100svh] w-full overflow-hidden">
       {/* Background Image with subtle zoom effect */}
       <div
         className="absolute inset-0 bg-cover bg-center transform scale-100 transition-transform duration-[20000ms] ease-linear hover:scale-105"

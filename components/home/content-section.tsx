@@ -19,10 +19,10 @@ export const ContentSection = ({
   className = "" 
 }: ContentSectionProps) => {
   return (
-    <div className={`sm:px-[12%] sm:py-24 mobile:px-4 mobile:py-14 large:px-[18%] ${className}`}>
+    <div className={`px-4 py-14 sm:px-[12%] sm:py-24 lg:px-[18%] ${className}`}>
       {title && (
         <div className="text-center mb-16">
-          <h2 className="text-primary font-ivy sm:text-[44px] mobile:text-[32px]">
+          <h2 className="text-primary font-ivy text-[32px] sm:text-[44px]">
             {title}
           </h2>
         </div>

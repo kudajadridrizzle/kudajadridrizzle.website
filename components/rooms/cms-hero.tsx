@@ -13,7 +13,7 @@ const CMSHero = ({
 }: CMSHeroProps) => {
   return (
     <div
-      className="relative h-screen bg-no-repeat bg-cover"
+      className="relative min-h-[100svh] bg-no-repeat bg-cover"
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
       {/* Overlay */}
@@ -24,7 +24,7 @@ const CMSHero = ({
       {/* Content */}
       <div className="relative z-10 h-full">
         {/* <Header /> */}
-        <div className="text-[#ffff] font-staylista sm:text-[72px] h-full flex flex-col items-center justify-center mobile:text-5xl px-4">
+        <div className="text-[#ffff] font-staylista sm:text-[72px] h-full flex flex-col items-center justify-center text-5xl px-4">
           <h2 className="text-center">{title}</h2>
         </div>
       </div>

@@ -32,9 +32,9 @@ const OurGallery = () => {
   }, [navItem]);
 
   return (
-    <div className="sm:py-32 sm:px-[12%] flex flex-col gap-[66px] mobile:px-4 mobile:py-14 large:px-[18%]">
+    <div className="px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[18%] flex flex-col gap-[66px]">
       <div className="flex flex-col sm:flex-row">
-        <h2 className="flex-1 text-primary font-ivy sm:text-[44px] mobile:text-[32px]">
+        <h2 className="flex-1 text-primary font-ivy text-[32px] sm:text-[44px]">
           {heading}
         </h2>
         <div className="flex-1 text-secondary sm:text-xl font-albertSans">
@@ -58,7 +58,7 @@ const OurGallery = () => {
         </div>
       </div>
 
-      <div className="flex justify-center sm:flex mobile:hidden">
+      <div className="hidden sm:flex justify-center">
         {navItems.map(({ id, label }) => (
           <a
             key={id}
@@ -83,7 +83,7 @@ const OurGallery = () => {
           transition={{ duration: 0.2, ease: 'easeInOut' }}
           className="flex flex-col gap-2"
         >
-          <div className="h-[536px] mobile:hidden sm:block">
+          <div className="hidden sm:block h-[536px]">
             <img
               src={currentImages[0]}
               alt=""

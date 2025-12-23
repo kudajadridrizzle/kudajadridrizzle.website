@@ -36,8 +36,8 @@ const Footer = () => {
   return (
     <div className="bg-primary">
       {/* Top CTA Section */}
-      <div className="sm:px-[12%] large:px-[18%] sm:py-14 mobile:py-7 mobile:px-4 flex flex-col sm:flex-row gap-x-[30px] items-center border-b border-[#fff]">
-        <span className="block text-[#fff] font-ivy sm:text-[44px] mobile:text-[32px] text-left sm:text-left">
+      <div className="px-4 py-7 sm:px-[12%] sm:py-14 lg:px-[18%] flex flex-col sm:flex-row gap-x-[30px] items-center border-b border-[#fff]">
+        <span className="block text-[#fff] font-ivy text-[32px] sm:text-[44px] text-left">
           Book Kudajadri Drizzle Homestays in Wayanad Now
         </span>
         <div className="w-[100%] flex items-start justify-start sm:justify-end mt-4 sm:mt-0">
@@ -53,7 +53,7 @@ const Footer = () => {
       </div>
 
       {/* Mobile: Social icons directly under CTA */}
-      <div className="sm:hidden flex justify-start gap-6 py-6 mobile:px-4 border-b border-[#584343]">
+      <div className="sm:hidden flex justify-start gap-6 py-6 px-4 border-b border-[#584343]">
         {socialLinks.map((link, idx) => (
           <a
             key={idx}
@@ -67,11 +67,11 @@ const Footer = () => {
       </div>
 
       {/* Footer Content */}
-      <div className="sm:py-20 flex flex-col sm:gap-32 sm:px-[12%] large:px-[18%]">
-        {/* Footer Links */}1
-        <div className="flex flex-col sm:flex-row sm:gap-[30px] justify-between mobile:gap-11 mobile:py-10 mobile:px-4 sm:p-0">
+      <div className="py-10 sm:py-20 flex flex-col sm:gap-32 sm:px-[12%] lg:px-[18%]">
+        {/* Footer Links */}
+        <div className="flex flex-col sm:flex-row sm:gap-[30px] justify-between gap-11 py-10 px-4 sm:p-0">
           {/* Contact Section */}
-          <div className="flex flex-col sm:gap-9 mobile:gap-6">
+          <div className="flex flex-col sm:gap-9 gap-6">
             <span className="text-[#fff] font-albertSans text-base uppercase block">
               CONTACT
             </span>
@@ -267,7 +267,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Mobile Copyright */}
-        <div className="sm:hidden text-secondary text-sm font-albertSans text-left py-6 mobile:px-4 border-t border-[#584343]">
+        <div className="sm:hidden text-secondary text-sm font-albertSans text-left py-6 px-4 border-t border-[#584343]">
           <span>
             {" "}
             {new Date().getFullYear()} Kudajadri Drizzle Homestay. All Rights
