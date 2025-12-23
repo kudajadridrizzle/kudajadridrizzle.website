@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Header />
+      <Header variant="solid" />
       <ContactClient />
     </>
   );

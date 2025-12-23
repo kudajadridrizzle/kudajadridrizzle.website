@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+type HeaderVariant = "transparent" | "solid";
+
 const leftNav = [
   { name: "Wayanad Homestays", href: "/" },
   { name: "About", href: "/about" },
@@ -16,19 +18,23 @@ const rightNav = [
   { name: "Contact", href: "/contact" },
 ];
 
-export default function Header() {
+export default function Header({
+  variant = "transparent",
+}: {
+  variant?: HeaderVariant;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+    if (variant === "solid") return;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Change background + text color
       setScrolled(currentScrollY > 50);
 
-      // Hide on scroll down, show on scroll up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setHidden(true);
       } else {
@@ -40,15 +46,21 @@ export default function Header() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, variant]);
+
+  const isSolid = variant === "solid";
 
   return (
     <header
       className={`
         fixed top-0 left-0 w-full z-50
         transition-all duration-500 ease-in-out
-        ${hidden ? "-translate-y-full" : "translate-y-0"}
-        ${scrolled ? "bg-white text-black shadow-sm" : "bg-transparent text-white"}
+        ${!isSolid && hidden ? "-translate-y-full" : "translate-y-0"}
+        ${
+          isSolid || scrolled
+            ? "bg-white text-black "
+            : "bg-transparent text-white"
+        }
       `}
     >
       <div className="mx-auto max-w-7xl px-6">
@@ -72,7 +84,7 @@ export default function Header() {
             <Link href="/">
               <Image
                 src={
-                  scrolled
+                  isSolid || scrolled
                     ? "/HeaderLogoBlack.svg"
                     : "/header_logo.svg"
                 }
@@ -98,7 +110,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Mobile Menu Icon */}
+          {/* Mobile Menu */}
           <div className="md:hidden text-xl cursor-pointer">
             ☰
           </div>

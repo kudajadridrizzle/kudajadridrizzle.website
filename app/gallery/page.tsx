@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { HeroSession } from "@/components/gallery/HeroSession";
 import ImageSession from "@/components/gallery/ImageSession";
+import Header from "@/components/Header";
+
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
@@ -45,6 +47,7 @@ export default function GalleryPage() {
   return (
     <main className="mobile:mt-12">
       <section className="sm:py-24 mobile:pt-8 mobile:pb-12">
+        <Header variant="solid" />
         <HeroSession />
         <ImageSession />
       </section>
