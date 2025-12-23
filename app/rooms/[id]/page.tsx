@@ -1,5 +1,6 @@
 "use client";
 import Faq from "@/components/faq";
+import Header from "@/components/Header";
 import type { FaqFrontMatterAttributes } from "@/components/faq";
 import AnotherRoomSession from "@/components/room-details/components/AnotherRoomSession";
 import DeluxeRoomTips from "@/components/room-details/components/DeluxeRoomOverview";
@@ -118,6 +119,7 @@ export default function ClassicRooms() {
 
   return (
     <div>
+      <Header variant="solid" />
       <Hero />
       <RoomPriceSession />
       <MorningSession roomData={roomDataItem} />
