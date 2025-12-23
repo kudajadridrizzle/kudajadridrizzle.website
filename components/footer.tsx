@@ -124,7 +124,7 @@ const Footer = () => {
                 Wayanad
               </Link>
               <Link
-                href="/facilities-amenities"
+                href="/facilities"
                 className="no-underline hover:underline"
               >
                 Facilities
@@ -160,7 +160,7 @@ const Footer = () => {
                 Wayanad Homestay Bookings
               </Link>
               <Link
-                href="/facilities-amenities"
+                href="/facilities"
                 className="no-underline hover:underline"
               >
                 Homestay with Swimming Pool
