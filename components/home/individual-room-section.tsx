@@ -26,7 +26,7 @@ export const IndividualRoomSession = ({
         <img
           src={image}
           alt=""
-          className="object-cover size-full rounded-[16px]"
+          className="object-cover w-full h-64 sm:h-full rounded-[16px]"
         />
       </div>
       <div className="sm:p-6 sm:flex-1">
@@ -38,7 +38,7 @@ export const IndividualRoomSession = ({
             <h2 className="text-primary sm:text-[44px] mobile:text-[28px] font-ivy">
               {title}
             </h2>
-            <p className="opacity-50 text-primary font-albertSans">
+            <p className="opacity-50 text-primary font-albertSans leading-relaxed">
               {discription}
             </p>
           </div>

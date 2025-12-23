@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const HeroSession = () => {
   return (
-    <section className="w-full min-h-screen flex justify-center items-center px-4 sm:px-12">
+    <section className="w-full min-h-[70vh] sm:min-h-[80vh] flex justify-center items-center px-4 sm:px-12 py-16 sm:py-24">
       <div className="flex flex-col items-center text-center max-w-5xl gap-6">
         <span className="uppercase font-albertSans text-base tracking-wider text-black">
           Gallery
@@ -12,7 +12,7 @@ export const HeroSession = () => {
           Photo &amp; Video Gallery of Kudajadri Drizzle Homestay
         </h1>
 
-        <div className="text-[#6E6E6E] font-albertSans text-base sm:text-xl leading-relaxed">
+        <div className="text-[#6E6E6E] font-albertSans text-base sm:text-xl leading-relaxed space-y-4">
           <p>
             Explore the <strong>Kudajadri Drizzle Homestay</strong> through our
             photos and video gallery. Each image captures the serene
@@ -20,7 +20,7 @@ export const HeroSession = () => {
             property.
           </p>
 
-          <p className="mt-4">
+          <p>
             Watch our videos to get a real feel of the ambiance and experiences.
             See guests enjoying the{" "}
             <Link
@@ -32,7 +32,7 @@ export const HeroSession = () => {
             , nature walks, and recreational games.
           </p>
 
-          <p className="mt-4">
+          <p>
             Our gallery helps you visualize your stay and plan your visit to one
             of the{" "}
             <Link

@@ -37,47 +37,32 @@ const SUSTAINABILITY = ['Composting', 'Organic Garden'];
 
 const ListSession = () => {
   return (
-    <section className="flex mobile:p-4 mx-4 sm:p-20 flex-col sm:flex-row flex-wrap gap-6 justify-between items-start bg-white">
+    <section className="mobile:p-4 sm:p-20 mx-4 bg-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
       
-      {/* Rooms */}
-      <div className="flex flex-col items-start gap-3">
-        <h2 className="text-2xl font-ivy">Room Options</h2>
-        <ul className="list-disc pl-6">
-          {ROOMS.map(room => (
-            <li
-              key={room}
-              className="[&::marker]:text-xs text-2xl leading-[43.2px]"
-            >
-              {room}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Amenities */}
-      <div className="flex flex-col items-start gap-3">
-        <h2 className="text-2xl font-ivy">Facilities & Amenities</h2>
-        <ul className="list-disc pl-6">
-          {AMENITIES.map(item => (
-            <li
-              key={item}
-              className="[&::marker]:text-xs text-2xl leading-[43.2px]"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Dining & Experiences */}
-      <div className="flex flex-col items-start gap-11">
+        {/* Rooms */}
         <div className="flex flex-col items-start gap-3">
-          <h2 className="text-2xl font-ivy">Dining Options</h2>
-          <ul className="list-disc pl-6">
-            {DINING.map(item => (
+          <h2 className="text-xl sm:text-2xl font-ivy">Room Options</h2>
+          <ul className="list-disc pl-5 space-y-2">
+            {ROOMS.map(room => (
+              <li
+                key={room}
+                className="text-base sm:text-lg leading-relaxed text-primary/80"
+              >
+                {room}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Amenities */}
+        <div className="flex flex-col items-start gap-3">
+          <h2 className="text-xl sm:text-2xl font-ivy">Facilities & Amenities</h2>
+          <ul className="list-disc pl-5 space-y-2">
+            {AMENITIES.map(item => (
               <li
                 key={item}
-                className="[&::marker]:text-xs text-2xl leading-[43.2px]"
+                className="text-base sm:text-lg leading-relaxed text-primary/80"
               >
                 {item}
               </li>
@@ -85,52 +70,68 @@ const ListSession = () => {
           </ul>
         </div>
 
-        <div className="flex flex-col items-start gap-3">
-          <h2 className="text-2xl font-ivy">Experiences & Activities</h2>
-          <ul className="list-disc pl-6">
-            {EXPERIENCES.map(item => (
-              <li
-                key={item}
-                className="[&::marker]:text-xs text-2xl leading-[43.2px]"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
+        {/* Dining & Experiences */}
+        <div className="flex flex-col items-start gap-8">
+          <div className="flex flex-col items-start gap-3">
+            <h2 className="text-xl sm:text-2xl font-ivy">Dining Options</h2>
+            <ul className="list-disc pl-5 space-y-2">
+              {DINING.map(item => (
+                <li
+                  key={item}
+                  className="text-base sm:text-lg leading-relaxed text-primary/80"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col items-start gap-3">
+            <h2 className="text-xl sm:text-2xl font-ivy">Experiences & Activities</h2>
+            <ul className="list-disc pl-5 space-y-2">
+              {EXPERIENCES.map(item => (
+                <li
+                  key={item}
+                  className="text-base sm:text-lg leading-relaxed text-primary/80"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Services & Sustainability */}
+        <div className="flex flex-col items-start gap-8">
+          <div className="flex flex-col items-start gap-3">
+            <h2 className="text-xl sm:text-2xl font-ivy">Guest Services</h2>
+            <ul className="list-disc pl-5 space-y-2">
+              {SERVICES.map(item => (
+                <li
+                  key={item}
+                  className="text-base sm:text-lg leading-relaxed text-primary/80"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col items-start gap-3">
+            <h2 className="text-xl sm:text-2xl font-ivy">Sustainable Practices</h2>
+            <ul className="list-disc pl-5 space-y-2">
+              {SUSTAINABILITY.map(item => (
+                <li
+                  key={item}
+                  className="text-base sm:text-lg leading-relaxed text-primary/80"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-
-      {/* Services & Sustainability */}
-      <div className="flex flex-col items-start gap-11">
-        <div className="flex flex-col items-start gap-3">
-          <h2 className="text-2xl font-ivy">Guest Services</h2>
-          <ul className="list-disc pl-6">
-            {SERVICES.map(item => (
-              <li
-                key={item}
-                className="[&::marker]:text-xs text-2xl leading-[43.2px]"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-col items-start gap-3">
-          <h2 className="text-2xl font-ivy">Sustainable Practices</h2>
-          <ul className="list-disc pl-6">
-            {SUSTAINABILITY.map(item => (
-              <li
-                key={item}
-                className="[&::marker]:text-xs text-2xl leading-[43.2px]"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
     </section>
   );
 };

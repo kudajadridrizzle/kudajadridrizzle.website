@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const FacilitiesSession = () => {
   return (
-    <section>
+    <section className="px-4 sm:px-8 lg:px-12 py-12 lg:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-0 lg:gap-[64px]">
         
         {/* Left - Sticky Square Image */}

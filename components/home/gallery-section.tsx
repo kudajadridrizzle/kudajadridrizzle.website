@@ -3,20 +3,17 @@
 const GallarySession = () => {
   return (
     <>
-      {/* Desktop / Tablet Layout */}
-      <div className="flex overflow-x-auto">
-        <div className="flex-1">
-          <img src='assets/HomeAutoScroll/1.webp' className="h-full w-full object-cover" alt="Gallery image 1" />
-        </div>
-        <div className="flex-1">
-          <img src='assets/HomeAutoScroll/2.webp' className="h-full w-full object-cover" alt="Gallery image 2" />
-        </div>
-        <div className="flex-1">
-          <img src='assets/HomeAutoScroll/3.webp' className="h-full w-full object-cover" alt="Gallery image 3" />
-        </div>
-        <div className="flex-1">
-          <img src='assets/HomeAutoScroll/4.webp' className="h-full w-full object-cover" alt="Gallery image 4" />
-        </div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 w-full">
+        {[1, 2, 3, 4].map((item) => (
+          <div key={item} className="relative aspect-[4/3] sm:aspect-[3/2]">
+            <img
+              src={`/assets/HomeAutoScroll/${item}.webp`}
+              className="absolute inset-0 h-full w-full object-cover"
+              alt={`Gallery image ${item}`}
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
 
     </>

@@ -15,7 +15,7 @@ export const metadata = {
 const Hero = () => {
   return (
     <div
-      className="relative h-screen bg-no-repeat bg-cover"
+      className="relative min-h-[80vh] sm:min-h-[95vh] bg-no-repeat bg-cover"
       style={{ backgroundImage: "url('/assets/aboutHero.jpg')" }}
     >
       {/* Overlay */}
@@ -23,9 +23,9 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10">
-        <div className="text-white font-staylista sm:text-[72px] h-[100vh] flex flex-col items-center justify-end mobile:text-5xl">
+        <div className="text-white font-staylista text-4xl sm:text-[72px] min-h-[80vh] sm:min-h-[95vh] flex flex-col items-center justify-center sm:justify-end px-4 pt-28 sm:pt-36 pb-20 sm:pb-28">
           <span className="text-center">Kudajdri Drizzle</span>
-          <h2 className="mb-[120px] text-center">
+          <h2 className="mt-6 sm:mt-2 text-center">
             Your Ideal Choice for Homestays in Kalpetta
           </h2>
         </div>
