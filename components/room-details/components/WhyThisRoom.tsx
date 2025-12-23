@@ -79,8 +79,8 @@ A stay in our Deluxe Heritage Rooms is like stepping back in time while enjoying
 - Natural ventilation and sunlight for a refreshing stay
     `,
     images: [
-      "/images/Rooms/deluxe-heritage/1 (1).jpg",
-      "/images/Rooms/deluxe-heritage/1 (2).jpg",
+      "/images/Rooms/deluxe_heritage/1 (1).jpg",
+      "/images/Rooms/deluxe_heritage/1 (2).jpg",
     ],
   },
 

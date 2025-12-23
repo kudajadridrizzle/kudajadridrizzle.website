@@ -35,7 +35,7 @@ A stay at our **premium homestays in Wayanad** is more than just a room—it’s
 `,
     },
     'deluxe-heritage': {
-        image: '/images/Rooms/deluxe-heritage/1 (4).jpg', 
+        image: '/images/Rooms/deluxe_heritage/1 (4).jpg', 
       content: `
 ## Authentic Kerala Hospitality in a Traditional Homestay in Wayanad
 
