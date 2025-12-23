@@ -28,7 +28,6 @@ export default function HomeClient() {
       <IndividualRooms />
       <Amenities />
       <OurGallery />
-      <GallarySession />
       <ReviewSession />
       <GuestTestimonials />
       <LocationImage />

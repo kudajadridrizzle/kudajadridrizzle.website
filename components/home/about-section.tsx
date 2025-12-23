@@ -80,7 +80,7 @@ const AboutSession = () => {
           <div>
             <button
               className="px-6 py-3 rounded-full bg-primary text-white font-albertSans"
-              onClick={() => router.push('/about-us')}
+              onClick={() => router.push('/about')}
             >
               Explore Our Story
             </button>
