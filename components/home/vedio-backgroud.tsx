@@ -20,7 +20,7 @@ const VideoBackground = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0" />
 
 
       {/* Mobile Background */}
