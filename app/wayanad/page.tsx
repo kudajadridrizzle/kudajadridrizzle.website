@@ -10,7 +10,7 @@ export default function WayanadPage() {
         heroTitle="Explore Wayanad: Nature, Serenity & Adventure"
       />
       <ImageContentSectionGrid />
-      <Faq {...aboutFaqData} />
+      {/* <Faq {...aboutFaqData} /> */}
     </div>
   );
 }

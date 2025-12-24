@@ -14,6 +14,7 @@ import { useContentSection } from "@/app/hooks/use-content-section";
 import CardSection from "@/components/home/card-section";
 import OurGallery from "@/components/home/our-gallery";
 import GuestReviewsSection from "@/components/home/GuestReviewsSection";
+import AttractionsSection from "@/components/home/AttractionsSection";
 import  Header  from "@/components/Header";
 export default function HomeClient() {
   const contentSection = useContentSection("home");
@@ -36,7 +37,7 @@ export default function HomeClient() {
         title={contentSection?.title}
         items={contentSection?.items ?? []}
       />
-      <CardSection sectionKey="home" />
+      <AttractionsSection />
     </div>
   );
 }
