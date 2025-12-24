@@ -1,46 +1,50 @@
+import Image from "next/image";
 
 const LocationImage = () => {
   return (
-    <div className="sm:px-[12%] sm:py-24 flex flex-col sm:flex-row mobile:px-4 mobile:py-14 large:px-[12%]">
-      <div className="sm:w-1/2">
-        <img
-          src="/assets/locationImage.webp"
-          alt=""
-          width={1920}
-          height={1080}
-          loading="lazy"
-          fetchPriority="low"
-          decoding="async"
-          className="object-cover size-full"
-        />
-      </div>
-      <div className="sm:w-1/2 bg-primary sm:px-24 flex sm:items-center mobile:px-4 mobile:py-12">
-        <div className="flex flex-col gap-6">
-          <h2 className="text-[#fff] text-base font-albertSans">
-            WAYANAD, KERALA
-          </h2>
-          <div>
-            <span className="text-[#fff] font-ivy font-normal sm:text-[44px] mobile:text-[32px]">
-              Nature, Comfort, and Serenity Await
-            </span>
-            <p className="text-secondary font-albertSans sm:text-xl opacity-80">
-              Wayanad, Kerala, is a serene paradise nestled in the Western
-              Ghats, renowned for its lush green landscapes, misty hills, and
-              rich biodiversity. This enchanting destination offers a perfect
-              blend of nature, adventure, and culture, making it ideal for
-              travelers seeking tranquility and exploration. From sprawling tea
-              and spice plantations to pristine waterfalls and wildlife
-              sanctuaries, Wayanad captivates every visitor. Its charming
-              villages, historical sites, and vibrant local traditions add depth
-              to the experience. Whether you are trekking through dense forests,
-              visiting ancient temples, or relaxing amidst the scenic beauty,
-              Wayanad promises an unforgettable journey into the heart of
-              Kerala’s natural and cultural heritage.
-            </p>
+    <section className="bg-primary">
+      {/* Desktop container padding only */}
+      <div className="mx-auto max-w-7xl sm:px-8 sm:py-24">
+        <div className="flex flex-col sm:flex-row">
+          {/* Image */}
+          <div className="relative h-64 w-full sm:h-auto sm:w-1/2">
+            <Image
+              src="/assets/locationImage.webp"
+              alt="Scenic view of Wayanad, Kerala with lush green hills and plantations"
+              fill
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="flex w-full items-center sm:w-1/2">
+            <div className="w-full px-4 py-10 sm:px-16 sm:py-0">
+              <div className="flex max-w-xl flex-col gap-6">
+                {/* Pre-title */}
+                <span className="font-albertSans text-sm uppercase tracking-widest text-white">
+                  Wayanad, Kerala
+                </span>
+
+                {/* Title */}
+                <h2 className="font-ivy text-3xl sm:text-4xl lg:text-5xl text-white">
+                  Nature, Comfort, and Serenity Await
+                </h2>
+
+                {/* Description */}
+                <p className="font-albertSans text-base sm:text-lg leading-relaxed text-secondary">
+                  Wayanad, Kerala, is a serene paradise nestled in the Western
+                  Ghats, renowned for its lush green landscapes, misty hills, and
+                  rich biodiversity. From misty hills to spice plantations and
+                  waterfalls, Wayanad offers a perfect blend of nature,
+                  adventure, and culture.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
