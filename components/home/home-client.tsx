@@ -11,11 +11,11 @@ import ReviewSession from "@/components/home/review-section";
 import RoomSession from "@/components/home/room-section";
 import VideoBackground from "@/components/home/vedio-backgroud";
 import { useContentSection } from "@/app/hooks/use-content-section";
-import CardSection from "@/components/home/card-section";
 import OurGallery from "@/components/home/our-gallery";
 import GuestReviewsSection from "@/components/home/GuestReviewsSection";
 import AttractionsSection from "@/components/home/AttractionsSection";
 import  Header  from "@/components/Header";
+import FAQSection from "@/components/home/FAQSection";
 export default function HomeClient() {
   const contentSection = useContentSection("home");
 
@@ -38,6 +38,7 @@ export default function HomeClient() {
         items={contentSection?.items ?? []}
       />
       <AttractionsSection />
+      <FAQSection />
     </div>
   );
 }
