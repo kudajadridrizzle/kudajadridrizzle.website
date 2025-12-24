@@ -12,14 +12,21 @@ const RoomSession = () => {
 
   return (
     <section className="bg-white px-4 pt-14 pb-6 sm:px-[12%] sm:pt-32 sm:pb-0 xl:px-[12%]">
-      <div className="flex flex-col sm:flex-row justify-center sm:py-12">
-        {/* Heading */}
-        <h2 className="text-[28px] sm:text-[44px] font-ivy mb-4 sm:mb-16">
-          Wayanad Homestays – Explore Our Rooms
-        </h2>
+      <div className="flex flex-col sm:flex-row sm:items-start sm:gap-16">
 
-        {/* Paragraph */}
-        <div className="w-full text-base leading-relaxed sm:w-[466px] sm:text-xl font-albertSans text-secondary sm:ml-16">
+        {/* Title – 50% */}
+        <div className="w-full sm:w-1/2">
+          {/* PRE-TITLE (added only) */}
+          <p className="text-primary font-albertSans text-sm tracking-[1.6px] uppercase mb-4">
+            Our Rooms            </p>
+
+          <h2 className="text-[28px] sm:text-[44px] font-ivy">
+            Wayanad Homestays – Explore Our Rooms
+          </h2>
+        </div>
+
+        {/* Description – 50% */}
+        <div className="w-full sm:w-1/2 text-base leading-relaxed sm:text-xl font-albertSans text-secondary">
           <p>{expanded || !isLong ? fullText : preview}</p>
 
           {isLong && (
@@ -31,6 +38,7 @@ const RoomSession = () => {
             </button>
           )}
         </div>
+
       </div>
     </section>
   );

@@ -1,9 +1,9 @@
-interface IndivdualRoomsSessionProp {
+interface IndividualRoomsSessionProp {
   image?: string;
   title?: string;
   discription?: string;
   subTitle?: string;
-  type?: 'default' | 'reverse';
+  type?: "default" | "reverse";
   onClick?: () => void;
 }
 
@@ -11,47 +11,53 @@ export const IndividualRoomSession = ({
   image,
   title,
   discription,
-  // subTitle,
-  type = 'default',
+  type = "default",
   onClick,
-}: IndivdualRoomsSessionProp) => {
-  const isReverse = type === 'reverse';
+}: IndividualRoomsSessionProp) => {
+  const isReverse = type === "reverse";
+
   return (
-    <div
-      className={`flex flex-col sm:gap-8 sm:flex-row ${
-        isReverse && 'sm:flex-row-reverse'
+    <section
+      className={`flex flex-col gap-8 sm:flex-row ${
+        isReverse ? "sm:flex-row-reverse" : ""
       }`}
     >
-      <div className="sm:flex-1 ">
+      {/* IMAGE */}
+      <div className="sm:flex-1">
         <img
           src={image}
-          alt=""
-          className="object-cover w-full h-64 sm:h-full rounded-[16px]"
+          alt={title || "Room image"}
+          className="w-full h-64 sm:h-[420px] lg:h-full object-cover rounded-2xl"
         />
       </div>
-      <div className="sm:p-6 sm:flex-1">
-        <div className="flex flex-col justify-center h-full gap-4 mobile:pt-6 sm:pt-0">
-          {/* <h2 className="font-albertSans sm:text-base mobile:text-sm text-primary">
-            {subTitle}
-          </h2> */}
+
+      {/* CONTENT */}
+      <div className="sm:flex-1 sm:p-6 flex items-center">
+        <div className="flex flex-col gap-6 w-full">
+
+          {/* TITLE + DESCRIPTION */}
           <div className="flex flex-col gap-3">
-            <h2 className="text-primary sm:text-[44px] mobile:text-[28px] font-ivy">
+            <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-ivy text-primary leading-tight">
               {title}
             </h2>
-            <p className="opacity-50 text-primary font-albertSans leading-relaxed">
+
+            <p className="text-secondary font-albertSans leading-relaxed">
               {discription}
             </p>
           </div>
+
+          {/* CTA */}
           <div>
             <button
-              className="px-6 py-3 text-base border rounded-full border-primary"
               onClick={onClick}
+              className="px-6 py-3 rounded-full border border-primary text-primary font-albertSans text-base hover:bg-primary hover:text-white transition"
             >
               View Room
             </button>
           </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 };
