@@ -42,7 +42,7 @@ const VideoBackground = () => {
         <div className="flex flex-col gap-8 h-full justify-end">
           <div className="flex flex-col gap-5 items-center pt-28 sm:pt-[18%] px-4 sm:px-0 text-center">
             <div className="flex flex-col gap-2.5">
-              <div className="flex items-center gap-2.5 w-full max-w-2xl">
+              <div className="flex items-center justify-center gap-2.5 w-full max-w-2xl mx-auto">
                 <div className="border border-[#FFF] flex-1 hidden sm:block" />
                 <h2 className="sm:text-3xl uppercase text-[#FFF] font-ivy text-sm text-center">
                   Kudajadri Drizzle Homestay in Wayanad
