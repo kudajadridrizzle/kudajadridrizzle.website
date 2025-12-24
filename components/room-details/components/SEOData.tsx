@@ -10,7 +10,7 @@ const SEOData = ({ roomType }: SEODataProps) => {
 
   return (
     <div className="w-full bg-white sm:py-32 mobile:py-14">
-      <div className="sm:px-[12%] mobile:px-4 large:px-[18%] w-full">
+      <div className="sm:px-[12%] mobile:px-4 large:px-[12%] w-full">
         <div className="mb-12">
           {isPremiumRoom ? (
             <>

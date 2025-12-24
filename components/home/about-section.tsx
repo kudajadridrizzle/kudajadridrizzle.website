@@ -5,7 +5,7 @@ const AboutSession = () => {
   const router = useRouter();
 
   return (
-    <div className="px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[18%]">
+    <div className="px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[12%]">
       <div className="flex flex-col sm:flex-row gap-12">
 
         {/* LEFT – Sticky Pre-title + Title */}

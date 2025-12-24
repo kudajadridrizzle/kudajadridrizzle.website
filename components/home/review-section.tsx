@@ -18,7 +18,7 @@ const ReviewSectionComponent = ({
   children
 }: ReviewSectionProps) => {
   return (
-    <div className={`sm:py-32 sm:px-[12%] flex flex-col gap-6 items-center mobile:px-4 mobile:py-14 large:px-[18%] bg-gray-50 ${className}`}>
+    <div className={`sm:py-32 sm:px-[12%] flex flex-col gap-6 items-center mobile:px-4 mobile:py-14 large:px-[12%] bg-gray-50 ${className}`}>
       <div className="flex gap-4 items-center justify-center">
         <div><img src='assets/ReviwLeaf1.svg' alt="" /></div>
         <span className="block sm:text-[100px] mobile:text-[52px] font-albertSans text-primary">

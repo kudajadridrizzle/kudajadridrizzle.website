@@ -25,7 +25,7 @@ const AnotherRoomSession: React.FC<AnotherRoomSessionProps> = ({
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   return (
-    <div className="px-4 py-14 sm:px-[12%] sm:py-32 flex flex-col sm:justify-between gap-[24px] lg:px-[18%] ">
+    <div className="px-4 py-14 sm:px-[12%] sm:py-32 flex flex-col sm:justify-between gap-[24px] lg:px-[12%] ">
       <div className="sm:pb-0 mobile:pb-8">
         <h2 className="text-[#000] text-[32px] sm:text-[44px] font-ivy">
           {getSectionTitle()}

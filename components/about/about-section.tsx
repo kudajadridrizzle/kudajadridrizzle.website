@@ -53,7 +53,7 @@ const AboutSession = () => {
     : idealForAllContent;
 
   return (
-    <div className="sm:px-[6%] sm:py-32 large:px-[18%] px-4 py-14">
+    <div className="sm:px-[6%] sm:py-32 large:px-[12%] px-4 py-14">
       <div className="flex flex-col gap-12">
         <div className="flex gap-4 sm:flex-row flex-col">
           <h1 className="block sm:w-1/2 text-[#000] font-ivy sm:text-[44px] text-[32px]">

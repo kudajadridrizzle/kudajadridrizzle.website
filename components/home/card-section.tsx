@@ -18,7 +18,7 @@ export const CardSection: React.FC<CardsSectionProps> = ({ sectionKey, className
   if (!section) return null;
 
   return (
-    <div className={`px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[18%] ${className}`}>
+    <div className={`px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[12%] ${className}`}>
       {/* Header Section */}
       <div className="flex flex-col gap-6 items-start sm:items-center mb-16">
         {section.subtitle && (

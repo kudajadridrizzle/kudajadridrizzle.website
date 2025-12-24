@@ -6,7 +6,7 @@ interface MorningSessionProps {
 
 const MorningSession = ({ roomData }: MorningSessionProps) => {
   return (
-    <div className="w-full sm:px-[12%] sm:py-32 flex gap-8 mobile:px-4 mobile:py-8 mobile:flex-col-reverse sm:flex-row sm:items-stretch large:px-[18%] h-auto min-h-0">
+    <div className="w-full sm:px-[12%] sm:py-32 flex gap-8 mobile:px-4 mobile:py-8 mobile:flex-col-reverse sm:flex-row sm:items-stretch large:px-[12%] h-auto min-h-0">
       <div className="flex-1 flex flex-col justify-center gap-6 py-8">
         <h2 className="text-[#000] font-ivy sm:text-[44px] mobile:text-[32px]">
           {roomData.session.titile}

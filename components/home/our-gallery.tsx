@@ -32,7 +32,7 @@ const OurGallery = () => {
   }, [navItem]);
 
   return (
-    <div className="px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[18%] flex flex-col gap-[66px]">
+    <div className="px-4 py-14 sm:px-[12%] sm:py-32 lg:px-[12%] flex flex-col gap-[66px]">
       <div className="flex flex-col sm:flex-row">
         <h2 className="flex-1 text-primary font-ivy text-[32px] sm:text-[44px]">
           {heading}

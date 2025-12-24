@@ -17,7 +17,7 @@ export default function Faq(content: FaqFrontMatterAttributes) {
   const listTwo = faqs.slice(middleIndex, faqs.length);
 
   return (
-    <div className="sm:px-[12%] sm:py-24 mobile:px-4 mobile:py-14 large:px-[18%] flex flex-col gap-8 faq-container">
+    <div className="sm:px-[12%] sm:py-24 mobile:px-4 mobile:py-14 large:px-[12%] flex flex-col gap-8 faq-container">
       <div>
         <h2 className="flex-1 text-primary font-ivy sm:text-[44px] sm:text-center mobile:text-start mobile:text-[32px]">
           {content.title || 'Frequently Asked Questions'}

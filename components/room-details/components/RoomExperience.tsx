@@ -73,7 +73,7 @@ What makes our **Wayanad cottages** special is the warm hospitality. Guests can 
   }
 
   return (
-    <section className="py-12 px-4 sm:px-12 lg:px-[18%] 2xl:px-[12%]">
+    <section className="py-12 px-4 sm:px-12 lg:px-[12%] 2xl:px-[12%]">
       {roomData.image && (
         <div className="mb-8">
           <img

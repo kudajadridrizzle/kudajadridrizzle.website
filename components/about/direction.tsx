@@ -16,7 +16,7 @@ const Direction = ({
   showMap = true
 }: DirectionProps) => {
   return (
-    <div className="sm:px-[12%] sm:py-32 flex flex-col gap-24 mobile:px-4 mobile:py-14 large:px-[18%]">
+    <div className="sm:px-[12%] sm:py-32 flex flex-col gap-24 mobile:px-4 mobile:py-14 large:px-[12%]">
       <div className="flex flex-col gap-6 items-center">
         <span className="uppercase text-primary tracking-[1.6px] font-albertSans">
           Direction

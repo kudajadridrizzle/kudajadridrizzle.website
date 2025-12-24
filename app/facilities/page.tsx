@@ -50,7 +50,7 @@ export default function Facilities() {
     <div>
       <Hero />
 
-      <div className="flex flex-col items-center self-stretch gap-16 bg-white mobile:p-4 sm:p-14 sm:flex-row 2xl:px-[18%] lg:px-[12%]">
+      <div className="flex flex-col items-center self-stretch gap-16 bg-white mobile:p-4 sm:p-14 sm:flex-row 2xl:px-[12%] lg:px-[12%]">
         <FacilitiesSession />
       </div>
 

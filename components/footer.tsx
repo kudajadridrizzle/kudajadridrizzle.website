@@ -36,7 +36,7 @@ const Footer = () => {
   return (
     <div className="bg-primary">
       {/* Top CTA Section */}
-      <div className="px-4 py-7 sm:px-[12%] sm:py-14 lg:px-[18%] flex flex-col sm:flex-row gap-x-[30px] items-center border-b border-[#fff]">
+      <div className="px-4 py-7 sm:px-[12%] sm:py-14 lg:px-[12%] flex flex-col sm:flex-row gap-x-[30px] items-center border-b border-[#fff]">
         <span className="block text-[#fff] font-ivy text-[32px] sm:text-[44px] text-left">
           Book Kudajadri Drizzle Homestays in Wayanad Now
         </span>
@@ -67,7 +67,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Content */}
-      <div className="py-10 sm:py-20 flex flex-col sm:gap-32 sm:px-[12%] lg:px-[18%]">
+      <div className="py-10 sm:py-20 flex flex-col sm:gap-32 sm:px-[12%] lg:px-[12%]">
         {/* Footer Links */}
         <div className="flex flex-col sm:flex-row sm:gap-[30px] justify-between gap-11 py-10 px-4 sm:p-0">
           {/* Contact Section */}

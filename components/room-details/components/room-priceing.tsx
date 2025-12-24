@@ -41,7 +41,7 @@ export const RoomPriceSession = () => {
   };
 
   return (
-    <section className="px-4 pb-20 sm:px-[12%] sm:pb-32 large:px-[18%]">
+    <section className="px-4 pb-20 sm:px-[12%] sm:pb-32 large:px-[12%]">
       <div className="flex flex-col sm:flex-row gap-12">
         {/* LEFT CONTENT */}
         <div className="flex-1 flex flex-col gap-8">

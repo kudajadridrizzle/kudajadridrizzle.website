@@ -37,7 +37,7 @@ const packages = [
 
 const TravelPackagesInfo = () => {
   return (
-    <section className="w-full px-4 sm:px-12 lg:px-[18%] 2xl:px-[12%] py-16 sm:py-24 bg-gray-50">
+    <section className="w-full px-4 sm:px-12 lg:px-[12%] 2xl:px-[12%] py-16 sm:py-24 bg-gray-50">
       {/* Section Title */}
       <h2 className="text-3xl sm:text-4xl font-ivy text-center text-black mb-12">
         Wayanad Travel Packages for Every Explorer

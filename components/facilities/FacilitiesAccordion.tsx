@@ -63,7 +63,7 @@ const FacilitiesAccordion = () => {
   };
 
   return (
-    <section className="bg-white py-12 sm:py-20 px-4 sm:px-12 lg:px-[12%] 2xl:px-[18%]">
+    <section className="bg-white py-12 sm:py-20 px-4 sm:px-12 lg:px-[12%] 2xl:px-[12%]">
       <h2 className="text-3xl sm:text-4xl font-ivy text-center text-primary mb-10">
         Facilities & Services at Kudajadri Drizzle
       </h2>

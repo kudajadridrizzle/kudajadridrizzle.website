@@ -35,7 +35,7 @@ If you are looking for the best **Wayanad cottages** or **cottages in Wayanad** 
   if (!content) return null; // Render nothing if route doesn't match
 
   return (
-    <section className="py-12 px-4 sm:px-12 lg:px-[18%] 2xl:px-[12%] bg-primary/5 rounded-lg text-center">
+    <section className="py-12 px-4 sm:px-12 lg:px-[12%] 2xl:px-[12%] bg-primary/5 rounded-lg text-center">
       <ReactMarkdown
         components={{
           h2: ({ children }) => (

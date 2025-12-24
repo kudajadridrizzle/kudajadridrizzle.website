@@ -25,7 +25,7 @@ Our Deluxe Rooms in Wayanad cottages offer the ideal combination of comfort, pri
 `;
 
   return (
-    <section className="py-12 px-4 sm:px-12 lg:px-[18%] 2xl:px-[12%]">
+    <section className="py-12 px-4 sm:px-12 lg:px-[12%] 2xl:px-[12%]">
       <ReactMarkdown
         components={{
           h2: ({ children }) => (

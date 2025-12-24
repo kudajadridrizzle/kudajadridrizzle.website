@@ -62,7 +62,7 @@ Booking a Deluxe Room in our cottages in Wayanad guarantees a memorable and rela
   if (!content) return null; // If route doesn't match, render nothing
 
   return (
-    <section className="py-12 px-4 sm:px-12 lg:px-[18%] 2xl:px-[12%]">
+    <section className="py-12 px-4 sm:px-12 lg:px-[12%] 2xl:px-[12%]">
       <ReactMarkdown
         components={{
           h2: ({ children }) => (

@@ -79,7 +79,7 @@ const CMSRoomSession = ({
   };
 
   return (
-    <div className={`sm:px-[12%] sm:pt-32 sm:pb-0 bg-[#FFF] px-4 mobile:pt-14 mobile:pb-6 large:px-[18%] ${isEditing ? 'py-8' : ''}`}>
+    <div className={`sm:px-[12%] sm:pt-32 sm:pb-0 bg-[#FFF] px-4 mobile:pt-14 mobile:pb-6 large:px-[12%] ${isEditing ? 'py-8' : ''}`}>
       <div className="sm:py-12 flex flex-col sm:flex-row justify-center">
         {isEditing ? (
           <div className="w-full mb-4">

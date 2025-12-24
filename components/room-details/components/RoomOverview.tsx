@@ -88,7 +88,7 @@ const RoomDetails = () => {
   }
 
   return (
-    <section className="py-12 px-4 sm:px-12 lg:px-[18%] 2xl:px-[12%]">
+    <section className="py-12 px-4 sm:px-12 lg:px-[12%] 2xl:px-[12%]">
       <div>
         <ReactMarkdown
           components={{
