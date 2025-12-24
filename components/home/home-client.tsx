@@ -5,7 +5,6 @@ import Amenities from "@/components/home/ameties";
 import { ContentSection } from "@/components/home/content-section";
 import Direction from "@/components/direction";
 import GallarySession from "@/components/home/gallery-section";
-import GuestTestimonials from "@/components/home/guest-terminologies";
 import { IndividualRooms } from "@/components/home/individual-rooms";
 import LocationImage from "@/components/home/location-section";
 import ReviewSession from "@/components/home/review-section";
@@ -14,6 +13,7 @@ import VideoBackground from "@/components/home/vedio-backgroud";
 import { useContentSection } from "@/app/hooks/use-content-section";
 import CardSection from "@/components/home/card-section";
 import OurGallery from "@/components/home/our-gallery";
+import GuestReviewsSection from "@/components/home/GuestReviewsSection";
 import  Header  from "@/components/Header";
 export default function HomeClient() {
   const contentSection = useContentSection("home");
@@ -26,10 +26,10 @@ export default function HomeClient() {
       <GallarySession />
       <RoomSession />
       <IndividualRooms />
+      <GuestReviewsSection />
       <Amenities />
       <OurGallery />
       <ReviewSession />
-      <GuestTestimonials />
       <LocationImage />
       <Direction />
       <ContentSection
