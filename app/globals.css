@@ -5,8 +5,8 @@
 a {
   @apply transition-all duration-300 ease-in-out;
   position: relative;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
+  text-underline-offset: 2px;
   text-decoration-thickness: 0.5px;
   text-decoration-color: rgba(0, 0, 0, 0.3);
   color: inherit;
