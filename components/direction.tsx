@@ -1,60 +1,80 @@
 interface DirectionProps {
   title?: string;
-  description?: string;
+  description?: React.ReactNode;
   buttonText?: string;
   mapUrl?: string;
   iframeMapUrl?: string;
   showMap?: boolean;
 }
 
+const GOOGLE_MAP_URL =
+  "https://www.google.com/maps/place/Kudajadri+Drizzle+-+Best+Wayanad+Homestays";
+
+const GOOGLE_MAP_EMBED_URL =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.1912242549953!2d76.0876686!3d11.6944734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6752bf8e8c185%3A0x5bf951fa893c48b4!2sKudajadri%20Drizzle%20-%20Best%20Wayanad%20Homestays!5e0!3m2!1sen!2sin!4v1717921840000!5m2!1sen!2sin";
+
 const Direction = ({
   title = "Getting to Our Wayanad Homestay",
-  description = "Getting to our Kudajadri Drizzle <strong>Wayanad homestay</strong> is easy and convenient. Well-connected by road from Kozhikode, Bengaluru, and Mysuru, travelers can reach us via car, taxi, or bus. Surrounded by scenic hills and plantations, the journey itself is a delightful introduction to Wayanad's natural beauty, ensuring a smooth and pleasant arrival.",
+  description = (
+    <>
+      Getting to our Kudajadri Drizzle <strong>Wayanad homestay</strong> is easy
+      and convenient. Well connected by road from Kozhikode, Bengaluru, and
+      Mysuru, guests can reach us comfortably by car, taxi, or bus. Surrounded by
+      scenic hills and plantations, the journey itself becomes a beautiful
+      introduction to Wayanad’s natural charm.
+    </>
+  ),
   buttonText = "Get Direction",
-  mapUrl = 'https://www.google.com/maps/place/Kudajadri+Drizzle+-+Best+Wayanad+Homestays/@11.694468,76.09254,21z/data=!4m9!3m8!1s0x3ba6752bf8e8c185:0x5bf951fa893c48b4!5m2!4m1!1i2!8m2!3d11.6944682!4d76.0925395!16s%2Fg%2F1ptwp6yd6?hl=en&entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D',
-  iframeMapUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.1912242549953!2d76.0876686!3d11.6944734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6752bf8e8c185%3A0x5bf951fa893c48b4!2sKudajadri%20Drizzle%20-%20Best%20Wayanad%20Homestays!5e0!3m2!1sen!2sin!4v1717921840000!5m2!1sen!2sin',
-  showMap = true
+  mapUrl = GOOGLE_MAP_URL,
+  iframeMapUrl = GOOGLE_MAP_EMBED_URL,
+  showMap = true,
 }: DirectionProps) => {
   return (
-    <div className="sm:px-[12%] sm:py-32 flex flex-col gap-24 mobile:px-4 mobile:py-14 large:px-[12%]">
-      <div className="flex flex-col gap-6 items-center">
-        <span className="uppercase text-primary tracking-[1.6px] font-albertSans">
-          Direction
-        </span>
+    <section className="px-4 py-14 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-6xl space-y-16">
+        {/* Header */}
+        <header className="flex flex-col items-center gap-6 text-center">
+          <span className="font-albertSans text-sm uppercase tracking-widest text-primary">
+            Direction
+          </span>
 
-        <div className="flex flex-col gap-4 items-center">
-          <h2 className="block text-primary sm:text-[44px] mobile:text-[32px] font-ivy">
-            {title}
-          </h2>
-          <p
-            className="text-secondary sm:text-xl font-albertSans text-center"
-            dangerouslySetInnerHTML={{ __html: description }}
-          ></p>
-        </div>
+          <div className="max-w-3xl space-y-4">
+            <h2 className="font-ivy text-3xl sm:text-4xl lg:text-5xl text-primary">
+              {title}
+            </h2>
 
-        <div>
-          <button
-            onClick={() => window.open(mapUrl, '_blank')}
-            className="bg-primary px-6 py-3 rounded-full text-[#fff] font-albertSans"
+            <p className="font-albertSans text-base sm:text-lg leading-relaxed text-secondary">
+              {description}
+            </p>
+          </div>
+
+          {/* CTA */}
+          <a
+            href={mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-fit items-center justify-center rounded-full border border-primary px-6 py-3 font-albertSans text-sm sm:text-base font-medium text-primary"
           >
             {buttonText}
-          </button>
-        </div>
-      </div>
+          </a>
+        </header>
 
-      {showMap && (
-        <div className="rounded-2xl overflow-hidden w-full">
-          <iframe
-            src={iframeMapUrl}
-            width="100%"
-            height="450"
-            loading="lazy"
-            className="w-full"
-            title={`Map showing directions to ${title}`}
-          ></iframe>
-        </div>
-      )}
-    </div>
+        {/* Map */}
+        {showMap && (
+          <div className="overflow-hidden rounded-2xl">
+            <div className="relative h-[320px] sm:h-[420px] lg:h-[480px]">
+              <iframe
+                src={iframeMapUrl}
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`Map showing directions to ${title}`}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 
