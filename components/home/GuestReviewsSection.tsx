@@ -21,7 +21,18 @@ const GuestReviewsSection = () => {
 
       {/* Content */}
       <div className="relative z-20 px-4 sm:px-6 py-20 sm:py-28">
-        <div className="mx-auto w-full max-w-xl sm:max-w-2xl flex flex-col gap-4 sm:gap-6 items-center">
+        <div className="mx-auto w-full max-w-xl sm:max-w-2xl flex flex-col gap-12 sm:gap-6 items-center">
+
+          {/* Section Title */}
+          <div className="text-center flex flex-col gap-2">
+            <h2 className="font-ivy text-3xl sm:text-4xl lg:text-5xl text-white">
+              Why Guests Choose Our Wayanad Homestay
+            </h2>
+            <p className="text-sm sm:text-base text-white/80  mx-auto text-center">
+              Discover why guests recommend us among the best homestays in Wayanad. From warm welcomes to peaceful surroundings, guests often mention our hospitality, authentic home-cooked meals, and personal care. Read their stories and see why many return to relive the experience.
+            </p>
+
+          </div>
 
           <ReviewCard
             title="Best Homestay in Wayanad! Loved It!"

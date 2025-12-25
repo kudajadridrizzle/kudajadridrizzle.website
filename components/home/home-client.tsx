@@ -30,7 +30,6 @@ export default function HomeClient() {
       <GuestReviewsSection />
       <Amenities />
       <OurGallery />
-      <ReviewSession />
       <LocationImage />
       <Direction />
       <ContentSection
