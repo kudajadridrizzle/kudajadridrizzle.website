@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import HomeClient from "@/components/home/home-client";
+import { getAboutSection } from "@/lib/contentful";
 
 const SITE_URL = "https://www.kudajadridrizzle.com";
 const OG_IMAGE = `${SITE_URL}/images/1%20(56).jpg`;
@@ -36,6 +37,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
-  return <HomeClient />;
+export default async function Home() {
+  const aboutSectionData = await getAboutSection();
+  
+  return <HomeClient aboutSectionData={aboutSectionData} />;
 }

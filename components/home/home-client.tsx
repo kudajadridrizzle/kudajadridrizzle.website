@@ -16,14 +16,25 @@ import GuestReviewsSection from "@/components/home/GuestReviewsSection";
 import AttractionsSection from "@/components/home/AttractionsSection";
 import  Header  from "@/components/Header";
 import FAQSection from "@/components/home/FAQSection";
-export default function HomeClient() {
+import type { AboutSectionData } from "@/lib/contentful";
+
+export default function HomeClient({ aboutSectionData }: { aboutSectionData: AboutSectionData }) {
   const contentSection = useContentSection("home");
 
   return (
     <div>
       <Header />
       <VideoBackground />
-      <AboutSession />
+      {aboutSectionData && (
+        <AboutSession
+          preTitle={aboutSectionData.preTitle}
+          title={aboutSectionData.title}
+          description={aboutSectionData.description}
+          enableReadMore={aboutSectionData.enableReadMore}
+          ctaLabel={aboutSectionData.ctaLabel}
+          ctaLink={aboutSectionData.ctaLink}
+        />
+      )}
       <GallarySession />
       <RoomSession />
       <IndividualRooms />
