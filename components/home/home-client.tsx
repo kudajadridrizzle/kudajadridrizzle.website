@@ -7,15 +7,14 @@ import Direction from "@/components/direction";
 import GallarySession from "@/components/home/gallery-section";
 import { IndividualRooms } from "@/components/home/individual-rooms";
 import LocationImage from "@/components/home/location-section";
-import ReviewSession from "@/components/home/review-section";
 import RoomSession from "@/components/home/room-section";
-import VideoBackground from "@/components/home/vedio-backgroud";
 import { useContentSection } from "@/app/hooks/use-content-section";
 import OurGallery from "@/components/home/our-gallery";
 import GuestReviewsSection from "@/components/home/GuestReviewsSection";
 import AttractionsSection from "@/components/home/AttractionsSection";
-import  Header  from "@/components/Header";
+import Header from "@/components/Header";
 import FAQSection from "@/components/home/FAQSection";
+import HeroSection from "../HeroSection";
 import type { AboutSectionData } from "@/lib/contentful";
 
 export default function HomeClient({ aboutSectionData }: { aboutSectionData: AboutSectionData }) {
@@ -24,7 +23,14 @@ export default function HomeClient({ aboutSectionData }: { aboutSectionData: Abo
   return (
     <div>
       <Header />
-      <VideoBackground />
+      <HeroSection
+        preTitle="Kudajadri Drizzle Homestay in Wayanad"
+        title="Experience True Serenity"
+        bgImage="/assets/locationImage.webp"
+        showButton={true}
+        buttonLabel="Book Now"
+        redirectTo="/contact"
+      />
       {aboutSectionData && (
         <AboutSession
           preTitle={aboutSectionData.preTitle}
