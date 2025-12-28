@@ -16,7 +16,7 @@ const TourPackageHero = () => {
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default TourPackageHero;

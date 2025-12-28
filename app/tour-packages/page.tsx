@@ -1,22 +1,31 @@
 'use client'
 import Direction from "@/components/direction";
 import Faq from "@/components/faq";
-import TourPackageHero from "@/components/tour-package/hero";
 import TourHeroContent from "@/components/tour-package/hero-content";
 import { Packages } from "@/components/tour-package/packages";
+import HeroSection from "@/components/HeroSection";
 import TravelPackagesInfo from "@/components/tour-package/tour-catogory";
-import aboutFaqData from "@/data/aboutFaqs.json";
+import Header from "@/components/Header";
 
 
 export default function TourPackages() {
   return (
     <div>
-        <TourPackageHero/>
+      <Header/>
+      <HeroSection
+        preTitle="Kudajadri Drizzle"
+        title="Wayanad Tour Packages"
+        bgImage="WayanadTourPackages.jpg"
+        showButton={true}
+        buttonLabel="Book Now"
+        redirectTo="/contact"
+      />
         <TourHeroContent/>
         <Packages/>
         <TravelPackagesInfo/>
         <Direction/>
-        <Faq {...aboutFaqData} />
     </div>
   );
 }
+
+
