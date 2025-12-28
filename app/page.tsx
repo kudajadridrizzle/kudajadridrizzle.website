@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import HomeClient from "@/components/home/home-client";
 import { getAboutSection } from "@/lib/contentful";
 
+// Force dynamic rendering to ensure fresh Contentful data on every request
+export const dynamic = 'force-dynamic';
+
 const SITE_URL = "https://www.kudajadridrizzle.com";
 const OG_IMAGE = `${SITE_URL}/images/1%20(56).jpg`;
 

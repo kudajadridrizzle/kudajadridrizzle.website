@@ -1,11 +1,10 @@
-import { createClient } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-export const contentfulClient = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
-  environment: process.env.CONTENTFUL_ENVIRONMENT || "master",
-});
+// Contentful REST API configuration
+const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID!;
+const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN!;
+const CONTENTFUL_ENVIRONMENT = process.env.CONTENTFUL_ENVIRONMENT || "master";
+const CONTENTFUL_API_BASE = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}`;
 
 export type AboutSectionData = {
   preTitle: string;
@@ -18,16 +17,23 @@ export type AboutSectionData = {
 
 export async function getAboutSection(): Promise<AboutSectionData> {
   try {
-    const res = await contentfulClient.getEntries({
-      content_type: "aboutSection",
-      limit: 1,
+    const url = `${CONTENTFUL_API_BASE}/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=aboutSection&limit=1`;
+    
+    const res = await fetch(url, {
+      cache: 'no-store', // Disable caching to ensure fresh data on every request
     });
 
-    if (!res.items.length) {
+    if (!res.ok) {
+      throw new Error(`Contentful API error: ${res.status} ${res.statusText}`);
+    }
+
+    const data = await res.json();
+
+    if (!data.items || !data.items.length) {
       return null;
     }
 
-    const fields = res.items[0].fields as {
+    const fields = data.items[0].fields as {
       preTitle?: string;
       title?: string;
       description?: Document;

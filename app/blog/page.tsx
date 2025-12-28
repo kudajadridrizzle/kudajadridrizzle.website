@@ -3,6 +3,9 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import { getAllBlogs } from "../../lib/getBlogs";
 
+// Force dynamic rendering to ensure fresh Contentful data on every request
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: "Wayanad travel blog: Latest news, tourism updates, & insights",
   description:
@@ -82,7 +85,7 @@ export default async function BlogListingPage() {
                   "
                 >
                   {/* Image */}
-                  {fields.featuredImage && (
+                  {fields.featuredImage?.fields?.file?.url && (
                     <Image
                       src={`https:${fields.featuredImage.fields.file.url}`}
                       alt={fields.metaTitle}

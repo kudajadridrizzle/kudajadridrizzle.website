@@ -8,6 +8,9 @@ import { Button } from "@/components/button";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
+// Force dynamic rendering to ensure fresh Contentful data on every request
+export const dynamic = 'force-dynamic';
+
 /* ---------- Rich Text Rendering Options ---------- */
 const richTextOptions = {
   renderNode: {
@@ -110,7 +113,7 @@ export default async function BlogPage({
         </div>
 
         {/* Featured Image */}
-        {fields.featuredImage && (
+        {fields.featuredImage?.fields?.file?.url && (
           <Image
             src={`https:${fields.featuredImage.fields.file.url}`}
             alt={fields.metaTitle}
