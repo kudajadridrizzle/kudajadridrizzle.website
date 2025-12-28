@@ -12,24 +12,40 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // --------------------
+      // GREEN WAYANAD
+      // --------------------
       {
-        source: "/rooms/premium-rooms",
-        destination: "/rooms/premium",
+        source: "/green-wayanad.php",
+        destination: "/tour-packages/green-wayanad-tour-package",
         permanent: true,
       },
       {
-        source: "/rooms/classic-rooms",
-        destination: "/rooms/classic",
+        source: "/green-wayanad-tour-package",
+        destination: "/tour-packages/green-wayanad-tour-package",
+        permanent: true,
+      },
+
+      // --------------------
+      // DREAM WAYANAD
+      // --------------------
+      {
+        source: "/dream-wayanad",
+        destination: "/tour-packages/dream-wayanad-tour-package",
+        permanent: true,
+      },
+
+      // --------------------
+      // VIBRANT WAYANAD
+      // --------------------
+      {
+        source: "/Vibrant-wayanad.php",
+        destination: "/tour-packages/vibrant-wayanad-tour-package",
         permanent: true,
       },
       {
-        source: "/rooms/deluxe-rooms",
-        destination: "/rooms/deluxe",
-        permanent: true,
-      },
-      {
-        source: "/rooms/deluxe-heritage-rooms",
-        destination: "/rooms/deluxe-heritage",
+        source: "/vibrant-wayanad",
+        destination: "/tour-packages/vibrant-wayanad-tour-package",
         permanent: true,
       },
     ];
