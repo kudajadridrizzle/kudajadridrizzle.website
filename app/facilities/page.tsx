@@ -1,8 +1,9 @@
 import { Metadata } from "next";
-import Hero from "@/components/facilities/Hero";
 import FacilitiesSession from "@/components/facilities/FacilitiesSession";
 import ListSession from "@/components/facilities/ListSession";
 import FacilitiesAccordion from "@/components/facilities/FacilitiesAccordion";
+import HeroSection from "@/components/HeroSection";
+import Header from "@/components/Header";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
@@ -48,8 +49,15 @@ export const metadata: Metadata = {
 export default function Facilities() {
   return (
     <div>
-      <Hero />
-
+      <Header/>
+      <HeroSection
+        preTitle="Kudajadri Drizzle"
+        title="Facilities & Amenities at Kudajadri Drizzle Homestay"
+        bgImage="/FacilitiesHero.jpg"
+        showButton={true}
+        buttonLabel="Book Now"
+        redirectTo="/contact"
+      />
       <div className="flex flex-col items-center self-stretch gap-16 bg-white mobile:p-4 sm:p-14 sm:flex-row 2xl:px-[12%] lg:px-[12%]">
         <FacilitiesSession />
       </div>
