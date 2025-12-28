@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import { getAllBlogs } from "../../lib/getBlogs";
 
 // Force dynamic rendering to ensure fresh Contentful data on every request
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Wayanad travel blog: Latest news, tourism updates, & insights",
@@ -23,12 +23,13 @@ export default async function BlogListingPage() {
       {/* Page Content */}
       <section className="max-w-6xl mx-auto px-4 pt-28 sm:pt-32 pb-16">
         {/* Page Header */}
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold mb-4">
+        <div className="mb-14 text-center">
+          <h1 className=" font-ivy text-4xl mb-4">
             Wayanad Travel Blog
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore Wayanad with our Wayanad Travel Blog, featuring travel tips, itineraries, and local insights. Discover the best accommodations, including homestays and heritage cottages, and learn about sightseeing, nature walks, and adventure activities. Perfect for families, couples, and solo travelers, the blog helps plan a memorable and enjoyable Wayanad trip.
+            Explore Wayanad through curated travel stories, local insights,
+            nature escapes, and expert tips for couples, families, and solo travelers.
           </p>
         </div>
 
@@ -46,14 +47,14 @@ export default async function BlogListingPage() {
             <div className="flex gap-4">
               <Link
                 href="/"
-                className="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-900 transition"
+                className="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-xl font-medium hover:bg-gray-900 transition"
               >
                 Go to Home
               </Link>
 
               <Link
                 href="/rooms"
-                className="inline-flex items-center justify-center border border-black px-6 py-3 rounded-lg font-medium hover:bg-black hover:text-white transition"
+                className="inline-flex items-center justify-center border border-black px-6 py-3 rounded-xl font-medium hover:bg-black hover:text-white transition"
               >
                 View Rooms
               </Link>
@@ -63,7 +64,7 @@ export default async function BlogListingPage() {
 
         {/* BLOG GRID */}
         {hasBlogs && (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {blogs.map((blog: any) => {
               const fields = blog.fields;
 
@@ -72,48 +73,71 @@ export default async function BlogListingPage() {
                   key={blog.sys.id}
                   className="
                     group
-                    border border-black/50
-                    rounded-xl
+                    rounded-2xl
                     overflow-hidden
+                    border
+                    border-black/10
                     bg-white
                     transition-all
                     duration-300
                     ease-out
-                    hover:-translate-y-1
-                    hover:border-black
-                    hover:shadow-xl
+                    hover:border-black/30
                   "
                 >
                   {/* Image */}
                   {fields.featuredImage?.fields?.file?.url && (
-                    <Image
-                      src={`https:${fields.featuredImage.fields.file.url}`}
-                      alt={fields.metaTitle}
-                      width={600}
-                      height={400}
-                      className="
-                        object-cover h-52 w-full
-                        transition-transform duration-500
-                        group-hover:scale-105
-                      "
-                    />
+                    <div className="relative h-56 w-full overflow-hidden">
+                      <Image
+                        src={`https:${fields.featuredImage.fields.file.url}`}
+                        alt={fields.metaTitle}
+                        fill
+                        className="
+                          object-cover
+                          transition-transform
+                          duration-700
+                          group-hover:scale-105
+                        "
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+
+                      {/* Subtle overlay */}
+                      <div className="absolute inset-0 bg-black/5" />
+                    </div>
                   )}
 
                   {/* Content */}
                   <div className="p-6">
-                    <h2 className="text-xl font-semibold mb-3 transition-colors">
+                    <h2 className="
+                      text-lg
+                      font-semibold
+                      leading-snug
+                      mb-2
+                      text-gray-900
+                    ">
                       {fields.metaTitle}
                     </h2>
 
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-gray-600 text-sm line-clamp-3 mb-5">
                       {fields.metaDescription}
                     </p>
 
                     <Link
                       href={`/blog/${fields.slug}`}
-                      className="inline-flex items-center font-medium text-black hover:underline"
+                      className="
+                        inline-flex
+                        items-center
+                        gap-2
+                        text-sm
+                        font-medium
+                        text-black
+                        transition-all
+                        group-hover:gap-3
+                      "
                     >
-                      Read more →
+                      Read article
+                      <span className="transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
                     </Link>
                   </div>
                 </article>
