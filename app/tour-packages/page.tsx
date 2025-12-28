@@ -11,7 +11,7 @@ import Header from "@/components/Header";
 export default function TourPackages() {
   return (
     <div>
-      <Header/>
+      <Header />
       <HeroSection
         preTitle="Kudajadri Drizzle"
         title="Wayanad Tour Packages"
@@ -20,10 +20,10 @@ export default function TourPackages() {
         buttonLabel="Book Now"
         redirectTo="/contact"
       />
-        <TourHeroContent/>
-        <Packages/>
-        <TravelPackagesInfo/>
-        <Direction/>
+      <TourHeroContent />
+      <Packages />
+      <TravelPackagesInfo />
+      <Direction />
     </div>
   );
 }
