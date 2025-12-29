@@ -1,38 +1,37 @@
-'use client'
+"use client";
 
-import { useState } from "react"
-
-type FAQ = {
-  q: string
-  a: string
-}
+import { useState } from "react";
+import type { FAQItem } from "./FAQSection";
 
 type Props = {
-  faqs: FAQ[]
-}
+  faqs: FAQItem[];
+};
 
 export default function FAQAccordion({ faqs }: Props) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="flex flex-col">
       {faqs.map((faq, index) => {
-        const isOpen = openIndex === index
-        const isLast = index === faqs.length - 1
+        const isOpen = openIndex === index;
+        const isLast = index === faqs.length - 1;
+        const buttonId = `faq-button-${index}`;
+        const panelId = `faq-panel-${index}`;
 
         return (
           <div
-            key={faq.q}
+            key={index}
             className={`py-6 ${!isLast ? "border-b border-black/5" : ""}`}
           >
             <button
+              id={buttonId}
               aria-expanded={isOpen}
-              aria-controls={`faq-panel-${index}`}
+              aria-controls={panelId}
               onClick={() => setOpenIndex(isOpen ? null : index)}
               className="w-full flex items-start justify-between gap-6 text-left cursor-pointer"
             >
               <h3 className="text-lg sm:text-xl leading-snug">
-                {faq.q}
+                {faq.question}
               </h3>
 
               <span
@@ -45,8 +44,9 @@ export default function FAQAccordion({ faqs }: Props) {
             </button>
 
             <div
-              id={`faq-panel-${index}`}
+              id={panelId}
               role="region"
+              aria-labelledby={buttonId}
               className={`
                 grid overflow-hidden
                 transition-[grid-template-rows] duration-400
@@ -62,13 +62,13 @@ export default function FAQAccordion({ faqs }: Props) {
                 `}
               >
                 <p className="text-secondary leading-relaxed sm:text-lg">
-                  {faq.a}
+                  {faq.answer}
                 </p>
               </div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
