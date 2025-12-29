@@ -13,9 +13,11 @@ import OurGallery from "@/components/home/our-gallery";
 import GuestReviewsSection from "@/components/home/GuestReviewsSection";
 import AttractionsSection from "@/components/home/AttractionsSection";
 import Header from "@/components/Header";
-import FAQSection from "@/components/home/FAQSection";
+import FAQSection from "@/components/FAQSection"
 import HeroSection from "../HeroSection";
 import type { AboutSectionData } from "@/lib/contentful";
+import { homeFaqData } from "@/data/faqs/home"
+
 
 export default function HomeClient({ aboutSectionData }: { aboutSectionData: AboutSectionData }) {
   const contentSection = useContentSection("home");
@@ -54,7 +56,10 @@ export default function HomeClient({ aboutSectionData }: { aboutSectionData: Abo
         items={contentSection?.items ?? []}
       />
       <AttractionsSection />
-      <FAQSection />
+      <FAQSection
+        title={homeFaqData.title}
+        faqs={homeFaqData.faqs}
+      />
     </div>
   );
 }

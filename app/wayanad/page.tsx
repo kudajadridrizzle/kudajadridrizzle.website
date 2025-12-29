@@ -1,4 +1,4 @@
-import Faq from "@/components/faq";
+import Faq from "@/components/FAQSection";
 import { ImageContentSectionGrid } from "@/components/wayand/ImageContentSectionGrid";
 import { EnhancedHero } from "@/components/wayand/wayand-hero";
 import aboutFaqData from "@/data/aboutFaqs.json";

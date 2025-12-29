@@ -1,5 +1,5 @@
 import AboutSection from "@/components/about/about-section";
-import Faq from "@/components/faq";
+import Faq from "@/components/FAQSection";
 import ReviewSession from "@/components/home/review-section";
 import aboutFaqData from "@/data/aboutFaqs.json";
 import Header from "@/components/Header";

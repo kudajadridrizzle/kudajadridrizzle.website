@@ -1,8 +1,8 @@
 "use client";
 
-import Faq from "@/components/faq";
+import Faq from "@/components/FAQSection";
 import Header from "@/components/Header";
-import type { FaqFrontMatterAttributes } from "@/components/faq";
+import type { FaqFrontMatterAttributes } from "@/components/FAQSection";
 import AnotherRoomSession from "@/components/room-details/components/AnotherRoomSession";
 import DeluxeRoomTips from "@/components/room-details/components/DeluxeRoomOverview";
 import Hero from "@/components/room-details/components/Hero";

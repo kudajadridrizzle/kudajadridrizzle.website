@@ -1,0 +1,45 @@
+export const homeFaqData = {
+  title: "Wayanad Homestays – Frequently Asked Questions",
+  faqs: [
+    {
+      q: "What are Wayanad homestays and how are they different from hotels?",
+      a: "Wayanad homestays are accommodations provided by local hosts, offering a homely atmosphere, personal attention, and cultural experiences. Unlike hotels, homestays in Wayanad focus on simplicity, local food, and authentic hospitality, making them ideal for travelers seeking a peaceful and immersive stay in the scenic hills of Wayanad."
+    },
+    {
+      q: "Are homestays in Wayanad suitable for families, couples, and groups?",
+      a: "Yes, homestays in Wayanad are a great choice for all types of travelers. Whether you're a couple looking for privacy, a family with kids, or a group of friends, Wayanad homestays offer spacious rooms, friendly hosts, and a peaceful environment perfect for bonding and relaxation."
+    },
+    {
+      q: "How can I find the best homestay in Wayanad?",
+      a: "To find the best Wayanad homestay, explore reviews on trusted travel websites, compare facilities, and check the location’s proximity to tourist attractions. Many homestays in Wayanad are listed with real guest photos, ratings, and verified contact details to help travelers make informed and safe bookings online."
+    },
+    {
+      q: "What amenities do Wayanad homestays typically offer?",
+      a: "Most Wayanad homestays offer essential amenities like clean rooms, hot water, free Wi-Fi, and home-cooked meals. Additional features may include parking, campfires, trekking guidance, or plantation visits. Homestays in Wayanad combine comfort with local charm, providing a memorable stay amidst nature without the cost of luxury hotels."
+    },
+    {
+      q: "Are meals included in Wayanad homestay bookings?",
+      a: "Many Wayanad homestays include breakfast with the booking, while lunch and dinner are available upon request. Meals are often homemade and reflect the rich flavors of Kerala cuisine. Staying at a homestay in Wayanad allows you to enjoy local food prepared fresh with care and authenticity."
+    },
+    {
+      q: "Is it safe to stay in a homestay in Wayanad?",
+      a: "Yes, staying in a homestay in Wayanad is generally safe. These accommodations are run by local families who prioritize guest safety and comfort. Most homestays have gated premises, private rooms, and hosts who are always available to assist, making them suitable for solo travelers and women as well."
+    },
+    {
+      q: "What is the average price range for Wayanad homestays?",
+      a: "The cost of Wayanad homestays typically ranges from ₹1,000 to ₹5,000 per night. Budget options offer basic comforts, while premium homestays provide extra amenities and scenic views. Prices may vary based on the season, location, and facilities offered, but they remain affordable compared to resorts or hotels."
+    },
+    {
+      q: "Can I book Wayanad homestays online?",
+      a: "Yes, most homestays in Wayanad can be booked online through popular travel platforms or the homestay's own website. Online booking is quick, secure, and allows you to view photos, read guest reviews, and choose the best Wayanad homestay that fits your preferences and travel dates easily."
+    },
+    {
+      q: "Are there luxury or premium homestays in Wayanad?",
+      a: "Yes, Wayanad offers premium homestays with modern comforts like private cottages, mountain views, and curated local experiences. These high-end homestays in Wayanad combine luxury with personalized service, making them ideal for honeymooners, weekend escapes, and guests seeking a peaceful stay in an upscale yet natural setting."
+    },
+    {
+      q: "When is the best time to book a homestay in Wayanad?",
+      a: "The best time to book a homestay in Wayanad is from October to May. During this period, the weather is cool and pleasant, perfect for sightseeing, trekking, and exploring nature. Advance booking is recommended during weekends and holidays as many Wayanad homestays get fully booked early."
+    }
+  ]
+};

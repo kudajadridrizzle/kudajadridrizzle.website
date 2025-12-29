@@ -1,6 +1,6 @@
 'use client'
 import Direction from "@/components/direction";
-import Faq from "@/components/faq";
+import Faq from "@/components/FAQSection";
 import TourHeroContent from "@/components/tour-package/hero-content";
 import { Packages } from "@/components/tour-package/packages";
 import HeroSection from "@/components/HeroSection";

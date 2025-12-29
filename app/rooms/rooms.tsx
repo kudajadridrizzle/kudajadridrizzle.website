@@ -1,7 +1,7 @@
 'use client';
 
 import CMSRoomSession from "@/components/about/CMSRoomSession";
-import Faq from "@/components/faq";
+import Faq from "@/components/FAQSection";
 import { IndividualRooms } from "@/components/home/individual-rooms";
 import CMSHero from "@/components/rooms/cms-hero";
 import aboutFaqData from "@/data/aboutFaqs.json";
