@@ -4,6 +4,10 @@ import ReviewSession from "@/components/home/review-section";
 import aboutFaqData from "@/data/aboutFaqs.json";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import FAQSection from "@/components/FAQSection";
+import { AboutFaqData } from "@/data/faqs/about"
+
+
 
 export const metadata = {
   title: "Kalpetta homestays for families: Best rated homestays in Kalpetta",
@@ -27,6 +31,11 @@ export default function About() {
       />
       <AboutSection />
       <ReviewSession />
+      <FAQSection
+        title={AboutFaqData.title}
+        faqs={AboutFaqData.faqs}
+      />
+
     </div>
   );
 }
