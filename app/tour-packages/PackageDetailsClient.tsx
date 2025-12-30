@@ -2,15 +2,9 @@
 import PackageCard, {
   BodyCard,
 } from "@/components/tour-package-deatils/package-detail-card";
-import packageDetails from "../../../data/package-details.json";
-import { useParams, useRouter } from "next/navigation";
-
-interface PackageMeta {
-  title: string;
-  description: string;
-  keywords: string;
-}
-
+import packageDetails from "@/data/package-details.json";
+import { useRouter } from "next/navigation";
+import Header from "@/components/Header";
 interface PackagePrice {
   current_price: string;
   original_price: string;
@@ -21,12 +15,12 @@ interface PackageDetail {
   title: string;
   body: string[];
 }
+
 interface TourPackage {
   title: string;
   description: string;
   duration: string;
   pickup_drop: string;
-  meta?: PackageMeta;
   price: PackagePrice;
   details: PackageDetail[];
 }
@@ -35,25 +29,21 @@ interface PackageDetailsData {
   tour_package: TourPackage[];
 }
 
-export default function TourPackageDetails() {
-  const { id } = useParams<{ id: string }>();
-  const router = useRouter();
-  const getOriginalTitle = (urlTitle: string) => {
-    const decodedTitle = decodeURIComponent(urlTitle);
-    return decodedTitle
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  };
+interface PackageDetailsClientProps {
+  packageTitle: string;
+}
 
-  const originalTitle = id ? getOriginalTitle(id) : "";
+export default function PackageDetailsClient({ packageTitle }: PackageDetailsClientProps) {
+  const router = useRouter();
   const selectedPackage = (
     packageDetails as PackageDetailsData
   ).tour_package.find(
-    (pkg) => pkg.title.toLowerCase() === originalTitle.toLowerCase()
+    (pkg) => pkg.title.toLowerCase() === packageTitle.toLowerCase()
   );
+
   return (
     <div className="package-details mt-[60px] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-8 sm:py-12 md:py-16">
+      <Header variant="solid" />
       {selectedPackage && (
         <PackageCard
           title={selectedPackage.title}
@@ -66,13 +56,14 @@ export default function TourPackageDetails() {
       )}
       <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 mt-12 sm:mt-16 md:mt-20 lg:mt-24">
         {selectedPackage?.details?.map((detail, index) => (
-            <BodyCard
-              key={index}
-              title={detail.title}
-              description={detail.body}
-            />
-          ))}
+          <BodyCard
+            key={index}
+            title={detail.title}
+            description={detail.body}
+          />
+        ))}
       </div>
     </div>
   );
 }
+

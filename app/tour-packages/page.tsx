@@ -1,31 +1,13 @@
-'use client'
-import Direction from "@/components/direction";
-import Faq from "@/components/FAQSection";
-import TourHeroContent from "@/components/tour-package/hero-content";
-import { Packages } from "@/components/tour-package/packages";
-import HeroSection from "@/components/HeroSection";
-import TravelPackagesInfo from "@/components/tour-package/tour-catogory";
-import Header from "@/components/Header";
+import type { Metadata } from "next";
+import TourPackagesClient from "./TourPackagesClient";
 
+export const metadata: Metadata = {
+  title: "Wayanad Tour Packages | Curated Nature & Experience Tours",
+  description:
+    "Explore the best Wayanad tour packages including nature trails, sightseeing, and curated travel experiences. Choose the perfect Wayanad package for your trip.",
+};
 
-export default function TourPackages() {
-  return (
-    <div>
-      <Header />
-      <HeroSection
-        preTitle="Kudajadri Drizzle"
-        title="Wayanad Tour Packages"
-        bgImage="WayanadTourPackages.jpg"
-        showButton={true}
-        buttonLabel="Book Now"
-        redirectTo="/contact"
-      />
-      <TourHeroContent />
-      <Packages />
-      <TravelPackagesInfo />
-      <Direction />
-    </div>
-  );
+export default function WayanadTourPackages() {
+  return <TourPackagesClient />;
 }
-
 
