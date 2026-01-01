@@ -144,7 +144,7 @@ export default function Footer() {
 
           <div className="text-sm leading-relaxed">
             © {new Date().getFullYear()} Kudajadri Drizzle Homestay. All rights reserved.
-            <Link href="/terms" className="ml-4">
+            <Link href="/terms-and-conditions" className="ml-4">
               Terms & Conditions
             </Link>
           </div>
