@@ -1,26 +1,38 @@
-import { Room } from '../constants';
+'use client'
+
+import { useRouter } from "next/navigation";
+import { Room } from "../constants";
 
 interface MorningSessionProps {
   roomData: Room;
 }
 
 const MorningSession = ({ roomData }: MorningSessionProps) => {
+  const router = useRouter();
+
   return (
     <div className="w-full px-4 py-8 sm:px-[12%] sm:py-32 flex flex-col-reverse sm:flex-row sm:items-stretch gap-8 lg:px-[12%] h-auto min-h-0">
       <div className="flex-1 flex flex-col justify-center gap-6 py-8">
-        <h2 className="text-[#000] font-ivy text-[32px] sm:text-[44px]">
+        <h2 className="text-black font-ivy text-[32px] sm:text-[44px]">
           {roomData.session.titile}
         </h2>
+
         <div
           className="text-secondary sm:text-xl font-albertSans whitespace-pre-line"
           dangerouslySetInnerHTML={{ __html: roomData.session.subTitlestr }}
         />
+
         <div className="mt-4">
-          <button className="px-6 py-3 rounded-full bg-primary text-[#fff] font-albertSans font-medium hover:bg-opacity-90 transition-colors">
+          <button
+            type="button"
+            onClick={() => router.push("/contact")}
+            className="px-6 py-3 rounded-full bg-primary text-white font-albertSans font-medium hover:bg-opacity-90 transition-colors cursor-pointer"
+          >
             Book Now
           </button>
         </div>
       </div>
+
       <div className="flex-1 relative w-full aspect-[4/3] sm:aspect-auto sm:h-auto">
         <img
           src={roomData.session.image}
