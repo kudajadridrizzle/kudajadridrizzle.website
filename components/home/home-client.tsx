@@ -17,6 +17,7 @@ import FAQSection from "@/components/FAQSection"
 import HeroSection from "../HeroSection";
 import type { AboutSectionData } from "@/lib/contentful";
 import { homeFaqData } from "@/data/faqs/home"
+import Wrapper from "../layout/Wrapper";
 
 
 export default function HomeClient({ aboutSectionData }: { aboutSectionData: AboutSectionData }) {
@@ -33,16 +34,19 @@ export default function HomeClient({ aboutSectionData }: { aboutSectionData: Abo
         buttonLabel="Book Now"
         redirectTo="/contact"
       />
-      {aboutSectionData && (
-        <AboutSession
-          preTitle={aboutSectionData.preTitle}
-          title={aboutSectionData.title}
-          description={aboutSectionData.description}
-          enableReadMore={aboutSectionData.enableReadMore}
-          ctaLabel={aboutSectionData.ctaLabel}
-          ctaLink={aboutSectionData.ctaLink}
-        />
-      )}
+      <Wrapper>
+        {aboutSectionData && (
+          <AboutSession
+            preTitle={aboutSectionData.preTitle}
+            title={aboutSectionData.title}
+            description={aboutSectionData.description}
+            enableReadMore={aboutSectionData.enableReadMore}
+            ctaLabel={aboutSectionData.ctaLabel}
+            ctaLink={aboutSectionData.ctaLink}
+          />
+        )}
+      </Wrapper>
+
       <GallarySession />
       <RoomSession />
       <IndividualRooms />
