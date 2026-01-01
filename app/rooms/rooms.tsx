@@ -1,32 +1,33 @@
 'use client';
 
 import CMSRoomSession from "@/components/about/CMSRoomSession";
-import Faq from "@/components/FAQSection";
 import { IndividualRooms } from "@/components/home/individual-rooms";
-import CMSHero from "@/components/rooms/cms-hero";
-import aboutFaqData from "@/data/aboutFaqs.json";
 import Header from "@/components/Header";
-
+import HeroSection from "@/components/HeroSection";
 
 export default function Rooms() {
   return (
     <div>
-      {/* <CMSHero
-        title="Best Wayanad Accommodation Homestay Rooms" 
-        backgroundImage="/images/5a8a9701-1-.jpg"
-        overlayOpacity={0.6}
-      /> */}
-      <div className="relative">
+      <Header />
+      <HeroSection
+        preTitle="Kudajadri Drizzle"
+        title="Best Wayanad Accommodation Homestay Rooms"
+        bgImage="RoomsHero.jpg"
+        showButton={true}
+        buttonLabel="Book Now"
+        redirectTo="/contact"
+      />
+
+      <main className="pt-[112px] sm:pt-[88px]">
         <CMSRoomSession
-          heading='Best Wayanad Accommodations – Comfortable Stays at Kudajadri Drizzle'
-          content='Our rooms blend the charm of a 100-year-old Jain Tharavadu with modern comforts. Choose from Premium, Deluxe, or Classic options, each offering spacious layouts, serene views, and essential amenities for a memorable stay. Experience some of the best accommodations in Wayanad at Kudajadri Drizzle, where heritage meets comfort in a tranquil setting.'
+          heading="Best Wayanad Accommodations – Comfortable Stays at Kudajadri Drizzle"
+          content="Our rooms blend the charm of a 100-year-old Jain Tharavadu with modern comforts. Choose from Premium, Deluxe, or Classic options, each offering spacious layouts, serene views, and essential amenities for a memorable stay. Experience some of the best accommodations in Wayanad at Kudajadri Drizzle, where heritage meets comfort in a tranquil setting."
           isEditing={false}
-          onContentChange={() => {}}
+          onContentChange={() => { }}
         />
-      </div>
-      <Header variant="solid" />
-      <IndividualRooms/>
-      {/* <Faq {...aboutFaqData} /> */}
+
+        <IndividualRooms />
+      </main>
     </div>
   );
 }
