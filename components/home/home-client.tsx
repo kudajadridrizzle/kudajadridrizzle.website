@@ -6,8 +6,8 @@ import { ContentSection } from "@/components/home/content-section";
 import Direction from "@/components/direction";
 import GallarySession from "@/components/home/gallery-section";
 import { IndividualRooms } from "@/components/home/individual-rooms";
-import LocationImage from "@/components/home/location-section";
 import RoomSession from "@/components/home/room-section";
+import WayanadOverviewSection from "@/components/home/WayanadOverviewSection";
 import { useContentSection } from "@/app/hooks/use-content-section";
 import OurGallery from "@/components/home/our-gallery";
 import GuestReviewsSection from "@/components/home/GuestReviewsSection";
@@ -53,7 +53,7 @@ export default function HomeClient({ aboutSectionData }: { aboutSectionData: Abo
       <GuestReviewsSection />
       <Amenities />
       <OurGallery />
-      <LocationImage />
+      <WayanadOverviewSection />
       <Direction />
       <ContentSection
         title={contentSection?.title}
