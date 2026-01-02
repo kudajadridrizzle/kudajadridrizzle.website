@@ -16,14 +16,14 @@ const attractions = [
     location: "Wayanad",
     description:
       "A 950-acre evergreen forest island on the Kabani River — ideal for a peaceful day out.",
-    image: "/kuruva.jpg",
+    image: "/Kuruva.jpg",
   },
   {
     title: "Edakkal Caves",
     location: "Wayanad",
     description:
       "Home to Stone Age carvings dating back millennia, reachable via a scenic hike.",
-    image: "/edakkal.webp",
+    image: "/Edakkal.webp",
   },
   {
     title: "Pookode Lake",
