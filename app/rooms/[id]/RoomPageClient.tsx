@@ -37,7 +37,7 @@ export default function RoomPageClient({ roomId }: { roomId: RoomId }) {
       <DeluxeRoomTips />
       <RoomTips />
       <RoomBookingCTA />
-      <AnotherRoomSession roomType={roomDataItem.roomType} />
+      <AnotherRoomSession roomType={roomDataItem.roomType} roomId={roomId} />
     </div>
   );
 }
