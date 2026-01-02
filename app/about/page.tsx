@@ -1,13 +1,13 @@
-import AboutSection from "@/components/about/about-section";
-import Faq from "@/components/FAQSection";
-import ReviewSession from "@/components/home/review-section";
-import aboutFaqData from "@/data/aboutFaqs.json";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/about/about-section";
 import FAQSection from "@/components/FAQSection";
-import { AboutFaqData } from "@/data/faqs/about"
+import ReviewSection from "@/components/home/review-section";
 
+import { AboutFaqData } from "@/data/faqs/about";
 
+const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/maps/place/Kudajadri+Drizzle+-+Best+Wayanad+Homestays/@11.6944734,76.0899646,17z/data=!4m11!3m10!1s0x3ba6752bf8e8c185:0x5bf951fa893c48b4!5m2!4m1!1i2!8m2!3d11.6944682!4d76.0925395!9m1!1b1!16s%2Fg%2F1ptwp6yd6?entry=ttu";
 
 export const metadata = {
   title: "Kalpetta homestays for families: Best rated homestays in Kalpetta",
@@ -16,26 +16,38 @@ export const metadata = {
 };
 
 export default function About() {
-  const faqData = aboutFaqData;
-
   return (
     <div>
       <Header />
+
       <HeroSection
         preTitle="Kudajadri Drizzle"
         title="Your Ideal Choice for Homestays in Kalpetta"
         bgImage="/AboutHero.jpg"
-        showButton={true}
+        showButton
         buttonLabel="Book Now"
         redirectTo="/contact"
       />
+
       <AboutSection />
-      <ReviewSession />
+
+      <ReviewSection
+        rating={4.6}
+        title="Why Guests Choose Our Kalpetta Homestay"
+        description={
+          <>
+            Discover why guests recommend us among the best{" "}
+            <strong>homestays in Wayanad</strong>. From warm welcomes to peaceful
+            surroundings, guests often mention our hospitality and care.
+          </>
+        }
+        buttonUrl={GOOGLE_REVIEWS_URL}
+      />
+
       <FAQSection
         title={AboutFaqData.title}
         faqs={AboutFaqData.faqs}
       />
-
     </div>
   );
 }
