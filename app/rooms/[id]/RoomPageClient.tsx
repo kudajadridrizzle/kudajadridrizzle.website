@@ -23,8 +23,9 @@ export default function RoomPageClient({ roomId }: { roomId: RoomId }) {
     roomData[roomId as keyof typeof roomData] || roomData["classic"];
 
   return (
-    <div>
+    <div className="pt-[64px] sm:pt-[80px]">
       <Header variant="solid" />
+
       <Hero />
       <RoomPriceSession />
       <MorningSession roomData={roomDataItem} />
@@ -37,7 +38,11 @@ export default function RoomPageClient({ roomId }: { roomId: RoomId }) {
       <DeluxeRoomTips />
       <RoomTips />
       <RoomBookingCTA />
-      <AnotherRoomSession roomType={roomDataItem.roomType} roomId={roomId} />
+
+      <AnotherRoomSession
+        roomType={roomDataItem.roomType}
+        roomId={roomId}
+      />
     </div>
   );
 }
