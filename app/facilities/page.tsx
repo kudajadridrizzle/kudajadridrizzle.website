@@ -4,6 +4,8 @@ import ListSession from "@/components/facilities/ListSession";
 import FacilitiesAccordion from "@/components/facilities/FacilitiesAccordion";
 import HeroSection from "@/components/HeroSection";
 import Header from "@/components/Header";
+import FAQSection from "@/components/FAQSection";
+import { facilitiesFaqData } from "@/data/faqs/facilities";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
 export default function Facilities() {
   return (
     <div>
-      <Header/>
+      <Header />
       <HeroSection
         preTitle="Kudajadri Drizzle"
         title="Facilities & Amenities at Kudajadri Drizzle Homestay"
@@ -64,6 +66,10 @@ export default function Facilities() {
 
       <ListSession />
       <FacilitiesAccordion />
+      <FAQSection
+        title={facilitiesFaqData.title}
+        faqs={facilitiesFaqData.faqs}
+      />
     </div>
   );
 }
