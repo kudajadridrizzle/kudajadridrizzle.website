@@ -48,6 +48,24 @@ const nextConfig: NextConfig = {
         destination: "/tour-packages/vibrant-wayanad-tour-package",
         permanent: true,
       },
+
+      // --------------------
+      // GALLERY → MEDIA
+      // --------------------
+      {
+        source: "/gallery",
+        destination: "/media",
+        permanent: true,
+      },
+
+      // --------------------
+      // WAYANAD → WAYANAD KERALA
+      // --------------------
+      {
+        source: "/wayanad",
+        destination: "/wayanad-kerala",
+        permanent: true,
+      },
     ];
   },
 };

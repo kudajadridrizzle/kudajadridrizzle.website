@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { HeroSession } from "@/components/gallery/HeroSession";
 import ImageSession from "@/components/gallery/ImageSession";
 import Header from "@/components/Header";
+import Wrapper from "@/components/layout/Wrapper";
 
 
 const SITE_URL =
@@ -49,7 +50,10 @@ export default function GalleryPage() {
       <section className="sm:py-24 mobile:pt-8 mobile:pb-12">
         <Header variant="solid" />
         <HeroSession />
+        <Wrapper>
         <ImageSession />
+
+        </Wrapper>
       </section>
     </main>
   );

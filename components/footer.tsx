@@ -88,7 +88,7 @@ export default function Footer() {
             links={[
               ["/about-us", "About Us"],
               ["/rooms", "Rooms"],
-              ["/media-gallery", "Gallery"],
+              ["/media-media", "Gallery"],
               ["/wayanad", "Wayanad"],
               ["/facilities", "Facilities"],
               ["/contact", "Contact Us"],
@@ -104,7 +104,7 @@ export default function Footer() {
               ["/", "Wayanad Homestays"],
               ["/contact", "Wayanad Homestay Bookings"],
               ["/facilities", "Homestay with Swimming Pool"],
-              ["/media-gallery", "Homestay Photos"],
+              ["/media-media", "Homestay Photos"],
               ["/rooms", "Wayanad Accommodations"],
               ["/rooms/premium", "Premium Homestays"],
               ["/rooms/deluxe-heritage", "Heritage Homestays"],

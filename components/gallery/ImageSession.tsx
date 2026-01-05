@@ -17,7 +17,7 @@ export default function ImageSession() {
     .filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file));
 
   return (
-    <section className="px-4 sm:px-12 py-16">
+    <section className="py-16">
       <div className="columns-1 sm:columns-2 lg:columns-3 gap-8">
         {files.map((file) => (
           <figure
@@ -35,5 +35,6 @@ export default function ImageSession() {
         ))}
       </div>
     </section>
+
   );
 }

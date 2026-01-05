@@ -16,7 +16,7 @@ const leftNav = [
 
 const rightNav = [
   { name: "Facilities", href: "/facilities" },
-  { name: "Gallery", href: "/gallery" },
+  { name: "Gallery", href: "/media" },
   { name: "Contact", href: "/contact" },
 ];
 
