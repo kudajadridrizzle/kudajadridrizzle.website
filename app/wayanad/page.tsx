@@ -1,16 +1,20 @@
 import Faq from "@/components/FAQSection";
 import { ImageContentSectionGrid } from "@/components/wayand/ImageContentSectionGrid";
-import { EnhancedHero } from "@/components/wayand/wayand-hero";
-import aboutFaqData from "@/data/aboutFaqs.json";
+import HeroSection from "@/components/HeroSection";
 
 export default function WayanadPage() {
   return (
     <div>
-      <EnhancedHero
-        heroTitle="Explore Wayanad: Nature, Serenity & Adventure"
+     
+      <HeroSection
+        preTitle="Kudajadri Drizzle Homestay in Wayanad"
+        title="Explore Wayanad: Nature, Serenity & Adventure"
+        bgImage="/WayanadHero.jpg"
+        showButton={true}
+        buttonLabel="Book Now"
+        redirectTo="/contact"
       />
       <ImageContentSectionGrid />
-      {/* <Faq {...aboutFaqData} /> */}
     </div>
   );
 }
