@@ -66,6 +66,51 @@ const nextConfig: NextConfig = {
         destination: "/wayanad-kerala",
         permanent: true,
       },
+      {
+        source: "/facilities.php",
+        destination: "/facilities",
+        permanent: true,
+      },
+      {
+        source: "/room-tariff.php",
+        destination: "/facilities",
+        permanent: true,
+      },
+      {
+        source: "/blog/best-time-to-visit-wayanad",
+        destination: "/blog/wayanad-travel-tips",
+        permanent: true,
+      },
+      {
+        source: "/blog/kerala-traditional-homestays-%E2%80%93-live-the-local-way-in-gods-own-country",
+        destination: "/blog/kerala-traditional-homestays",
+        permanent: true,
+      },
+      {
+        source: "/dream-wayanad.php",
+        destination: "/tour-packages/dream-wayanad-tour-package",
+        permanent: true,
+      },
+      {
+        source: "/getting-here.php",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/wayanad-tour-booking.php",
+        destination: "/tour-packages",
+        permanent: true,
+      },
+      {
+        source: "/contact.php",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/wayanad-attractions.php",
+        destination: "/wayanad-kerala",
+        permanent: true,
+      },
     ];
   },
 };
