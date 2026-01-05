@@ -89,7 +89,7 @@ export default function Footer() {
               ["/about-us", "About Us"],
               ["/rooms", "Rooms"],
               ["/media-media", "Gallery"],
-              ["/wayanad", "Wayanad"],
+              ["/wayanad-kerala", "Wayanad"],
               ["/facilities", "Facilities"],
               ["/contact", "Contact Us"],
               ["/blog", "Blog"],
