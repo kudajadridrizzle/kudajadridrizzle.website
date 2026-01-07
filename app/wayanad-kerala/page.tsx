@@ -1,8 +1,33 @@
-import { ImageContentSectionGrid } from "@/components/wayand/ImageContentSectionGrid";
-import HeroSection from "@/components/HeroSection";
+import type { Metadata } from "next";
+
 import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import { ImageContentSectionGrid } from "@/components/wayand/ImageContentSectionGrid";
 import FAQSection from "@/components/FAQSection";
 import { wayanadFaqData } from "@/data/faqs/wayanad";
+
+export const metadata: Metadata = {
+  title: "Wayanad: Explore tourist attractions & destinations in Wayanad",
+  description:
+    "Discover top tourist attractions and must-visit destinations in Wayanad. Plan your perfect trip to explore nature, wildlife, and cultural sites.",
+  keywords: [
+    "Wayanad homestay",
+  ],
+  openGraph: {
+    title: "Wayanad: Explore tourist attractions & destinations in Wayanad",
+    description:
+      "Discover top tourist attractions and must-visit destinations in Wayanad. Plan your perfect trip to explore nature, wildlife, and cultural sites.",
+    images: ["/WayanadHero.jpg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kudajadri Drizzle Homestay in Wayanad",
+    description:
+      "Nature, comfort, and scenic beauty — book your Wayanad stay today.",
+    images: ["/WayanadHero.jpg"],
+  },
+};
 
 export default function WayanadPage() {
   return (
@@ -17,7 +42,9 @@ export default function WayanadPage() {
         buttonLabel="Book Now"
         redirectTo="/contact"
       />
+
       <ImageContentSectionGrid />
+
       <FAQSection
         title={wayanadFaqData.title}
         faqs={wayanadFaqData.faqs}
