@@ -12,9 +12,6 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // --------------------
-      // GREEN WAYANAD
-      // --------------------
       {
         source: "/green-wayanad.php",
         destination: "/tour-packages/green-wayanad-tour-package",
@@ -25,19 +22,11 @@ const nextConfig: NextConfig = {
         destination: "/tour-packages/green-wayanad-tour-package",
         permanent: true,
       },
-
-      // --------------------
-      // DREAM WAYANAD
-      // --------------------
       {
         source: "/dream-wayanad",
         destination: "/tour-packages/dream-wayanad-tour-package",
         permanent: true,
       },
-
-      // --------------------
-      // VIBRANT WAYANAD
-      // --------------------
       {
         source: "/Vibrant-wayanad.php",
         destination: "/tour-packages/vibrant-wayanad-tour-package",
@@ -48,19 +37,11 @@ const nextConfig: NextConfig = {
         destination: "/tour-packages/vibrant-wayanad-tour-package",
         permanent: true,
       },
-
-      // --------------------
-      // GALLERY → MEDIA
-      // --------------------
       {
         source: "/gallery",
         destination: "/media",
         permanent: true,
       },
-
-      // --------------------
-      // WAYANAD → WAYANAD KERALA
-      // --------------------
       {
         source: "/wayanad",
         destination: "/wayanad-kerala",
@@ -111,6 +92,16 @@ const nextConfig: NextConfig = {
         destination: "/wayanad-kerala",
         permanent: true,
       },
+      {
+        source: "/about-us",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/media-media",
+        destination: "/media",
+        permanent: true,
+      }
     ];
   },
 };
