@@ -93,6 +93,21 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/rooms/deluxe-rooms",
+        destination: "/rooms/deluxe",
+        permanent: true,
+      },
+      {
+        source: "/rooms/delux-heritage-rooms",
+        destination: "/rooms/deluxe-heritage",
+        permanent: true,
+      },
+      {
+        source: "/rooms/rooms/classic-rooms",
+        destination: "/rooms/classic",
+        permanent: true,
+      },
+      {
         source: "/about-us",
         destination: "/about",
         permanent: true,
