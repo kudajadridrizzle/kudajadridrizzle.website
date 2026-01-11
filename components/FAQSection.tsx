@@ -1,57 +1,60 @@
 import FAQAccordion from "./FAQAccordion";
+import { Document } from "@contentful/rich-text-types";
+import { richTextToPlainText } from "@/lib/richTextToPlainText";
 
-/**
- * Single FAQ item.
- * MUST be plain text for SEO schema correctness.
- */
 export type FAQItem = {
   question: string;
-  answer: string;
+  answer: Document;
 };
 
-/**
- * Props for the FAQ section.
- */
 export type FAQSectionProps = {
   title: string;
   faqs: FAQItem[];
 };
 
 export default function FAQSection({ title, faqs }: FAQSectionProps) {
-  // Google ignores FAQ schema with less than 2 items
-  if (!faqs || faqs.length < 2) return null;
+  if (!faqs || faqs.length === 0) return null;
 
-  // Hard validation — fail fast instead of silently breaking SEO
-  for (const faq of faqs) {
-    if (typeof faq.question !== "string" || typeof faq.answer !== "string") {
-      throw new Error(
-        "FAQSection: question and answer must be plain strings for SEO schema"
-      );
-    }
-  }
+  // Build schema safely (skip invalid items)
+  const mainEntity = faqs
+    .map((faq) => {
+      if (!faq.question || !faq.answer) return null;
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+      const plainAnswer = richTextToPlainText(faq.answer);
+      if (!plainAnswer) return null;
+
+      return {
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: plainAnswer,
+        },
+      };
+    })
+    .filter(Boolean);
+
+  // Only output schema if valid for Google
+  const faqSchema =
+    mainEntity.length >= 2
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity,
+        }
+      : null;
 
   return (
     <>
       {/* SEO – JSON-LD FAQ schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
+          }}
+        />
+      )}
 
       <section className="px-4 py-20 sm:px-[12%] sm:py-32">
         <div className="grid grid-cols-1 sm:grid-cols-[35%_1fr] gap-12">

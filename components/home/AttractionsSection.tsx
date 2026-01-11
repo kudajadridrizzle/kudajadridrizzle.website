@@ -68,7 +68,7 @@ export default function AttractionsSection() {
               {/* Image */}
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
                 <Image
-                  src={item.image}
+                  src={item.image}  
                   alt={item.title}
                   fill
                   className="object-cover"

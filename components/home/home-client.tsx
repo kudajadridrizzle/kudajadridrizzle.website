@@ -1,5 +1,7 @@
 "use client";
 
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
 import AboutSession from "@/components/home/about-section";
 import Amenities from "@/components/home/ameties";
 import { ContentSection } from "@/components/home/content-section";
@@ -12,15 +14,14 @@ import { useContentSection } from "@/app/hooks/use-content-section";
 import OurGallery from "@/components/home/our-gallery";
 import GuestReviewsSection from "@/components/home/GuestReviewsSection";
 import AttractionsSection from "@/components/home/AttractionsSection";
-import Header from "@/components/Header";
-import FAQSection from "@/components/FAQSection"
-import HeroSection from "../HeroSection";
-import type { AboutSectionData } from "@/lib/contentful";
-import { homeFaqData } from "@/data/faqs/home"
 import Wrapper from "../layout/Wrapper";
+import type { AboutSectionData } from "@/lib/contentful";
 
-
-export default function HomeClient({ aboutSectionData }: { aboutSectionData: AboutSectionData }) {
+export default function HomeClient({
+  aboutSectionData,
+}: {
+  aboutSectionData: AboutSectionData;
+}) {
   const contentSection = useContentSection("home");
 
   return (
@@ -30,10 +31,11 @@ export default function HomeClient({ aboutSectionData }: { aboutSectionData: Abo
         preTitle="Kudajadri Drizzle Homestay in Wayanad"
         title="Experience True Serenity"
         bgImage="/assets/locationImage.webp"
-        showButton={true}
+        showButton
         buttonLabel="Book Now"
         redirectTo="/contact"
       />
+
       <Wrapper>
         {aboutSectionData && (
           <AboutSession
@@ -55,15 +57,13 @@ export default function HomeClient({ aboutSectionData }: { aboutSectionData: Abo
       <OurGallery />
       <WayanadOverviewSection />
       <Direction />
+
       <ContentSection
         title={contentSection?.title}
         items={contentSection?.items ?? []}
       />
+
       <AttractionsSection />
-      <FAQSection
-        title={homeFaqData.title}
-        faqs={homeFaqData.faqs}
-      />
     </div>
   );
 }
