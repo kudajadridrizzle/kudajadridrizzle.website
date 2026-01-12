@@ -45,10 +45,10 @@ export default function WayanadPage() {
 
       <ImageContentSectionGrid />
 
-      <FAQSection
+      {/* <FAQSection
         title={wayanadFaqData.title}
         faqs={wayanadFaqData.faqs}
-      />
+      /> */}
     </div>
   );
 }

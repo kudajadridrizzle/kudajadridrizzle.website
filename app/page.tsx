@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import HomeClient from "@/components/home/home-client";
+import FAQSection from "@/components/FAQSection";
 import { getAboutSection } from "@/lib/contentful";
+import { getPageFAQBySlug } from "@/lib/getFaqs";
 
-// Force dynamic rendering to ensure fresh Contentful data on every request
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 const SITE_URL = "https://www.kudajadridrizzle.com";
 const OG_IMAGE = `${SITE_URL}/images/1%20(56).jpg`;
@@ -42,6 +43,18 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const aboutSectionData = await getAboutSection();
-  
-  return <HomeClient aboutSectionData={aboutSectionData} />;
+  const faqData = await getPageFAQBySlug("home");
+
+  return (
+    <>
+      <HomeClient aboutSectionData={aboutSectionData} />
+
+      {faqData && faqData.faqs.length >= 2 && (
+        <FAQSection
+          title={faqData.title}
+          faqs={faqData.faqs}
+        />
+      )}
+    </>
+  );  
 }

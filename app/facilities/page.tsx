@@ -5,7 +5,9 @@ import FacilitiesAccordion from "@/components/facilities/FacilitiesAccordion";
 import HeroSection from "@/components/HeroSection";
 import Header from "@/components/Header";
 import FAQSection from "@/components/FAQSection";
-import { facilitiesFaqData } from "@/data/faqs/facilities";
+import { getPageFAQBySlug } from "@/lib/getFaqs";
+
+export const dynamic = "force-dynamic";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
@@ -48,7 +50,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Facilities() {
+export default async function Facilities() {
+  const faqData = await getPageFAQBySlug("facilities");
+
   return (
     <div>
       <Header />
@@ -60,16 +64,20 @@ export default function Facilities() {
         buttonLabel="Book Now"
         redirectTo="/contact"
       />
+
       <div className="flex flex-col items-center self-stretch gap-16 bg-white mobile:p-4 sm:p-14 sm:flex-row 2xl:px-[12%] lg:px-[12%]">
         <FacilitiesSession />
       </div>
 
       <ListSession />
       <FacilitiesAccordion />
-      <FAQSection
-        title={facilitiesFaqData.title}
-        faqs={facilitiesFaqData.faqs}
-      />
+
+      {faqData && faqData.faqs.length >= 2 && (
+        <FAQSection
+          title={faqData.title}
+          faqs={faqData.faqs}
+        />
+      )}
     </div>
   );
 }
