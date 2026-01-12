@@ -1,13 +1,27 @@
 import type { Metadata } from "next";
 import TourPackagesClient from "./TourPackagesClient";
+import FAQSection from "@/components/FAQSection";
+import { getPageFAQBySlug } from "@/lib/getFaqs";
 
 export const metadata: Metadata = {
-  title: "Wayanad holiday tour packages: Best trip deals for families & couples",
+  title: "Wayanad Tour Packages | Curated Nature & Experience Tours",
   description:
-    "Discover the best Wayanad holiday tour packages with top deals for families, groups, and couples. Enjoy a perfect getaway with nature, adventure, and comfort.",
+    "Explore the best Wayanad tour packages including nature trails, sightseeing, and curated travel experiences. Choose the perfect Wayanad package for your trip.",
 };
 
-export default function WayanadTourPackages() {
-  return <TourPackagesClient />;
-}
+export default async function WayanadTourPackages() {
+  const faqData = await getPageFAQBySlug("wayanad-tour-packages");
 
+  return (
+    <>
+      <TourPackagesClient />
+
+      {faqData && (
+        <FAQSection
+          title={faqData.title}
+          faqs={faqData.faqs}
+        />
+      )}
+    </>
+  );
+}
