@@ -4,15 +4,13 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import { ImageContentSectionGrid } from "@/components/wayand/ImageContentSectionGrid";
 import FAQSection from "@/components/FAQSection";
-import { wayanadFaqData } from "@/data/faqs/wayanad";
+import { getPageFAQBySlug } from "@/lib/getFaqs";
 
 export const metadata: Metadata = {
   title: "Wayanad: Explore tourist attractions & destinations in Wayanad",
   description:
     "Discover top tourist attractions and must-visit destinations in Wayanad. Plan your perfect trip to explore nature, wildlife, and cultural sites.",
-  keywords: [
-    "Wayanad homestay",
-  ],
+  keywords: [""],
   openGraph: {
     title: "Wayanad: Explore tourist attractions & destinations in Wayanad",
     description:
@@ -29,7 +27,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function WayanadPage() {
+export default async function WayanadPage() {
+  const faqData = await getPageFAQBySlug("wayanad");
+
   return (
     <div>
       <Header />
@@ -45,10 +45,12 @@ export default function WayanadPage() {
 
       <ImageContentSectionGrid />
 
-      {/* <FAQSection
-        title={wayanadFaqData.title}
-        faqs={wayanadFaqData.faqs}
-      /> */}
+      {faqData && (
+        <FAQSection
+          title={faqData.title}
+          faqs={faqData.faqs}
+        />
+      )}
     </div>
   );
 }
