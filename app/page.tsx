@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import HomeClient from "@/components/home/home-client";
 import FAQSection from "@/components/FAQSection";
-import { getAboutSection, getPageFAQBySlug } from "@/lib/contentful";
+import { getAboutSection } from "@/lib/contentful";
+import { getPageFAQBySlug } from "@/lib/getFaqs";
 
 export const dynamic = "force-dynamic";
 
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const aboutSectionData = await getAboutSection();
-  const faqData = await getPageFAQBySlug("/");
+  const faqData = await getPageFAQBySlug("home");
 
   return (
     <>
@@ -55,5 +56,5 @@ export default async function Home() {
         />
       )}
     </>
-  );
+  );  
 }

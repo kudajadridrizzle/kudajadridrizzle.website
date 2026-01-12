@@ -28,7 +28,7 @@ export default function FAQAccordion({ faqs }: Props) {
 
         return (
           <div
-            key={faq.question}
+            key={faq.question + Math.random()}
             className={`py-6 ${!isLast ? "border-b border-black/5" : ""}`}
           >
             <button

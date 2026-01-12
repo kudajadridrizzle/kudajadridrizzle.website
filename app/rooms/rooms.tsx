@@ -29,10 +29,10 @@ export default function Rooms() {
         />
 
         <IndividualRooms />
-        <FAQSection
+        {/* <FAQSection
           title={roomsFaqData.title}
           faqs={roomsFaqData.faqs}
-        />
+        /> */}
 
       </main>
     </div>
