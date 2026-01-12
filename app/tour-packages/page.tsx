@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import TourPackagesClient from "./TourPackagesClient";
 
 export const metadata: Metadata = {
-  title: "Wayanad Tour Packages | Curated Nature & Experience Tours",
+  title: "Wayanad holiday tour packages: Best trip deals for families & couples",
   description:
-    "Explore the best Wayanad tour packages including nature trails, sightseeing, and curated travel experiences. Choose the perfect Wayanad package for your trip.",
+    "Discover the best Wayanad holiday tour packages with top deals for families, groups, and couples. Enjoy a perfect getaway with nature, adventure, and comfort.",
 };
 
 export default function WayanadTourPackages() {
