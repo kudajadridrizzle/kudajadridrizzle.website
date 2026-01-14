@@ -63,7 +63,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/blog/kerala-traditional-homestays-%E2%80%93-live-the-local-way-in-gods-own-country",
+        source:
+          "/blog/kerala-traditional-homestays-%E2%80%93-live-the-local-way-in-gods-own-country",
         destination: "/blog/kerala-traditional-homestays",
         permanent: true,
       },
@@ -113,10 +114,15 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/blog/",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
         source: "/media-media",
         destination: "/media",
         permanent: true,
-      }
+      },
     ];
   },
 };
