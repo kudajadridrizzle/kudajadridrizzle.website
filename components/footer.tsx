@@ -8,9 +8,21 @@ const WHATSAPP_NUMBER = "+91 9946 354 511";
 const EMAIL = "kudajadri@ymail.com";
 
 const SOCIAL_LINKS = [
-  { href: "https://facebook.com", icon: "/assets/Facebook.svg", alt: "Facebook" },
-  { href: "https://instagram.com", icon: "/assets/Insta.svg", alt: "Instagram" },
-  { href: "https://youtube.com", icon: "/assets/youtube.svg", alt: "YouTube" },
+  {
+    href: "https://www.facebook.com/YOUR_PAGE_NAME",
+    icon: "/assets/Facebook.svg",
+    alt: "Facebook",
+  },
+  {
+    href: "https://www.instagram.com/YOUR_PROFILE_NAME/",
+    icon: "/assets/Insta.svg",
+    alt: "Instagram",
+  },
+  {
+    href: "https://www.youtube.com/@YOUR_CHANNEL_NAME",
+    icon: "/assets/youtube.svg",
+    alt: "YouTube",
+  },
 ];
 
 export default function Footer() {
@@ -42,7 +54,7 @@ export default function Footer() {
               key={link.alt}
               href={link.href}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="inline-flex size-8 items-center justify-center opacity-90 transition hover:opacity-100"
             >
               <Image src={link.icon} alt={link.alt} width={32} height={32} />
@@ -65,7 +77,7 @@ export default function Footer() {
                 "https://www.google.com/maps/search/?api=1&query=Kudajadri+Drizzle+Homestay+Wayanad"
               }
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="block leading-relaxed max-w-sm"
             >
               Kudajadri Drizzle Homestay, Kayakkandy House, MR School Road,
@@ -134,7 +146,7 @@ export default function Footer() {
                 key={link.alt}
                 href={link.href}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="inline-flex size-8 items-center justify-center opacity-90 transition hover:opacity-100"
               >
                 <Image src={link.icon} alt={link.alt} width={32} height={32} />
