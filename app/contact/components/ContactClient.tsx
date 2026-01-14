@@ -31,7 +31,12 @@ export default function ContactClient() {
     );
 
     const phone = whatsappNumber.replace(/[^0-9]/g, "");
-    window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
+
+    window.open(
+      `https://wa.me/${phone}?text=${encodedMessage}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (
@@ -43,7 +48,6 @@ export default function ContactClient() {
             Contact Us
           </h2>
 
-          {/* MOBILE 32px, DESKTOP LARGE */}
           <h1 className="text-[32px] sm:text-[72px] font-staylista leading-tight">
             Online Booking of Wayanad Homestays & Cottages
           </h1>
@@ -51,17 +55,13 @@ export default function ContactClient() {
 
         {/* Content */}
         <section className="flex flex-col sm:flex-row gap-16 sm:py-24 max-w-6xl w-full mt-12 sm:mt-0">
-          {/* Message Form — FIRST on mobile */}
+          {/* Message Form */}
           <div className="flex-1 order-1 sm:order-3">
             <h3 className="uppercase tracking-[1.6px] text-sm">Message</h3>
             <p className="font-ivy text-[24px] sm:text-[32px]">Write</p>
 
             <div className="flex flex-col gap-4 mt-6">
-              <Input
-                label="Name"
-                value={form.name}
-                onChange={handleChange("name")}
-              />
+              <Input label="Name" value={form.name} onChange={handleChange("name")} />
               <Input
                 label="Email"
                 value={form.email}
@@ -86,10 +86,14 @@ export default function ContactClient() {
           <div className="flex-1 order-2 sm:order-1">
             <h3 className="uppercase tracking-[1.6px] text-sm">Address</h3>
             <p className="font-ivy text-[24px] sm:text-[32px]">Come</p>
+
             <a
-              href={process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL}
+              href={
+                process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL ||
+                "https://www.google.com/maps/search/?api=1&query=Kudajadri+Drizzle+Homestay+Wayanad"
+              }
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="text-secondary hover:underline block mt-2"
             >
               Kudajadri Drizzle Homestay, Kayakkandy House, MR School Road,
@@ -98,10 +102,7 @@ export default function ContactClient() {
 
             <div className="mt-8">
               <h3 className="uppercase tracking-[1.6px] text-sm">Email</h3>
-              <a
-                href={`mailto:${email}`}
-                className="text-secondary hover:underline"
-              >
+              <a href={`mailto:${email}`} className="text-secondary hover:underline">
                 {email}
               </a>
             </div>
@@ -111,10 +112,7 @@ export default function ContactClient() {
           <div className="flex-1 order-3 sm:order-2">
             <h3 className="uppercase tracking-[1.6px] text-sm">Phone</h3>
             <p className="font-ivy text-[24px] sm:text-[32px]">Call</p>
-            <a
-              href={`tel:${whatsappNumber}`}
-              className="text-secondary hover:underline"
-            >
+            <a href={`tel:${whatsappNumber}`} className="text-secondary hover:underline">
               {whatsappNumber}
             </a>
           </div>
@@ -123,8 +121,6 @@ export default function ContactClient() {
     </div>
   );
 }
-
-/* ---------------- SMALL COMPONENTS ---------------- */
 
 function Input({
   label,
