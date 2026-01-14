@@ -6,13 +6,12 @@ import AboutSession from "@/components/home/about-section";
 import Amenities from "@/components/home/ameties";
 import { ContentSection } from "@/components/home/content-section";
 import Direction from "@/components/direction";
-import GallarySession from "@/components/home/gallery-section";
 import { IndividualRooms } from "@/components/home/individual-rooms";
 import RoomSession from "@/components/home/room-section";
 import WayanadOverviewSection from "@/components/home/WayanadOverviewSection";
 import { useContentSection } from "@/app/hooks/use-content-section";
-import OurGallery from "@/components/home/our-gallery";
 import GuestReviewsSection from "@/components/home/GuestReviewsSection";
+import GallerySection from "@/components/home/GallerySection";
 import AttractionsSection from "@/components/home/AttractionsSection";
 import Wrapper from "../layout/Wrapper";
 import type { AboutSectionData } from "@/lib/contentful";
@@ -49,15 +48,13 @@ export default function HomeClient({
         )}
       </Wrapper>
 
-      <GallarySession />
       <RoomSession />
       <IndividualRooms />
       <GuestReviewsSection />
       <Amenities />
-      <OurGallery />
+      <GallerySection />
       <WayanadOverviewSection />
       <Direction />
-
       <ContentSection
         title={contentSection?.title}
         items={contentSection?.items ?? []}
