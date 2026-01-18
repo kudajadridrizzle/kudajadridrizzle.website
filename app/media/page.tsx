@@ -8,7 +8,7 @@ import Wrapper from "@/components/layout/Wrapper";
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
 
-const CANONICAL_URL = `${SITE_URL}/gallery`;
+const CANONICAL_URL = `${SITE_URL}/media`;
 const OG_IMAGE = `${SITE_URL}/gallery/cover.jpg`;
 
 export const metadata: Metadata = {
