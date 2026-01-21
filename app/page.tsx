@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   description:
     "Kudajadri Drizzle home stay in Wayanad: 100+ years old #1 heritage Wayanad Homestay. Book top rated nature friendly homestays in Wayanad for family & group.",
 
+  alternates: {
+    canonical: "https://www.kudajadridrizzle.com/",
+  },
+
   openGraph: {
     title: "Wayanad homestays: Best homestay in Wayanad for family, group",
     description:
@@ -56,5 +60,5 @@ export default async function Home() {
         />
       )}
     </>
-  );  
+  );
 }
