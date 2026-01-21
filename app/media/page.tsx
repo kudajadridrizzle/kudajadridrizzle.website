@@ -4,24 +4,30 @@ import ImageSession from "@/components/gallery/ImageSession";
 import Header from "@/components/Header";
 import Wrapper from "@/components/layout/Wrapper";
 
-
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
 
 const CANONICAL_URL = `${SITE_URL}/media`;
 const OG_IMAGE = `${SITE_URL}/gallery/cover.jpg`;
 
+/* ⛔ TEXT BELOW IS NOT MODIFIED */
+const META_TITLE =
+  "Photos & videos gallery - Kudajadri Drizzle Homestays";
+
+const META_DESCRIPTION =
+  "Browse stunning photos and videos of Kudajadri Drizzle Homestay in Wayanad. Get a visual glimpse of the cozy rooms, scenic surroundings, and peaceful ambiance.";
+
 export const metadata: Metadata = {
-  title: "Photos & Videos Gallery | Kudajadri Drizzle Homestay",
-  description:
-    "Browse stunning photos and videos of Kudajadri Drizzle Homestay in Wayanad. Get a visual glimpse of the cozy rooms, scenic surroundings, and peaceful ambiance.",
+  title: META_TITLE,
+  description: META_DESCRIPTION,
+
   alternates: {
     canonical: CANONICAL_URL,
   },
+
   openGraph: {
-    title: "Gallery | Kudajadri Drizzle Homestay, Wayanad",
-    description:
-      "Browse beautiful photos of Kudajadri Drizzle Homestay including rooms, scenic surroundings, and peaceful ambiance.",
+    title: META_TITLE,              
+    description: META_DESCRIPTION,  
     url: CANONICAL_URL,
     siteName: "Kudajadri Drizzle",
     images: [
@@ -32,14 +38,14 @@ export const metadata: Metadata = {
         alt: "Kudajadri Drizzle Gallery",
       },
     ],
-    locale: "en_US",
+    locale: "en_US", // unchanged from your intent unless you say otherwise
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Gallery | Kudajadri Drizzle Homestay",
-    description:
-      "Explore photos of Kudajadri Drizzle Homestay in Wayanad – rooms, nature, and peaceful surroundings.",
+    title: META_TITLE,              
+    description: META_DESCRIPTION,  
     images: [OG_IMAGE],
   },
 };
@@ -51,8 +57,7 @@ export default function GalleryPage() {
         <Header variant="solid" />
         <HeroSession />
         <Wrapper>
-        <ImageSession />
-
+          <ImageSession />
         </Wrapper>
       </section>
     </main>

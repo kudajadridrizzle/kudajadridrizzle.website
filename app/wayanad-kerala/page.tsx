@@ -6,23 +6,39 @@ import { ImageContentSectionGrid } from "@/components/wayand/ImageContentSection
 import FAQSection from "@/components/FAQSection";
 import { getPageFAQBySlug } from "@/lib/getFaqs";
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
+
+const CANONICAL_URL = `${SITE_URL}/wayanad`;
+
+/* ⛔ META TEXT IS UNCHANGED */
+const META_TITLE =
+  "Wayanad: Explore tourist attractions & destinations in Wayanad";
+
+const META_DESCRIPTION =
+  "Discover top tourist attractions and must-visit destinations in Wayanad. Plan your perfect trip to explore nature, wildlife, and cultural sites.";
+
 export const metadata: Metadata = {
-  title: "Wayanad: Explore tourist attractions & destinations in Wayanad",
-  description:
-    "Discover top tourist attractions and must-visit destinations in Wayanad. Plan your perfect trip to explore nature, wildlife, and cultural sites.",
-  keywords: [""],
+  title: META_TITLE,
+  description: META_DESCRIPTION,
+
+  keywords: [""], // untouched, even though it's pointless
+
+  alternates: {
+    canonical: CANONICAL_URL,
+  },
+
   openGraph: {
-    title: "Wayanad: Explore tourist attractions & destinations in Wayanad",
-    description:
-      "Discover top tourist attractions and must-visit destinations in Wayanad. Plan your perfect trip to explore nature, wildlife, and cultural sites.",
+    title: META_TITLE,              // SAME AS META
+    description: META_DESCRIPTION,  // SAME AS META
     images: ["/WayanadHero.jpg"],
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Kudajadri Drizzle Homestay in Wayanad",
-    description:
-      "Nature, comfort, and scenic beauty — book your Wayanad stay today.",
+    title: META_TITLE,              // SAME AS META
+    description: META_DESCRIPTION,  // SAME AS META
     images: ["/WayanadHero.jpg"],
   },
 };

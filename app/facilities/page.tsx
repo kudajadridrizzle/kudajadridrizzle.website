@@ -15,20 +15,27 @@ const SITE_URL =
 const CANONICAL_URL = `${SITE_URL}/facilities`;
 const OG_IMAGE = `${SITE_URL}/aboutHero.jpg`;
 
+const META_TITLE =
+  "Swimming pool homestays in Wayanad: homestay with swimming pool";
+
+const META_DESCRIPTION =
+  "Homestays in Wayanad with swimming pools offer the best facilities, comfort, and scenic views for a perfect relaxing getaway with family and friends.";
+
 export const metadata: Metadata = {
-  title: "Swimming pool homestays in Wayanad: homestay with swimming pool",
-  description:
-    "Homestays in Wayanad with swimming pools offer the best facilities, comfort, and scenic views for a perfect relaxing getaway with family and friends.",
+  title: META_TITLE,
+  description: META_DESCRIPTION,
+
   robots: "index, follow",
+
   alternates: {
     canonical: CANONICAL_URL,
   },
+
   openGraph: {
-    title: "Swimming pool homestays in Wayanad: homestay with swimming pool",
-    description:
-      "Homestays in Wayanad with swimming pools offer the best facilities, comfort, and scenic views for a perfect relaxing getaway with family and friends.",
+    title: META_TITLE,
+    description: META_DESCRIPTION,
     url: CANONICAL_URL,
-    siteName: "Kudajadri Homestay",
+    siteName: "Kudajadri Drizzle",
     images: [
       {
         url: OG_IMAGE,
@@ -37,16 +44,15 @@ export const metadata: Metadata = {
         alt: "Kudajadri Drizzle Facilities",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Swimming pool homestays in Wayanad: homestay with swimming pool",
-    description:
-      "Homestays in Wayanad with swimming pools offer the best facilities, comfort, and scenic views for a perfect relaxing getaway with family and friends.",
+    title: META_TITLE,
+    description: META_DESCRIPTION,
     images: [OG_IMAGE],
-    site: "@kudajadrihomestay",
   },
 };
 
@@ -56,6 +62,7 @@ export default async function Facilities() {
   return (
     <div>
       <Header />
+
       <HeroSection
         preTitle="Kudajadri Drizzle"
         title="Facilities & Amenities at Kudajadri Drizzle Homestay"
@@ -73,10 +80,7 @@ export default async function Facilities() {
       <FacilitiesAccordion />
 
       {faqData && faqData.faqs.length >= 2 && (
-        <FAQSection
-          title={faqData.title}
-          faqs={faqData.faqs}
-        />
+        <FAQSection title={faqData.title} faqs={faqData.faqs} />
       )}
     </div>
   );

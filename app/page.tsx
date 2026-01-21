@@ -9,19 +9,24 @@ export const dynamic = "force-dynamic";
 const SITE_URL = "https://www.kudajadridrizzle.com";
 const OG_IMAGE = `${SITE_URL}/images/1%20(56).jpg`;
 
+/* ⛔ META TEXT UNCHANGED */
+const META_TITLE =
+  "Wayanad homestays: Best homestay in Wayanad for family, group";
+
+const META_DESCRIPTION =
+  "Kudajadri Drizzle home stay in Wayanad: 100+ years old #1 heritage Wayanad Homestay. Book top rated nature friendly homestays in Wayanad for family & group.";
+
 export const metadata: Metadata = {
-  title: "Wayanad homestays: Best homestay in Wayanad for family, group",
-  description:
-    "Kudajadri Drizzle home stay in Wayanad: 100+ years old #1 heritage Wayanad Homestay. Book top rated nature friendly homestays in Wayanad for family & group.",
+  title: META_TITLE,
+  description: META_DESCRIPTION,
 
   alternates: {
-    canonical: "https://www.kudajadridrizzle.com/",
+    canonical: `${SITE_URL}/`,
   },
 
   openGraph: {
-    title: "Wayanad homestays: Best homestay in Wayanad for family, group",
-    description:
-      "Kudajadri Drizzle home stay in Wayanad: 100+ years old #1 heritage Wayanad Homestay. Book top rated nature friendly homestays in Wayanad for family & group.",
+    title: META_TITLE,
+    description: META_DESCRIPTION,
     url: SITE_URL,
     siteName: "Kudajadri Drizzle",
     images: [
@@ -38,9 +43,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Wayanad homestays: Best homestay in Wayanad for family, group",
-    description:
-      "Kudajadri Drizzle home stay in Wayanad: 100+ years old #1 heritage Wayanad Homestay. Book top rated nature friendly homestays in Wayanad for family & group.",
+    title: META_TITLE,
+    description: META_DESCRIPTION,
     images: [OG_IMAGE],
   },
 };

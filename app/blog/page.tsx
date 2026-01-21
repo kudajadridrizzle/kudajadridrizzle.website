@@ -6,10 +6,28 @@ import { getAllBlogs } from "../../lib/getBlogs";
 // Force dynamic rendering to ensure fresh Contentful data on every request
 export const dynamic = "force-dynamic";
 
+const META_TITLE =
+  "Wayanad travel blog: Latest news, tourism updates, & insights";
+
+const META_DESCRIPTION =
+  "Stay updated with the Wayanad Travel Blog. Get the latest news, tourism updates, local insights, travel tips, and experiences to help you plan your perfect trip.";
+
 export const metadata = {
-  title: "Wayanad travel blog: Latest news, tourism updates, & insights",
-  description:
-    "Stay updated with the Wayanad Travel Blog. Get the latest news, tourism updates, local insights, travel tips, and experiences to help you plan your perfect trip.",
+  title: META_TITLE,
+  description: META_DESCRIPTION,
+
+  alternates: {
+    canonical: "https://www.kudajadridrizzle.com/blog",
+  },
+
+  openGraph: {
+    title: META_TITLE,
+    description: META_DESCRIPTION,
+    url: "https://www.kudajadridrizzle.com/blog",
+    siteName: "Kudajadri Drizzle",
+    type: "website",
+    locale: "en_IN",
+  },
 };
 
 export default async function BlogListingPage() {
@@ -24,7 +42,7 @@ export default async function BlogListingPage() {
       <section className="max-w-6xl mx-auto px-4 pt-28 sm:pt-32 pb-16">
         {/* Page Header */}
         <div className="mb-14 text-center">
-          <h1 className=" font-ivy text-4xl mb-4">
+          <h1 className="font-ivy text-4xl mb-4">
             Wayanad Travel Blog
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -99,21 +117,13 @@ export default async function BlogListingPage() {
                         "
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-
-                      {/* Subtle overlay */}
                       <div className="absolute inset-0 bg-black/5" />
                     </div>
                   )}
 
                   {/* Content */}
                   <div className="p-6">
-                    <h2 className="
-                      text-lg
-                      font-semibold
-                      leading-snug
-                      mb-2
-                      text-gray-900
-                    ">
+                    <h2 className="text-lg font-semibold leading-snug mb-2 text-gray-900">
                       {fields.metaTitle}
                     </h2>
 

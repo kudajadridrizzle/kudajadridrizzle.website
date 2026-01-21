@@ -1,9 +1,38 @@
 import Header from "@/components/Header";
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
+
+const CANONICAL_URL = `${SITE_URL}/terms-and-conditions`;
+
+/* ⛔ META TEXT IS UNCHANGED */
+const META_TITLE =
+  "Terms & Conditions | Kudajadri Drizzle Homestay";
+
+const META_DESCRIPTION =
+  "Read the booking rules, check-in policy, extra person charges, and cancellation terms for staying at Kudajadri Drizzle Homestay in Wayanad.";
+
 export const metadata = {
-  title: "Terms & Conditions | Kudajadri Drizzle Homestay",
-  description:
-    "Read the booking rules, check-in policy, extra person charges, and cancellation terms for staying at Kudajadri Drizzle Homestay in Wayanad.",
+  title: META_TITLE,
+  description: META_DESCRIPTION,
+
+  alternates: {
+    canonical: CANONICAL_URL,
+  },
+
+  openGraph: {
+    title: META_TITLE,             // SAME AS META
+    description: META_DESCRIPTION, // SAME AS META
+    url: CANONICAL_URL,
+    siteName: "Kudajadri Drizzle",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: META_TITLE,             // SAME AS META
+    description: META_DESCRIPTION, // SAME AS META
+  },
 };
 
 export default function TermsAndConditions() {
@@ -13,7 +42,6 @@ export default function TermsAndConditions() {
 
       <div className="px-4 py-14 sm:px-[12%] sm:py-32">
         <div className="flex flex-col sm:flex-row gap-12">
-
           {/* LEFT – Sticky Heading */}
           <div className="sm:w-[35%]">
             <div className="sm:sticky sm:top-32">
@@ -28,8 +56,6 @@ export default function TermsAndConditions() {
 
           {/* RIGHT – Content */}
           <div className="sm:w-[65%] flex flex-col gap-10 text-secondary font-albertSans sm:text-lg leading-relaxed">
-
-            {/* Booking Rules */}
             <section className="flex flex-col gap-4">
               <h2 className="font-ivy text-2xl text-primary">
                 Booking Rules
@@ -51,7 +77,6 @@ export default function TermsAndConditions() {
               </ul>
             </section>
 
-            {/* Check-in / Check-out */}
             <section className="flex flex-col gap-4">
               <h2 className="font-ivy text-2xl text-primary">
                 Check-in & Check-out
@@ -62,7 +87,6 @@ export default function TermsAndConditions() {
               </ul>
             </section>
 
-            {/* Extra Person Charges */}
             <section className="flex flex-col gap-4">
               <h2 className="font-ivy text-2xl text-primary">
                 Extra Person Charges
@@ -88,7 +112,6 @@ export default function TermsAndConditions() {
                 <li>No refunds will be issued.</li>
               </ul>
             </section>
-
           </div>
         </div>
       </div>

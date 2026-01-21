@@ -9,14 +9,31 @@ import { getPageFAQBySlug } from "@/lib/getFaqs";
 const GOOGLE_REVIEWS_URL =
   "https://www.google.com/maps/place/Kudajadri+Drizzle+-+Best+Wayanad+Homestays/@11.6944734,76.0899646,17z/data=!4m11!3m10!1s0x3ba6752bf8e8c185:0x5bf951fa893c48b4!5m2!4m1!1i2!8m2!3d11.6944682!4d76.0925395!9m1!1b1!16s%2Fg%2F1ptwp6yd6?entry=ttu";
 
+const META_TITLE =
+  "Kalpetta homestays for families: Best rated homestays in Kalpetta";
+
+const META_DESCRIPTION =
+  "Top rated Kalpetta homestays for families with comfortable rooms, swimming pools & food. Find the best homestays in Kalpetta for a peaceful, relaxing stay.";
+
 export const metadata = {
-  title: "Kalpetta homestays for families: Best rated homestays in Kalpetta",
-  description:
-    "Top rated Kalpetta homestays for families with comfortable rooms, swimming pools & food. Find the best homestays in Kalpetta for a peaceful, relaxing stay.",
+  title: META_TITLE,
+  description: META_DESCRIPTION,
+
+  alternates: {
+    canonical: "https://www.kudajadridrizzle.com/about",
+  },
+
+  openGraph: {
+    title: META_TITLE,
+    description: META_DESCRIPTION,
+    url: "https://www.kudajadridrizzle.com/about",
+    siteName: "Kudajadri Drizzle",
+    type: "website",
+    locale: "en_IN",
+  },
 };
 
 export default async function About() {
-
   const faqData = await getPageFAQBySlug("about");
 
   return (
@@ -47,12 +64,9 @@ export default async function About() {
         buttonUrl={GOOGLE_REVIEWS_URL}
       />
 
-        {faqData && faqData.faqs.length >= 2 && (
-            <FAQSection
-              title={faqData.title}
-              faqs={faqData.faqs}
-            />
-          )}
+      {faqData && faqData.faqs.length >= 2 && (
+        <FAQSection title={faqData.title} faqs={faqData.faqs} />
+      )}
     </div>
   );
 }
