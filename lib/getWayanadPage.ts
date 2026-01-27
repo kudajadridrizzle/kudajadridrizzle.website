@@ -167,7 +167,7 @@ export async function getWayanadPage(
     return {
       meta,
       imageTextSections,
-      faqSection: faqSectionRef,
+      faqSection: faqSectionRef || undefined,
     };
   } catch (err) {
     console.error("getWayanadPage error:", err);
