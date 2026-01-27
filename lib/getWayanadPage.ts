@@ -1,6 +1,6 @@
 import { Document } from "@contentful/rich-text-types";
 import { getContent } from "./contentful";
-import { richTextToPlainText } from "./richTextToPlainText"; // Your existing utility
+import { richTextToPlainText } from "./richTextToPlainText";
 
 /* ===============================
    TYPES
@@ -17,7 +17,7 @@ export type SeoMetaData = {
 export type ImageTextSectionData = {
   id: string;
   title: string;
-  description: string; // Plain text instead of Document
+  description: string;
   image: string;
   imageAlt: string;
   ctaVisible?: boolean;
@@ -86,9 +86,15 @@ export async function getWayanadPage(
       const ogImageAsset = includedAssets.find(
         (a) => a.sys?.id === metaEntry.fields.openGraphImage.sys?.id
       );
-      openGraphImageUrl = ogImageAsset?.fields?.file?.url
-        ? `https:${ogImageAsset.fields.file.url}`
-        : undefined;
+      if (ogImageAsset?.fields?.file?.url) {
+        // Ensure URL starts with https://
+        const assetUrl = ogImageAsset.fields.file.url;
+        openGraphImageUrl = assetUrl.startsWith("//") 
+          ? `https:${assetUrl}` 
+          : assetUrl.startsWith("http") 
+          ? assetUrl 
+          : `https://${assetUrl}`;
+      }
     }
 
     const meta: SeoMetaData = {
@@ -137,7 +143,13 @@ export async function getWayanadPage(
           continue;
         }
 
-        const imageUrl = `https:${imageAsset.fields.file.url}`;
+        // Ensure image URL starts with https://
+        const assetUrl = imageAsset.fields.file.url;
+        const imageUrl = assetUrl.startsWith("//") 
+          ? `https:${assetUrl}` 
+          : assetUrl.startsWith("http") 
+          ? assetUrl 
+          : `https://${assetUrl}`;
 
         // Convert rich text to plain text
         const descriptionText = richTextToPlainText(sectionFields.description);
@@ -145,7 +157,7 @@ export async function getWayanadPage(
         imageTextSections.push({
           id: sectionEntry.sys.id,
           title: sectionFields.title,
-          description: descriptionText, // Plain text
+          description: descriptionText,
           image: imageUrl,
           imageAlt: sectionFields.imageAlt,
           ctaVisible: sectionFields.ctaVisible,
@@ -167,7 +179,7 @@ export async function getWayanadPage(
     return {
       meta,
       imageTextSections,
-      faqSection: faqSectionRef || undefined,
+      faqSection: faqSectionRef,
     };
   } catch (err) {
     console.error("getWayanadPage error:", err);

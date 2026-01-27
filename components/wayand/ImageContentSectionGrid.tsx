@@ -12,7 +12,7 @@ export const ImageContentSectionGrid: React.FC<ImageContentSectionGridProps> = (
 }) => {
   return (
     <Wrapper>
-      <div className="flex flex-col space-y-24 py-24">
+      <div className="flex flex-col">
         {sections.map((section, index) => (
           <ImageContentSection
             key={section.id}

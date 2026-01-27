@@ -16,7 +16,7 @@ export const ImageContentSection: React.FC<ImageContentSectionProps> = ({
   reverse = false,
 }) => {
   return (
-    <div className="py-16">
+    <div className="py-12">
       <div
         className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
           reverse ? "lg:[&>*:first-child]:order-2" : ""
