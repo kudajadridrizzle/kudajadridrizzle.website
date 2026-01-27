@@ -5,46 +5,79 @@ import HeroSection from "@/components/HeroSection";
 import { ImageContentSectionGrid } from "@/components/wayand/ImageContentSectionGrid";
 import FAQSection from "@/components/FAQSection";
 import { getPageFAQBySlug } from "@/lib/getFaqs";
+import { getWayanadPage } from "@/lib/getWayanadPage";
+import { notFound } from "next/navigation";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
 
-const CANONICAL_URL = `${SITE_URL}/wayanad`;
+/* ===============================
+   GENERATE METADATA DYNAMICALLY
+================================ */
+export async function generateMetadata(): Promise<Metadata> {
+  const pageData = await getWayanadPage("wayanad-kerala");
 
-/* ⛔ META TEXT IS UNCHANGED */
-const META_TITLE =
-  "Wayanad: Explore tourist attractions & destinations in Wayanad";
+  if (!pageData) {
+    return {
+      title: "Wayanad: Explore tourist attractions & destinations in Wayanad",
+      description:
+        "Discover top tourist attractions and must-visit destinations in Wayanad. Plan your perfect trip to explore nature, wildlife, and cultural sites.",
+    };
+  }
 
-const META_DESCRIPTION =
-  "Discover top tourist attractions and must-visit destinations in Wayanad. Plan your perfect trip to explore nature, wildlife, and cultural sites.";
+  const { meta } = pageData;
+  const canonicalUrl = meta.canonicalUrl || `${SITE_URL}/wayanad-kerala`;
 
-export const metadata: Metadata = {
-  title: META_TITLE,
-  description: META_DESCRIPTION,
+  const metadata: Metadata = {
+    title: meta.metaTitle,
+    description: meta.metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
 
-  keywords: [""], // untouched, even though it's pointless
+  // Add noIndex if specified
+  if (meta.noIndex) {
+    metadata.robots = {
+      index: false,
+      follow: false,
+    };
+  }
 
-  alternates: {
-    canonical: CANONICAL_URL,
-  },
+  // Add Open Graph data
+  if (meta.openGraphImage) {
+    metadata.openGraph = {
+      title: meta.metaTitle,
+      description: meta.metaDescription,
+      images: [meta.openGraphImage],
+      type: "website",
+      url: canonicalUrl,
+    };
 
-  openGraph: {
-    title: META_TITLE,              // SAME AS META
-    description: META_DESCRIPTION,  // SAME AS META
-    images: ["/WayanadHero.jpg"],
-    type: "website",
-  },
+    metadata.twitter = {
+      card: "summary_large_image",
+      title: meta.metaTitle,
+      description: meta.metaDescription,
+      images: [meta.openGraphImage],
+    };
+  }
 
-  twitter: {
-    card: "summary_large_image",
-    title: META_TITLE,              // SAME AS META
-    description: META_DESCRIPTION,  // SAME AS META
-    images: ["/WayanadHero.jpg"],
-  },
-};
+  return metadata;
+}
 
+/* ===============================
+   PAGE COMPONENT
+================================ */
 export default async function WayanadPage() {
-  const faqData = await getPageFAQBySlug("wayanad");
+  // Fetch page data from Contentful
+  const pageData = await getWayanadPage("wayanad-kerala");
+
+  if (!pageData) {
+    notFound(); // Return 404 if page data is not found
+  }
+
+  // Fetch FAQ data (if FAQ section exists in the page)
+  const faqData = await getPageFAQBySlug("wayanad-kerala");
 
   return (
     <div>
@@ -59,14 +92,11 @@ export default async function WayanadPage() {
         redirectTo="/contact"
       />
 
-      <ImageContentSectionGrid />
+      {/* Render image text sections from CMS */}
+      <ImageContentSectionGrid sections={pageData.imageTextSections} />
 
-      {faqData && (
-        <FAQSection
-          title={faqData.title}
-          faqs={faqData.faqs}
-        />
-      )}
+      {/* Render FAQ section if available */}
+      {faqData && <FAQSection title={faqData.title} faqs={faqData.faqs} />}
     </div>
   );
 }

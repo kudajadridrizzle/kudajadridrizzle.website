@@ -5,7 +5,7 @@ interface ImageContentSectionProps {
   imageAlt?: string;
   title: string;
   paragraph: string;
-  reverse?: boolean; // zig-zag layout
+  reverse?: boolean;
 }
 
 export const ImageContentSection: React.FC<ImageContentSectionProps> = ({
@@ -16,29 +16,30 @@ export const ImageContentSection: React.FC<ImageContentSectionProps> = ({
   reverse = false,
 }) => {
   return (
-    <div className="sm:px-[6%] px-4">
+    <div className="py-16">
       <div
-        className={`flex flex-col lg:flex-row gap-8 items-center ${
-          reverse ? "lg:flex-row-reverse" : ""
+        className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
+          reverse ? "lg:[&>*:first-child]:order-2" : ""
         }`}
       >
-        {/* Image Section */}
-        <div className="w-full lg:w-1/2 rounded-lg overflow-hidden">
-          <div className="aspect-[16/9] w-full overflow-hidden rounded-lg">
+        {/* Image */}
+        <div>
+          <div className="aspect-video w-full overflow-hidden rounded-lg">
             <img
               src={image}
               alt={imageAlt}
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
 
-        {/* Text Content */}
-        <div className="w-full lg:w-1/2 flex flex-col gap-4">
+        {/* Content */}
+        <div className="flex flex-col gap-4">
           <h2 className="text-[#000] font-ivy sm:text-[44px] text-[32px]">
             {title}
           </h2>
-          <p className="text-secondary sm:text-xl font-albertSans">
+
+          <p className="text-secondary sm:text-xl font-albertSans leading-relaxed">
             {paragraph}
           </p>
         </div>

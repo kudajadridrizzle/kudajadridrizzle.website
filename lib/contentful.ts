@@ -1,13 +1,11 @@
 import { Document } from "@contentful/rich-text-types";
 
-
 const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID!;
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN!;
 const CONTENTFUL_ENVIRONMENT =
   process.env.CONTENTFUL_ENVIRONMENT || "master";
 
 const CONTENTFUL_API_BASE = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}`;
-
 
 export type AboutSectionData = {
   preTitle: string;
@@ -59,24 +57,25 @@ export async function getAboutSection(): Promise<AboutSectionData> {
   }
 }
 
-
-export async function getContent(slug: string,content_type: string){
+export async function getContent(slug: string, content_type: string) {
+  // Determine which field name to use based on content type
+  const fieldName = content_type === "wayanadPage" ? "slug" : "pageSlug";
+  
   const url =
     `${CONTENTFUL_API_BASE}/entries` +
     `?access_token=${CONTENTFUL_ACCESS_TOKEN}` +
     `&content_type=${content_type}` +
-    `&fields.pageSlug=${slug}`;
+    `&fields.${fieldName}=${slug}`;
 
-    const res = await fetch(url, { cache: "no-store" });
-       if (!res.ok) {
-      const errorText = await res.text();
-      console.error("Contentful FAQ fetch failed");
-      console.error("Status:", res.status);
-      console.error("URL:", url);
-      console.error("Response:", errorText);
-      return null;
-    }
-    
-    return await res.json();  
- 
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Contentful fetch failed");
+    console.error("Status:", res.status);
+    console.error("URL:", url);
+    console.error("Response:", errorText);
+    return null;
+  }
+  
+  return await res.json();
 }
