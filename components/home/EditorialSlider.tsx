@@ -20,60 +20,31 @@ export default function EditorialSlider() {
   };
 
   return (
-    <section className="h-screen w-full flex items-center">
+<section className="w-full py-16 lg:h-[110vh]">
       <div
         className="
           w-full
-          max-w-[1440px]
-          mx-auto
-          px-4 sm:px-6 lg:px-12
+          h-full
           grid
           grid-cols-1
-          lg:grid-cols-[50%_50%]
-          gap-16
-          items-start
+          lg:grid-cols-2
+          gap-6
+          lg:gap-16
         "
       >
-        {/* RIGHT – IMAGE (RATIO SOURCE) */}
-        <div className="order-2 lg:order-2 flex justify-end">
-          <div className="relative w-full aspect-[3/4] max-w-full">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={slide.image}
-                initial={{ opacity: 0, scale: 1.03 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.35 }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={slide.image}
-                  alt={slide.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* LEFT – CONTENT (MATCHES IMAGE HEIGHT) */}
-        <div className="order-1 lg:order-1 flex flex-col justify-between h-full">
-
+        {/* LEFT – CONTENT */}
+        <div className="order-1 lg:order-1 flex flex-col justify-between">
           {/* TOP */}
           <div>
-            <span className="text-xs tracking-widest text-gray-500 uppercase">
-              {slide.tag}
-            </span>
+           
 
-            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold leading-tight">
+            <h2 className="mt-4 text-3xl sm:text-4xl leading-tight font-ivy">
               {slide.title}
             </h2>
           </div>
 
           {/* BOTTOM */}
-          <div className="mt-8">
+          <div>
             <p className="text-gray-600 max-w-xl mb-4 text-sm sm:text-base">
               {slide.description}
             </p>
@@ -115,7 +86,30 @@ export default function EditorialSlider() {
               </div>
             </div>
           </div>
+        </div>
 
+        {/* RIGHT – IMAGE */}
+        <div className="order-2 lg:order-2">
+          <div className="relative w-full aspect-[3/4] lg:h-full lg:aspect-auto">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slide.image}
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

@@ -2,10 +2,13 @@ import { Document } from "@contentful/rich-text-types";
 
 const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID!;
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN!;
-const CONTENTFUL_ENVIRONMENT =
-  process.env.CONTENTFUL_ENVIRONMENT || "master";
+const CONTENTFUL_ENVIRONMENT = process.env.CONTENTFUL_ENVIRONMENT || "master";
 
 const CONTENTFUL_API_BASE = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}`;
+
+/* ===============================
+   ORIGINAL FUNCTIONS (Keep these!)
+================================ */
 
 export type AboutSectionData = {
   preTitle: string;
