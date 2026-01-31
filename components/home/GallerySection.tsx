@@ -4,14 +4,14 @@ import Wrapper from "../layout/Wrapper";
 import SectionIntro from "../sectionIntro";
 
 interface GallerySectionProps {
-  preTitle?: string;
-  title?: string;
-  description?: Document;
+  preTitle: string;
+  title: string;
+  description: Document; // ✅ REQUIRED
 }
 
 export default function GallerySection({
-  preTitle = "Gallery",
-  title = "Explore Our Wayanad Homestay",
+  preTitle,
+  title,
   description,
 }: GallerySectionProps) {
   return (
@@ -22,7 +22,7 @@ export default function GallerySection({
             preTitle={preTitle}
             title={title}
             description={description}
-            enableReadMore={true}
+            enableReadMore
           />
           <GalleryMasonry />
         </div>

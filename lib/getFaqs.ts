@@ -2,7 +2,7 @@
    PAGE FAQ
 ================================ */
 
-import { getContent } from "./contentful";
+import { getContent } from "../types/contentful";
 import { FAQItem } from "@/components/FAQSection";
 
 export type PageFAQData = {

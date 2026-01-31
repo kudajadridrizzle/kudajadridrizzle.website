@@ -18,9 +18,6 @@ const CONTENTFUL_LOCALE = process.env.CONTENTFUL_LOCALE || "en-US";
 
 const CONTENTFUL_API_BASE = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}`;
 
-/**
- * Helper to resolve a linked entry from includes
- */
 function resolveEntry<T>(
   entryId: string,
   includes?: { Entry?: ContentfulEntry[]; Asset?: ContentfulAsset[] }
@@ -30,9 +27,6 @@ function resolveEntry<T>(
   return entry ? (entry.fields as T) : null;
 }
 
-/**
- * Helper to resolve a linked asset from includes
- */
 function resolveAsset(
   assetId: string,
   includes?: { Entry?: ContentfulEntry[]; Asset?: ContentfulAsset[] }
@@ -41,9 +35,6 @@ function resolveAsset(
   return includes.Asset.find((a) => a.sys.id === assetId) || null;
 }
 
-/**
- * Helper to resolve an array of linked entries
- */
 function resolveEntries<T>(
   entries: Array<{ sys: { id: string } }>,
   includes?: { Entry?: ContentfulEntry[]; Asset?: ContentfulAsset[] }
@@ -53,108 +44,70 @@ function resolveEntries<T>(
     .filter((item): item is T => item !== null);
 }
 
-/**
- * Fetch the homepage data (Page Type One)
- */
+/* ---------------------------- MAIN FETCH FUNCTION --------------------------- */
+
 export async function getHomepageData(): Promise<PageTypeOne | null> {
   try {
-    // Add debug logging
-    console.log('=== DEBUG CONTENTFUL ===');
-    console.log('Space ID:', CONTENTFUL_SPACE_ID);
-    console.log('Environment:', CONTENTFUL_ENVIRONMENT);
-    console.log('Has token:', !!CONTENTFUL_ACCESS_TOKEN);
-    console.log('Token length:', CONTENTFUL_ACCESS_TOKEN?.length);
-    console.log('Locale:', CONTENTFUL_LOCALE);
-    
-    // Fetch with include parameter to get all linked entries and assets
     const url =
       `${CONTENTFUL_API_BASE}/entries` +
       `?access_token=${CONTENTFUL_ACCESS_TOKEN}` +
       `&content_type=pageTypeOne` +
-      `&include=10` + // Include up to 10 levels of linked entries
+      `&include=10` +
       `&locale=${CONTENTFUL_LOCALE}` +
       `&limit=1`;
 
-    console.log('Fetching URL:', url.replace(CONTENTFUL_ACCESS_TOKEN, '[HIDDEN]'));
+    const res = await fetch(url, { next: { revalidate: 3600 } });
 
-    const res = await fetch(url, { 
-      next: { revalidate: 3600 } // Revalidate every hour (ISR)
-    });
-
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error("=== CONTENTFUL FETCH FAILED ===");
-      console.error("Status:", res.status);
-      console.error("URL:", url.replace(CONTENTFUL_ACCESS_TOKEN, '[HIDDEN]'));
-      console.error("Response:", errorText);
-      return null;
-    }
+    if (!res.ok) return null;
 
     const data: ContentfulResponse = await res.json();
-
-    if (!data.items?.length) {
-      console.error("No homepage entry found");
-      return null;
-    }
+    if (!data.items?.length) return null;
 
     const entry = data.items[0];
     const fields = entry.fields;
     const includes = data.includes;
 
-    // Resolve meta (seoMeta)
+    /* -------------------------------- META -------------------------------- */
+
     const metaFields = resolveEntry<any>(fields.meta.sys.id, includes);
-    const meta: SeoMeta | null = metaFields
-      ? {
-          metaTitle: metaFields.metaTitle,
-          metaDescription: metaFields.metaDescription,
-          openGraphImage: metaFields.openGraphImage
-            ? resolveAsset(metaFields.openGraphImage.sys.id, includes) || undefined
-            : undefined,
-          canonicalUrl: metaFields.canonicalUrl,
-          noIndex: metaFields.noIndex,
-        }
-      : null;
+    if (!metaFields) return null;
 
-    if (!meta) {
-      console.error("Failed to resolve meta");
-      return null;
-    }
+    const meta: SeoMeta = {
+      metaTitle: metaFields.metaTitle,
+      metaDescription: metaFields.metaDescription,
+      canonicalUrl: metaFields.canonicalUrl,
+      noIndex: metaFields.noIndex,
+      openGraphImage: metaFields.openGraphImage
+        ? resolveAsset(metaFields.openGraphImage.sys.id, includes) || undefined
+        : undefined,
+    };
 
-    // Resolve hero (heroSection)
+    /* -------------------------------- HERO -------------------------------- */
+
     const heroFields = resolveEntry<any>(fields.hero.sys.id, includes);
-    const hero: HeroSection | null = heroFields
-      ? {
-          internalName: heroFields.internalName,
-          backgroundImage: resolveAsset(heroFields.backgroundImage.sys.id, includes)!,
-          preTitle: heroFields.preTitle,
-          title: heroFields.title,
-          ctaVisible: heroFields.ctaVisible,
-          ctaLabel: heroFields.ctaLabel,
-          ctaLink: heroFields.ctaLink,
-        }
-      : null;
+    if (!heroFields) return null;
 
-    if (!hero) {
-      console.error("Failed to resolve hero");
-      return null;
-    }
+    const hero: HeroSection = {
+      internalName: heroFields.internalName,
+      backgroundImage: resolveAsset(heroFields.backgroundImage.sys.id, includes)!,
+      preTitle: heroFields.preTitle,
+      title: heroFields.title,
+      ctaVisible: heroFields.ctaVisible,
+      ctaLabel: heroFields.ctaLabel,
+      ctaLink: heroFields.ctaLink,
+    };
 
-    // Resolve aboutSection (sectionIntro)
+    /* ---------------------------- SECTION INTROS ---------------------------- */
+
     const aboutFields = resolveEntry<any>(fields.aboutSection.sys.id, includes);
-    const aboutSection: SectionIntro | null = aboutFields
-      ? {
-          preTitle: aboutFields.preTitle,
-          title: aboutFields.title,
-          description: aboutFields.description,
-        }
-      : null;
+    if (!aboutFields) return null;
 
-    if (!aboutSection) {
-      console.error("Failed to resolve aboutSection");
-      return null;
-    }
+    const aboutSection: SectionIntro = {
+      preTitle: aboutFields.preTitle,
+      title: aboutFields.title,
+      description: aboutFields.description,
+    };
 
-    // Resolve roomsSection (array of sectionIntro, max 1)
     const roomsSection: SectionIntro[] = resolveEntries<any>(
       fields.roomsSection,
       includes
@@ -164,7 +117,65 @@ export async function getHomepageData(): Promise<PageTypeOne | null> {
       description: item.description,
     }));
 
-    // Resolve individualRooms (array of imageTextSection)
+    const reviewFields = resolveEntry<any>(fields.reviewSection.sys.id, includes);
+    if (!reviewFields) return null;
+
+    const reviewSection: SectionIntro = {
+      preTitle: reviewFields.preTitle,
+      title: reviewFields.title,
+      description: reviewFields.description,
+    };
+
+    const amenitiesFields = resolveEntry<any>(
+      fields.amenitiesSection.sys.id,
+      includes
+    );
+    if (!amenitiesFields) return null;
+
+    const amenitiesSection: SectionIntro = {
+      preTitle: amenitiesFields.preTitle,
+      title: amenitiesFields.title,
+      description: amenitiesFields.description,
+    };
+
+    const galleryFields = resolveEntry<any>(
+      fields.gallerySection.sys.id,
+      includes
+    );
+    if (!galleryFields) return null;
+
+    const gallerySection: SectionIntro = {
+      preTitle: galleryFields.preTitle,
+      title: galleryFields.title,
+      description: galleryFields.description,
+    };
+
+    const wayanadFields = resolveEntry<any>(
+      fields.wayanadSection.sys.id,
+      includes
+    );
+    if (!wayanadFields) return null;
+
+    const wayanadSection: SectionIntro = {
+      preTitle: wayanadFields.preTitle,
+      title: wayanadFields.title,
+      description: wayanadFields.description,
+    };
+
+    const directionFields = resolveEntry<any>(
+      fields.directionSection.sys.id,
+      includes
+    );
+    if (!directionFields) return null;
+
+    const directionSection: SectionIntro = {
+      preTitle: directionFields.preTitle,
+      title: directionFields.title,
+      description: directionFields.description,
+    };
+
+    /* ------------------------- IMAGE TEXT SECTIONS -------------------------- */
+
     const individualRooms: ImageTextSection[] = resolveEntries<any>(
       fields.individualRooms,
       includes
@@ -180,94 +191,6 @@ export async function getHomepageData(): Promise<PageTypeOne | null> {
       imagePosition: item.imagePosition,
     }));
 
-    // Resolve reviewSection
-    const reviewFields = resolveEntry<any>(fields.reviewSection.sys.id, includes);
-    const reviewSection: SectionIntro | null = reviewFields
-      ? {
-          preTitle: reviewFields.preTitle,
-          title: reviewFields.title,
-          description: reviewFields.description,
-        }
-      : null;
-
-    if (!reviewSection) {
-      console.error("Failed to resolve reviewSection");
-      return null;
-    }
-
-    // Resolve amenitiesSection
-    const amenitiesFields = resolveEntry<any>(
-      fields.amenitiesSection.sys.id,
-      includes
-    );
-    const amenitiesSection: SectionIntro | null = amenitiesFields
-      ? {
-          preTitle: amenitiesFields.preTitle,
-          title: amenitiesFields.title,
-          description: amenitiesFields.description,
-        }
-      : null;
-
-    if (!amenitiesSection) {
-      console.error("Failed to resolve amenitiesSection");
-      return null;
-    }
-
-    // Resolve gallerySection
-    const galleryFields = resolveEntry<any>(
-      fields.gallerySection.sys.id,
-      includes
-    );
-    const gallerySection: SectionIntro | null = galleryFields
-      ? {
-          preTitle: galleryFields.preTitle,
-          title: galleryFields.title,
-          description: galleryFields.description,
-        }
-      : null;
-
-    if (!gallerySection) {
-      console.error("Failed to resolve gallerySection");
-      return null;
-    }
-
-    // Resolve wayanadSection
-    const wayanadFields = resolveEntry<any>(
-      fields.wayanadSection.sys.id,
-      includes
-    );
-    const wayanadSection: SectionIntro | null = wayanadFields
-      ? {
-          preTitle: wayanadFields.preTitle,
-          title: wayanadFields.title,
-          description: wayanadFields.description,
-        }
-      : null;
-
-    if (!wayanadSection) {
-      console.error("Failed to resolve wayanadSection");
-      return null;
-    }
-
-    // Resolve directionSection
-    const directionFields = resolveEntry<any>(
-      fields.directionSection.sys.id,
-      includes
-    );
-    const directionSection: SectionIntro | null = directionFields
-      ? {
-          preTitle: directionFields.preTitle,
-          title: directionFields.title,
-          description: directionFields.description,
-        }
-      : null;
-
-    if (!directionSection) {
-      console.error("Failed to resolve directionSection");
-      return null;
-    }
-
-    // Resolve featureSection (array of imageTextSection)
     const featureSection: ImageTextSection[] = resolveEntries<any>(
       fields.featureSection,
       includes
@@ -283,36 +206,48 @@ export async function getHomepageData(): Promise<PageTypeOne | null> {
       imagePosition: item.imagePosition,
     }));
 
-    // Resolve frequentlyAskedQuestions (pageFaq)
+    /* ✅ ATTRACTIONS SECTION (FIX) */
+
+    const attractionsSection: ImageTextSection[] = resolveEntries<any>(
+      fields.attractionsSection,
+      includes
+    ).map((item) => ({
+      internalName: item.internalName,
+      title: item.title,
+      description: item.description,
+      image: resolveAsset(item.image.sys.id, includes)!,
+      imageAlt: item.imageAlt,
+      ctaVisible: item.ctaVisible,
+      ctaLabel: item.ctaLabel,
+      ctaLink: item.ctaLink,
+      imagePosition: item.imagePosition,
+    }));
+
+    /* ------------------------------- FAQ ----------------------------------- */
+
     const faqFields = resolveEntry<any>(
       fields.frequentlyAskedQuestions.sys.id,
       includes
     );
-    
-    let frequentlyAskedQuestions: PageFaq | null = null;
-    
-    if (faqFields) {
-      const faqItems: FaqItem[] = resolveEntries<any>(
-        faqFields.faqs,
-        includes
-      ).map((item) => ({
-        question: item.question,
-        answer: item.answer,
-      }));
+    if (!faqFields) return null;
 
-      frequentlyAskedQuestions = {
-        internalName: faqFields.internalName,
-        pageSlug: faqFields.pageSlug,
-        title: faqFields.title,
-        preTitle: faqFields.preTitle,
-        faqs: faqItems,
-      };
-    }
+    const faqs: FaqItem[] = resolveEntries<any>(
+      faqFields.faqs,
+      includes
+    ).map((item) => ({
+      question: item.question,
+      answer: item.answer,
+    }));
 
-    if (!frequentlyAskedQuestions) {
-      console.error("Failed to resolve frequentlyAskedQuestions");
-      return null;
-    }
+    const frequentlyAskedQuestions: PageFaq = {
+      internalName: faqFields.internalName,
+      pageSlug: faqFields.pageSlug,
+      title: faqFields.title,
+      preTitle: faqFields.preTitle,
+      faqs,
+    };
+
+    /* ------------------------------ RETURN --------------------------------- */
 
     return {
       title: fields.title,
@@ -327,10 +262,11 @@ export async function getHomepageData(): Promise<PageTypeOne | null> {
       wayanadSection,
       directionSection,
       featureSection,
+      attractionsSection, // ✅ NOW CONNECTED
       frequentlyAskedQuestions,
     };
-  } catch (err) {
-    console.error("getHomepageData error:", err);
+  } catch (error) {
+    console.error("getHomepageData error:", error);
     return null;
   }
 }

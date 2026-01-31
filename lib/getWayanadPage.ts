@@ -1,5 +1,5 @@
 import { Document } from "@contentful/rich-text-types";
-import { getContent } from "./contentful";
+import { getContent } from "../types/contentful";
 import { richTextToPlainText } from "./richTextToPlainText"; // Your existing utility
 
 /* ===============================
