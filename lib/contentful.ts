@@ -151,7 +151,7 @@ export async function getAboutSection(): Promise<AboutSectionData> {
       `&limit=1`;
 
     const res = await fetch(url, {
-      next: { revalidate: 3600 },
+      cache: 'no-store', // Disable caching to ensure fresh data on every request
     });
 
     if (!res.ok) return null;
@@ -204,7 +204,7 @@ export async function getContent(
 
   try {
     const res = await fetch(url, {
-      next: { revalidate: 3600 },
+      cache: 'no-store', // Disable caching to ensure fresh data on every request
     });
 
     if (!res.ok) {

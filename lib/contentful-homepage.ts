@@ -56,7 +56,9 @@ export async function getHomepageData(): Promise<PageTypeOne | null> {
       `&locale=${CONTENTFUL_LOCALE}` +
       `&limit=1`;
 
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+    const res = await fetch(url, { 
+      cache: 'no-store', // Disable caching to ensure fresh data on every request
+    });
 
     if (!res.ok) return null;
 
