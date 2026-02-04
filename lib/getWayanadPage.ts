@@ -110,7 +110,7 @@ export async function getWayanadPage(
     ================================ */
     const sections = Array.isArray(fields.sections) ? fields.sections : [];
     const imageTextSections: ImageTextSectionData[] = [];
-    let faqSectionRef = null;
+    let faqSectionRef: { sys: { id: string } } | undefined = undefined;
 
     for (const sectionRef of sections) {
       const sectionEntry = includedEntries.find(
@@ -179,7 +179,7 @@ export async function getWayanadPage(
     return {
       meta,
       imageTextSections,
-      faqSection: faqSectionRef,
+      faqSection: faqSectionRef ?? undefined,
     };
   } catch (err) {
     console.error("getWayanadPage error:", err);
