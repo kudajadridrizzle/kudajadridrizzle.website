@@ -11,6 +11,116 @@ const CONTENTFUL_API_BASE = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPAC
    TYPES
 ================================ */
 
+export type ContentfulSys = {
+  id: string;
+};
+
+export type ContentfulLink = {
+  sys: ContentfulSys;
+};
+
+export type ContentfulAsset = {
+  sys: ContentfulSys;
+  fields: {
+    title?: string;
+    file: {
+      url: string;
+      contentType?: string;
+      details?: unknown;
+      fileName?: string;
+    };
+  };
+};
+
+export type ContentfulEntry<TFields = Record<string, any>> = {
+  sys: ContentfulSys;
+  fields: TFields;
+};
+
+export type ContentfulResponse = {
+  items: Array<ContentfulEntry>;
+  includes?: {
+    Entry?: Array<ContentfulEntry>;
+    Asset?: Array<ContentfulAsset>;
+  };
+};
+
+export type SeoMeta = {
+  metaTitle: string;
+  metaDescription: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
+  openGraphImage?: ContentfulAsset;
+};
+
+export type HeroSection = {
+  internalName?: string;
+  backgroundImage: ContentfulAsset;
+  preTitle?: string;
+  title: string;
+  ctaVisible?: boolean;
+  ctaLabel?: string;
+  ctaLink?: string;
+};
+
+export type SectionIntro = {
+  preTitle: string;
+  title: string;
+  description: Document;
+};
+
+export type ImageTextSection = {
+  internalName?: string;
+  title: string;
+  description: Document;
+  image: ContentfulAsset;
+  imageAlt?: string;
+  ctaVisible?: boolean;
+  ctaLabel?: string;
+  ctaLink?: string;
+  imagePosition?: "left" | "right";
+};
+
+export type FaqItem = {
+  question: string;
+  answer: Document;
+};
+
+export type PageFaq = {
+  internalName?: string;
+  pageSlug: string;
+  title: string;
+  preTitle: string;
+  faqs: FaqItem[];
+};
+
+export type PageTypeOne = {
+  title?: string;
+  meta: SeoMeta;
+  hero: HeroSection;
+  aboutSection: SectionIntro;
+  roomsSection: SectionIntro[];
+  individualRooms: ImageTextSection[];
+  reviewSection: SectionIntro;
+  amenitiesSection: SectionIntro;
+  gallerySection: SectionIntro;
+  wayanadSection: SectionIntro;
+  directionSection: SectionIntro;
+  featureSection: ImageTextSection[];
+  attractionsSection: ImageTextSection[];
+  frequentlyAskedQuestions: PageFaq;
+};
+
+export type PageTypeTwo = {
+  internalName?: string;
+  slug?: string;
+  meta: SeoMeta;
+  hero: HeroSection;
+  sectionIntro: SectionIntro;
+  rooms: ImageTextSection[];
+  faqs: PageFaq;
+};
+
 export type AboutSectionData = {
   preTitle: string;
   title: string;
@@ -24,11 +134,12 @@ export type ContentfulGenericResponse = {
   items?: Array<{
     fields?: Record<string, any>;
   }>;
+  includes?: {
+    Entry?: any[];
+    Asset?: any[];
+  };
 };
 
-/* ===============================
-   ABOUT SECTION
-================================ */
 
 export async function getAboutSection(): Promise<AboutSectionData> {
   try {

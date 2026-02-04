@@ -9,7 +9,7 @@ import {
   ImageTextSection,
   PageFaq,
   FaqItem,
-} from "@/types/contentful";
+} from "@/lib/contentful";
 
 const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID!;
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN!;
@@ -247,7 +247,6 @@ export async function getHomepageData(): Promise<PageTypeOne | null> {
       faqs,
     };
 
-    /* ------------------------------ RETURN --------------------------------- */
 
     return {
       title: fields.title,
@@ -262,7 +261,7 @@ export async function getHomepageData(): Promise<PageTypeOne | null> {
       wayanadSection,
       directionSection,
       featureSection,
-      attractionsSection, // ✅ NOW CONNECTED
+      attractionsSection, 
       frequentlyAskedQuestions,
     };
   } catch (error) {

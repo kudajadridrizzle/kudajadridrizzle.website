@@ -12,7 +12,7 @@ import ImageTextSectionComponent from "@/components/ImageTextSection";
 import SectionIntro from "@/components/sectionIntro";
 import Wrapper from "@/components/layout/Wrapper";
 
-import { PageTypeOne, ImageTextSection } from "@/types/contentful";
+import { PageTypeOne, ImageTextSection } from "@/lib/contentful";
 
 interface HomeClientProps {
   data: PageTypeOne;
@@ -96,13 +96,14 @@ export default function HomeClient({ data }: HomeClientProps) {
         )}
       </Wrapper>
 
-      {/* REVIEWS */}
-      <GuestReviewsSection
-        preTitle={reviewSection.preTitle}
-        title={reviewSection.title}
-        description={reviewSection.description}
+            {/* GALLERY */}
+            <GallerySection
+        preTitle={gallerySection.preTitle}
+        title={gallerySection.title}
+        description={gallerySection.description}
       />
 
+      
       {/* AMENITIES */}
       <Amenities
         preTitle={amenitiesSection.preTitle}
@@ -110,11 +111,11 @@ export default function HomeClient({ data }: HomeClientProps) {
         description={amenitiesSection.description}
       />
 
-      {/* GALLERY */}
-      <GallerySection
-        preTitle={gallerySection.preTitle}
-        title={gallerySection.title}
-        description={gallerySection.description}
+      {/* REVIEWS */}
+      <GuestReviewsSection
+        preTitle={reviewSection.preTitle}
+        title={reviewSection.title}
+        description={reviewSection.description}
       />
 
       {/* WAYANAD */}
