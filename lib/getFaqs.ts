@@ -50,7 +50,6 @@ export async function getPageFAQBySlug(
       })
       .filter((item): item is FAQItem => item !== null);
 
-    // Enforce SEO rule centrally
     if (faqs.length < 2) return null;
 
     return {
