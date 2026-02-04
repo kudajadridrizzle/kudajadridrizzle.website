@@ -61,7 +61,6 @@ export default function AttractionsSection() {
           </div>
         </div>
 
-        {/* Cards */}
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {attractions.map((item, index) => (
             <div key={index} className="space-y-6">
@@ -75,7 +74,6 @@ export default function AttractionsSection() {
                 />
               </div>
 
-              {/* Text */}
               <div>
                 <h3 className="text-lg font-medium">
                   {item.title},{" "}

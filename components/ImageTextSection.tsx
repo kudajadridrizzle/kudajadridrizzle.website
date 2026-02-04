@@ -1,63 +1,69 @@
+"use client";
+
+import { Document } from "@contentful/rich-text-types";
+import { renderRichText } from "@/lib/renderRichText";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-type ImageTextSectionProps = {
-  section: any;
-};
+interface ImageTextSectionProps {
+  title: string;
+  description: Document;
+  imageUrl: string;
+  imageAlt: string;
+  ctaVisible?: boolean;
+  ctaLabel?: string;
+  ctaLink?: string;
+  imagePosition?: "left" | "right";
+}
 
-export default function ImageTextSection({ section }: ImageTextSectionProps) {
-  const {
-    title,
-    description,
-    image,
-    imageAlt,
-    ctaVisible,
-    ctaLabel,
-    ctaLink,
-  } = section.fields;
-
-  const showCTA =
-    ctaVisible === true &&
-    typeof ctaLabel === "string" &&
-    ctaLabel.trim() !== "" &&
-    typeof ctaLink === "string" &&
-    ctaLink.trim() !== "";
+export default function ImageTextSectionComponent({
+  title,
+  description,
+  imageUrl,
+  imageAlt,
+  ctaVisible = false,
+  ctaLabel = "Learn More",
+  ctaLink = "/",
+  imagePosition = "right",
+}: ImageTextSectionProps) {
+  const router = useRouter();
 
   return (
-    <section className="py-20">
-      <div className="mx-auto max-w-7xl grid gap-16 md:grid-cols-2 items-center">
-        {/* TEXT */}
-        <div>
-          <h2 className="text-3xl font-semibold mb-4">
-            {title}
-          </h2>
-
-          <div className="prose prose-neutral mb-6">
-            {documentToReactComponents(description)}
-          </div>
-
-          {showCTA && (
-            <Link
-              href={ctaLink}
-              className="inline-block px-6 py-3 bg-black text-white"
-            >
-              {ctaLabel}
-            </Link>
-          )}
-        </div>
-
-        {/* IMAGE */}
-        <div className="relative w-full h-[420px]">
-          <Image
-            src={`https:${image.fields.file.url}`}
-            alt={imageAlt}
-            fill
-            className="object-cover"
-            sizes="(min-width: 768px) 50vw, 100vw"
-          />
-        </div>
+    <div
+      className={`flex flex-col gap-8 items-center ${
+        imagePosition === "left" ? "md:flex-row-reverse" : "md:flex-row"
+      }`}
+    >
+      {/* Image – ALWAYS 40% */}
+      <div className="w-full md:w-[40%] relative aspect-[16/9]">
+        <Image
+          src={imageUrl}
+          alt={imageAlt}
+          fill
+          className="rounded-lg object-cover"
+          sizes="(min-width: 768px) 40vw, 100vw"
+        />
       </div>
-    </section>
+
+      {/* Text – ALWAYS 60% */}
+      <div className="w-full md:w-[60%] space-y-4">
+        <h3 className="font-ivy text-2xl sm:text-3xl lg:text-4xl text-black">
+          {title}
+        </h3>
+
+        <div className="font-albertSans text-base sm:text-lg text-secondary leading-relaxed rich-text-content">
+          {renderRichText(description)}
+        </div>
+
+        {ctaVisible && ctaLabel && ctaLink && (
+          <button
+            onClick={() => router.push(ctaLink)}
+            className="px-6 py-3 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+          >
+            {ctaLabel}
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
