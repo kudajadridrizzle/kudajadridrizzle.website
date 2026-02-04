@@ -1,12 +1,27 @@
 'use client';
 
+import { Document } from "@contentful/rich-text-types";
+import { renderRichText } from "@/lib/renderRichText";
 import ReviewCard from "./ReviewCard";
 
 export const GOOGLE_REVIEWS_URL =
   "https://www.google.com/maps/place/Kudajadri+Drizzle+-+Best+Wayanad+Homestays/@11.6944734,76.0899646,17z/data=!4m11!3m10!1s0x3ba6752bf8e8c185:0x5bf951fa893c48b4!5m2!4m1!1i2!8m2!3d11.6944682!4d76.0925395!9m1!1b1!16s%2Fg%2F1ptwp6yd6?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";
 
+interface GuestReviewsSectionProps {
+  preTitle?: string;
+  title?: string;
+  description?: Document;
+}
 
-const GuestReviewsSection = () => {
+const GuestReviewsSection = ({
+  preTitle = "Guest Reviews",
+  title = "Why Guests Choose Our Wayanad Homestay",
+  description,
+}: GuestReviewsSectionProps) => {
+  // Default description text if none provided
+  const defaultDescriptionText = 
+    "Discover why guests recommend us among the best homestays in Wayanad. From warm welcomes to peaceful surroundings, guests often mention our hospitality, authentic home-cooked meals, and personal care. Read their stories and see why many return to relive the experience.";
+
   return (
     <section className="relative w-full bg-black">
       {/* Background */}
@@ -25,15 +40,28 @@ const GuestReviewsSection = () => {
 
           {/* Section Title */}
           <div className="text-center flex flex-col gap-2">
+            {preTitle && (
+              <p className="text-sm uppercase tracking-[1.6px] text-white/70 font-albertSans mb-2">
+                {preTitle}
+              </p>
+            )}
+            
             <h2 className="font-ivy text-3xl sm:text-4xl lg:text-5xl text-white">
-              Why Guests Choose Our Wayanad Homestay
+              {title}
             </h2>
-            <p className="text-sm sm:text-base text-white/80  mx-auto text-center">
-              Discover why guests recommend us among the best homestays in Wayanad. From warm welcomes to peaceful surroundings, guests often mention our hospitality, authentic home-cooked meals, and personal care. Read their stories and see why many return to relive the experience.
-            </p>
-
+            
+            {description ? (
+              <div className="text-sm sm:text-base text-white/80 mx-auto text-center rich-text-content">
+                {renderRichText(description)}
+              </div>
+            ) : (
+              <p className="text-sm sm:text-base text-white/80 mx-auto text-center">
+                {defaultDescriptionText}
+              </p>
+            )}
           </div>
 
+          {/* Hardcoded Review Cards */}
           <ReviewCard
             title="Best Homestay in Wayanad! Loved It!"
             review="This place... we have fallen in love with. Truly! This homestay is clean and well maintained. Hygiene is given importance. Food is awesome with all the Kerala delicacies served as..."
@@ -60,7 +88,6 @@ const GuestReviewsSection = () => {
             Read More Reviews
             <span className="sr-only">(opens in a new tab)</span>
           </a>
-
 
         </div>
       </div>

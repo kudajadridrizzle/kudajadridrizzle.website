@@ -10,6 +10,8 @@ import {
   Car,
   Droplets,
 } from "lucide-react";
+import { Document } from "@contentful/rich-text-types";
+import { renderRichText } from "@/lib/renderRichText";
 
 const AMENITIES = [
   { icon: Home, label: "Heritage Stay" },
@@ -24,7 +26,21 @@ const AMENITIES = [
   { icon: Shield, label: "Enhanced Safety" },
 ];
 
-const Amenities = () => {
+interface AmenitiesProps {
+  preTitle?: string;
+  title?: string;
+  description?: Document;
+}
+
+const Amenities = ({
+  preTitle = "Amenities",
+  title = "Wayanad Homestays Highlights",
+  description,
+}: AmenitiesProps) => {
+  // Default description text if none provided
+  const defaultDescriptionText =
+    "Discover a perfect blend of heritage, comfort, and nature at our Wayanad homestays. Enjoy heritage-inspired rooms, scenic paddy field views, peaceful surroundings, and modern amenities designed for families, relaxation, and unforgettable experiences.";
+
   return (
     <section
       id="amenities"
@@ -34,23 +50,25 @@ const Amenities = () => {
         {/* Heading */}
         <header className="mx-auto max-w-3xl space-y-4 text-center sm:text-center">
           <p className="text-sm uppercase tracking-wide text-white font-albertSans">
-            Amenities
+            {preTitle}
           </p>
 
           <h2 className="font-ivy text-3xl sm:text-4xl lg:text-5xl text-white">
-            Wayanad Homestays Highlights
+            {title}
           </h2>
 
-          <p className="font-albertSans text-secondary text-base sm:text-lg leading-relaxed">
-            Discover a perfect blend of heritage, comfort, and nature at our
-            Wayanad homestays. Enjoy heritage-inspired rooms, scenic paddy field
-            views, peaceful surroundings, and modern amenities designed for
-            families, relaxation, and unforgettable experiences.
-          </p>
+          {description ? (
+            <div className="font-albertSans text-secondary text-base sm:text-lg leading-relaxed rich-text-content">
+              {renderRichText(description)}
+            </div>
+          ) : (
+            <p className="font-albertSans text-secondary text-base sm:text-lg leading-relaxed">
+              {defaultDescriptionText}
+            </p>
+          )}
         </header>
 
-
-        {/* Amenities Grid */}
+        {/* Amenities Grid - Hardcoded */}
         <ul
           role="list"
           className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5"

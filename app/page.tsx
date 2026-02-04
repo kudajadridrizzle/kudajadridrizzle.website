@@ -1,66 +1,99 @@
 import { Metadata } from "next";
 import HomeClient from "@/components/home/home-client";
 import FAQSection from "@/components/FAQSection";
-import { getAboutSection } from "@/lib/contentful";
-import { getPageFAQBySlug } from "@/lib/getFaqs";
+import { getHomepageData } from "@/lib/contentful-homepage";
 
 export const dynamic = "force-dynamic";
 
 const SITE_URL = "https://www.kudajadridrizzle.com";
-const OG_IMAGE = `${SITE_URL}/images/1%20(56).jpg`;
 
-/* ⛔ META TEXT UNCHANGED */
-const META_TITLE =
-  "Wayanad homestays: Best homestay in Wayanad for family, group";
+// Generate metadata from Contentful
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getHomepageData();
 
-const META_DESCRIPTION =
-  "Kudajadri Drizzle home stay in Wayanad: 100+ years old #1 heritage Wayanad Homestay. Book top rated nature friendly homestays in Wayanad for family & group.";
+  if (!data || !data.meta) {
+    // Fallback to default metadata
+    return {
+      title: "Kudajadri Drizzle Homestay",
+      description: "Experience true serenity at Kudajadri Drizzle Homestay in Wayanad",
+    };
+  }
 
-export const metadata: Metadata = {
-  title: META_TITLE,
-  description: META_DESCRIPTION,
+  const { meta } = data;
+  const ogImageUrl = meta.openGraphImage
+    ? `https:${meta.openGraphImage.fields.file.url}`
+    : `${SITE_URL}/images/1%20(56).jpg`;
 
-  alternates: {
-    canonical: `${SITE_URL}/`,
-  },
+  return {
+    title: meta.metaTitle,
+    description: meta.metaDescription,
 
-  openGraph: {
-    title: META_TITLE,
-    description: META_DESCRIPTION,
-    url: SITE_URL,
-    siteName: "Kudajadri Drizzle",
-    images: [
-      {
-        url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "Kudajadri Drizzle Heritage Homestay, Wayanad",
+    alternates: {
+      canonical: meta.canonicalUrl || `${SITE_URL}/`,
+    },
+
+    ...(meta.noIndex && {
+      robots: {
+        index: false,
+        follow: false,
       },
-    ],
-    type: "website",
-    locale: "en_IN",
-  },
+    }),
 
-  twitter: {
-    card: "summary_large_image",
-    title: META_TITLE,
-    description: META_DESCRIPTION,
-    images: [OG_IMAGE],
-  },
-};
+    openGraph: {
+      title: meta.metaTitle,
+      description: meta.metaDescription,
+      url: SITE_URL,
+      siteName: "Kudajadri Drizzle",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: meta.metaTitle,
+        },
+      ],
+      type: "website",
+      locale: "en_IN",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: meta.metaTitle,
+      description: meta.metaDescription,
+      images: [ogImageUrl],
+    },
+  };
+}
 
 export default async function Home() {
-  const aboutSectionData = await getAboutSection();
-  const faqData = await getPageFAQBySlug("home");
+  const data = await getHomepageData();
+
+  // Fallback if data fetch fails
+  if (!data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Unable to load homepage</h1>
+          <p className="text-gray-600">Please check your Contentful configuration.</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { frequentlyAskedQuestions } = data;
 
   return (
     <>
-      <HomeClient aboutSectionData={aboutSectionData} />
+      <HomeClient data={data} />
 
-      {faqData && faqData.faqs.length >= 2 && (
+      {/* FAQ Section */}
+      {frequentlyAskedQuestions && frequentlyAskedQuestions.faqs.length >= 2 && (
         <FAQSection
-          title={faqData.title}
-          faqs={faqData.faqs}
+          title={frequentlyAskedQuestions.title}
+          faqs={frequentlyAskedQuestions.faqs.map((faq) => ({
+            question: faq.question,
+            answer: faq.answer,
+          }))}
         />
       )}
     </>

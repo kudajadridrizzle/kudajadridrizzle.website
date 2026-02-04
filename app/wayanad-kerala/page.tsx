@@ -76,7 +76,6 @@ export default async function WayanadPage() {
     notFound(); // Return 404 if page data is not found
   }
 
-  // Fetch FAQ data (if FAQ section exists in the page)
   const faqData = await getPageFAQBySlug("wayanad-kerala");
 
   return (
@@ -92,7 +91,6 @@ export default async function WayanadPage() {
         redirectTo="/contact"
       />
 
-      {/* Render image text sections from CMS */}
       <ImageContentSectionGrid sections={pageData.imageTextSections} />
 
       {/* Render FAQ section if available */}

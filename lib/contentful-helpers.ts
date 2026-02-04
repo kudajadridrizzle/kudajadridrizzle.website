@@ -1,91 +1,103 @@
-/**
- * Helper function to resolve linked entries/assets from Contentful REST API response
- * The REST API returns linked entries in an 'includes' object, not embedded in fields
- */
-export function resolveLinkedEntries<T extends { sys?: { id: string }; fields?: any }>(
-  item: T,
-  includes: {
-    Entry?: any[];
-    Asset?: any[];
-  }
-): T {
-  if (!item || !item.sys) return item;
+/* ======================================================
+   Contentful Helpers – Safe Linked Entry Resolver
+   Works with REST API includes (Entry + Asset)
+====================================================== */
 
-  // Recursively resolve linked entries in fields
-  const resolvedFields = resolveFields(item.fields || {}, includes);
-  
+type ContentfulSys = {
+  id: string;
+  type: string;
+  linkType?: "Entry" | "Asset";
+};
+
+export type ContentfulEntity = {
+  sys: ContentfulSys;
+  fields?: Record<string, any>;
+};
+
+export type ContentfulIncludes = {
+  Entry?: ContentfulEntity[];
+  Asset?: ContentfulEntity[];
+};
+
+/**
+ * Resolves linked entries/assets recursively
+ * Prevents infinite loops using a visited set
+ */
+export function resolveLinkedEntries<T extends ContentfulEntity>(
+  item: T,
+  includes?: ContentfulIncludes,
+  visited = new Set<string>()
+): T {
+  if (!item?.sys?.id || !includes) return item;
+
+  if (visited.has(item.sys.id)) return item;
+  visited.add(item.sys.id);
+
   return {
     ...item,
-    fields: resolvedFields,
+    fields: resolveValue(item.fields ?? {}, includes, visited),
   } as T;
 }
 
-function resolveFields(fields: any, includes: { Entry?: any[]; Asset?: any[] }): any {
-  if (!fields || typeof fields !== 'object' || Array.isArray(fields)) {
-    return fields;
+/* ---------------------------- Internals ---------------------------- */
+
+function resolveValue(
+  value: any,
+  includes: ContentfulIncludes,
+  visited: Set<string>
+): any {
+  if (Array.isArray(value)) {
+    return value.map((v) => resolveValue(v, includes, visited));
   }
 
-  const resolved: any = {};
+  if (!value || typeof value !== "object") {
+    return value;
+  }
 
-  for (const [key, value] of Object.entries(fields)) {
-    if (Array.isArray(value)) {
-      resolved[key] = value.map((item) => {
-        if (item && typeof item === 'object' && 'sys' in item && (item as any).sys?.type === 'Link') {
-          return resolveLink(item, includes);
-        }
-        // Recursively resolve nested objects in arrays
-        if (item && typeof item === 'object' && 'fields' in item) {
-          return {
-            ...item,
-            fields: resolveFields((item as any).fields, includes),
-          };
-        }
-        return item;
-      });
-    } else if (value && typeof value === 'object' && value !== null) {
-      if ('sys' in value && (value as any).sys?.type === 'Link') {
-        resolved[key] = resolveLink(value, includes);
-      } else if ('fields' in value) {
-        // Recursively resolve nested entries
-        resolved[key] = {
-          ...value,
-          fields: resolveFields((value as any).fields, includes),
-        };
-      } else {
-        resolved[key] = resolveFields(value, includes);
-      }
-    } else {
-      resolved[key] = value;
-    }
+  // Handle Contentful Link
+  if (value.sys?.type === "Link" && value.sys?.linkType) {
+    return resolveLink(value, includes, visited);
+  }
+
+  // Already expanded Entry or Asset
+  if (value.sys?.id && value.fields) {
+    if (visited.has(value.sys.id)) return value;
+
+    visited.add(value.sys.id);
+
+    return {
+      ...value,
+      fields: resolveValue(value.fields, includes, visited),
+    };
+  }
+
+  // Plain object
+  const resolved: Record<string, any> = {};
+  for (const [key, val] of Object.entries(value)) {
+    resolved[key] = resolveValue(val, includes, visited);
   }
 
   return resolved;
 }
 
-function resolveLink(link: any, includes: { Entry?: any[]; Asset?: any[] }): any {
-  if (!link?.sys?.id) return link;
+function resolveLink(
+  link: { sys: ContentfulSys },
+  includes: ContentfulIncludes,
+  visited: Set<string>
+): any {
+  const { id, linkType } = link.sys;
 
-  const linkType = link.sys.linkType;
-  const linkId = link.sys.id;
+  const source =
+    linkType === "Asset" ? includes.Asset : includes.Entry;
 
-  if (linkType === 'Asset' && includes.Asset) {
-    const asset = includes.Asset.find((a) => a.sys.id === linkId);
-    if (asset) {
-      return {
-        ...asset,
-        fields: resolveFields(asset.fields, includes),
-      };
-    }
-  } else if (linkType === 'Entry' && includes.Entry) {
-    const entry = includes.Entry.find((e) => e.sys.id === linkId);
-    if (entry) {
-      return {
-        ...entry,
-        fields: resolveFields(entry.fields, includes),
-      };
-    }
-  }
+  const resolved = source?.find((item) => item.sys.id === id);
+  if (!resolved) return link;
 
-  return link;
+  if (visited.has(id)) return resolved;
+  visited.add(id);
+
+  return {
+    ...resolved,
+    fields: resolveValue(resolved.fields ?? {}, includes, visited),
+  };
 }
-

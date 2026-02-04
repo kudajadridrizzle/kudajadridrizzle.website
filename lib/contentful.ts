@@ -2,10 +2,124 @@ import { Document } from "@contentful/rich-text-types";
 
 const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID!;
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN!;
-const CONTENTFUL_ENVIRONMENT =
-  process.env.CONTENTFUL_ENVIRONMENT || "master";
+const CONTENTFUL_ENVIRONMENT = process.env.CONTENTFUL_ENVIRONMENT || "master";
+const CONTENTFUL_LOCALE = process.env.CONTENTFUL_LOCALE || "en-US";
 
 const CONTENTFUL_API_BASE = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}`;
+
+/* ===============================
+   TYPES
+================================ */
+
+export type ContentfulSys = {
+  id: string;
+};
+
+export type ContentfulLink = {
+  sys: ContentfulSys;
+};
+
+export type ContentfulAsset = {
+  sys: ContentfulSys;
+  fields: {
+    title?: string;
+    file: {
+      url: string;
+      contentType?: string;
+      details?: unknown;
+      fileName?: string;
+    };
+  };
+};
+
+export type ContentfulEntry<TFields = Record<string, any>> = {
+  sys: ContentfulSys;
+  fields: TFields;
+};
+
+export type ContentfulResponse = {
+  items: Array<ContentfulEntry>;
+  includes?: {
+    Entry?: Array<ContentfulEntry>;
+    Asset?: Array<ContentfulAsset>;
+  };
+};
+
+export type SeoMeta = {
+  metaTitle: string;
+  metaDescription: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
+  openGraphImage?: ContentfulAsset;
+};
+
+export type HeroSection = {
+  internalName?: string;
+  backgroundImage: ContentfulAsset;
+  preTitle?: string;
+  title: string;
+  ctaVisible?: boolean;
+  ctaLabel?: string;
+  ctaLink?: string;
+};
+
+export type SectionIntro = {
+  preTitle: string;
+  title: string;
+  description: Document;
+};
+
+export type ImageTextSection = {
+  internalName?: string;
+  title: string;
+  description: Document;
+  image: ContentfulAsset;
+  imageAlt?: string;
+  ctaVisible?: boolean;
+  ctaLabel?: string;
+  ctaLink?: string;
+  imagePosition?: "left" | "right";
+};
+
+export type FaqItem = {
+  question: string;
+  answer: Document;
+};
+
+export type PageFaq = {
+  internalName?: string;
+  pageSlug: string;
+  title: string;
+  preTitle: string;
+  faqs: FaqItem[];
+};
+
+export type PageTypeOne = {
+  title?: string;
+  meta: SeoMeta;
+  hero: HeroSection;
+  aboutSection: SectionIntro;
+  roomsSection: SectionIntro[];
+  individualRooms: ImageTextSection[];
+  reviewSection: SectionIntro;
+  amenitiesSection: SectionIntro;
+  gallerySection: SectionIntro;
+  wayanadSection: SectionIntro;
+  directionSection: SectionIntro;
+  featureSection: ImageTextSection[];
+  attractionsSection: ImageTextSection[];
+  frequentlyAskedQuestions: PageFaq;
+};
+
+export type PageTypeTwo = {
+  internalName?: string;
+  slug?: string;
+  meta: SeoMeta;
+  hero: HeroSection;
+  sectionIntro: SectionIntro;
+  rooms: ImageTextSection[];
+  faqs: PageFaq;
+};
 
 export type AboutSectionData = {
   preTitle: string;
@@ -16,29 +130,43 @@ export type AboutSectionData = {
   ctaLink: string;
 } | null;
 
+export type ContentfulGenericResponse = {
+  items?: Array<{
+    fields?: Record<string, any>;
+  }>;
+  includes?: {
+    Entry?: any[];
+    Asset?: any[];
+  };
+};
+
+
 export async function getAboutSection(): Promise<AboutSectionData> {
   try {
     const url =
       `${CONTENTFUL_API_BASE}/entries` +
       `?access_token=${CONTENTFUL_ACCESS_TOKEN}` +
       `&content_type=aboutSection` +
+      `&locale=${CONTENTFUL_LOCALE}` +
       `&limit=1`;
 
-    const res = await fetch(url, { cache: "no-store" });
+    const res = await fetch(url, {
+      next: { revalidate: 3600 },
+    });
+
     if (!res.ok) return null;
 
-    const data = await res.json();
-    if (!data.items?.length) return null;
-
-    const fields = data.items[0].fields;
+    const data: ContentfulGenericResponse = await res.json();
+    const fields = data.items?.[0]?.fields;
 
     if (
-      !fields?.preTitle ||
-      !fields?.title ||
-      !fields?.description ||
+      !fields ||
+      typeof fields.preTitle !== "string" ||
+      typeof fields.title !== "string" ||
+      !fields.description ||
       typeof fields.enableReadMore !== "boolean" ||
-      !fields.ctaLabel ||
-      !fields.ctaLink
+      typeof fields.ctaLabel !== "string" ||
+      typeof fields.ctaLink !== "string"
     ) {
       return null;
     }
@@ -57,25 +185,39 @@ export async function getAboutSection(): Promise<AboutSectionData> {
   }
 }
 
-export async function getContent(slug: string, content_type: string) {
-  // Determine which field name to use based on content type
-  const fieldName = content_type === "wayanadPage" ? "slug" : "pageSlug";
-  
+/* ===============================
+   GENERIC CONTENT FETCH
+================================ */
+
+export async function getContent(
+  slug: string,
+  contentType: string
+): Promise<ContentfulGenericResponse | null> {
+  const fieldName = contentType === "wayanadPage" ? "slug" : "pageSlug";
+
   const url =
     `${CONTENTFUL_API_BASE}/entries` +
     `?access_token=${CONTENTFUL_ACCESS_TOKEN}` +
-    `&content_type=${content_type}` +
-    `&fields.${fieldName}=${slug}`;
+    `&content_type=${contentType}` +
+    `&fields.${fieldName}=${slug}` +
+    `&locale=${CONTENTFUL_LOCALE}`;
 
-  const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) {
-    const errorText = await res.text();
-    console.error("Contentful fetch failed");
-    console.error("Status:", res.status);
-    console.error("URL:", url);
-    console.error("Response:", errorText);
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      console.error("Contentful fetch failed", {
+        status: res.status,
+        url,
+      });
+      return null;
+    }
+
+    return (await res.json()) as ContentfulGenericResponse;
+  } catch (error) {
+    console.error("getContent error:", error);
     return null;
   }
-  
-  return await res.json();
 }

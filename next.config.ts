@@ -3,9 +3,18 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
+      // Contentful
       {
         protocol: "https",
         hostname: "images.ctfassets.net",
+        pathname: "/**",
+      },
+
+      // Pexels
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        pathname: "/**",
       },
     ],
   },

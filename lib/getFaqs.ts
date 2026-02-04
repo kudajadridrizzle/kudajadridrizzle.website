@@ -1,9 +1,15 @@
-/* ===============================
-   PAGE FAQ
-================================ */
-
 import { getContent } from "./contentful";
 import { FAQItem } from "@/components/FAQSection";
+import type { Document } from "@contentful/rich-text-types";
+
+function isRichTextDocument(value: unknown): value is Document {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "content" in value &&
+    "data" in value
+  );
+}
 
 export type PageFAQData = {
   title: string;
@@ -29,22 +35,20 @@ export async function getPageFAQBySlug(
       return null;
     }
     
-    const faqs: FAQItem[] = fields.faqs
-    .map((ref: any) => {
-      const linked = includedEntries.find(
-        (e) => e.sys?.id === ref.sys?.id
-      );
-      
-        if (!linked?.fields?.question || !linked?.fields?.answer) {
+    const faqs = fields.faqs
+      .map((ref: any): FAQItem | null => {
+        const linked = includedEntries.find((e) => e.sys?.id === ref.sys?.id);
+
+        const question = linked?.fields?.question;
+        const answer = linked?.fields?.answer;
+
+        if (typeof question !== "string" || !isRichTextDocument(answer)) {
           return null;
         }
 
-        return {
-          question: linked.fields.question as string,
-          answer: linked.fields.answer as Document,
-        };
+        return { question, answer };
       })
-      .filter(Boolean) as FAQItem[];
+      .filter((item): item is FAQItem => item !== null);
 
     // Enforce SEO rule centrally
     if (faqs.length < 2) return null;
