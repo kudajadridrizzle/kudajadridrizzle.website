@@ -6,6 +6,10 @@ import HeroSection from "@/components/HeroSection";
 import Header from "@/components/Header";
 import FAQSection from "@/components/FAQSection";
 import { getPageFAQBySlug } from "@/lib/getFaqs";
+import ContentSection from "@/components/ContentSection";
+import Wrapper from "@/components/layout/Wrapper";
+import ImageTextSectionComponent from "@/components/ImageTextSection";
+
 
 export const dynamic = "force-dynamic";
 
@@ -71,13 +75,11 @@ export default async function Facilities() {
         buttonLabel="Book Now"
         redirectTo="/contact"
       />
-
-      <div className="flex flex-col items-center self-stretch gap-16 bg-white mobile:p-4 sm:p-14 sm:flex-row 2xl:px-[12%] lg:px-[12%]">
+      <Wrapper>
         <FacilitiesSession />
-      </div>
-
-      <ListSession />
-      <FacilitiesAccordion />
+        <ListSession />
+        <ContentSection />
+      </Wrapper>
 
       {faqData && faqData.faqs.length >= 2 && (
         <FAQSection title={faqData.title} faqs={faqData.faqs} />

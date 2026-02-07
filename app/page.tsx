@@ -3,6 +3,7 @@ import HomeClient from "@/components/home/home-client";
 import FAQSection from "@/components/FAQSection";
 import { getHomepageData } from "@/lib/contentful-homepage";
 
+
 export const dynamic = "force-dynamic";
 
 const SITE_URL = "https://www.kudajadridrizzle.com";
@@ -86,7 +87,6 @@ export default async function Home() {
     <>
       <HomeClient data={data} />
 
-      {/* FAQ Section */}
       {frequentlyAskedQuestions && frequentlyAskedQuestions.faqs.length >= 2 && (
         <FAQSection
           title={frequentlyAskedQuestions.title}

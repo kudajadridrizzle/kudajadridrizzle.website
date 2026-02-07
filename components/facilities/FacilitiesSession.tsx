@@ -2,15 +2,15 @@ import Image from "next/image";
 
 const FacilitiesSession = () => {
   return (
-    <section className="px-4 sm:px-8 lg:px-12 py-12 lg:py-20">
+    <article className="py-12 lg:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-0 lg:gap-[64px]">
-        
-        {/* Left - Sticky Square Image */}
+
+        {/* Left – Sticky Image */}
         <div className="w-full h-full">
           <div className="sticky top-24 aspect-square relative">
             <Image
               src="/images/pool34.jpg"
-              alt="Homestay swimming pool"
+              alt="Homestay in Wayanad with swimming pool"
               fill
               priority
               className="object-cover rounded-[16px] shadow-lg"
@@ -18,71 +18,60 @@ const FacilitiesSession = () => {
           </div>
         </div>
 
-        {/* Right - Text Content */}
+        {/* Right – SEO Content */}
         <div className="flex flex-col justify-center items-start w-full h-full">
-          <h1 className="font-ivy sm:text-[44px] mobile:text-[32px] mb-6 text-primary">
-            Homestays in Wayanad with Swimming Pool
-          </h1>
+
+          {/* Section Heading */}
+          <h2 className="font-ivy sm:text-[44px] mobile:text-[32px] mb-6 text-primary">
+            Homestay in Wayanad with Swimming Pool
+          </h2>
 
           <div className="flex flex-col gap-4 font-albertSans sm:text-xl mobile:text-base text-[#6E6E6E]">
+
             <p>
-              Step into our 100-year-old Jain Tharavadu and discover a unique blend
-              of heritage charm and modern comforts. At Kudajadri Drizzle Homestay,
-              we believe your experience should feel personal, warm, and unforgettable.
+              Welcome to Kudajadri Drizzle Homestay — a heritage Jain Tharavadu nestled in
+              the green hills of Wayanad. Our poolside homestay blends traditional charm
+              with modern comfort.
             </p>
 
             <p>
-              Whether you’re here for family time, a solo retreat, or an adventure
-              with friends, our thoughtfully designed facilities ensure you’ll feel
-              relaxed, connected, and truly cared for.
+              Enjoy spacious rooms, a private swimming pool, and warm hospitality —
+              making it one of the most peaceful stays in Wayanad.
             </p>
 
-            <p>
-              Kudajadri Drizzle offers a perfect mix of comfort and nature. Set in
-              the green landscapes of Wayanad, our homestay comes with a swimming pool
-              where you can relax after a day of sightseeing.
-            </p>
-
-            {/* Why Choose */}
             <h3 className="font-ivy font-semibold text-black sm:text-2xl mobile:text-xl mt-6">
-              Why Choose a Poolside Homestay?
+              Why Choose Our Poolside Homestay?
             </h3>
-
-            <p>A swimming pool adds extra fun and relaxation to your stay. Guests enjoy:</p>
 
             <ul className="list-disc list-inside pl-2">
-              <li>A refreshing dip after exploring Wayanad</li>
-              <li>Safe and private space for families</li>
-              <li>Scenic views while swimming</li>
+              <li>Swimming pool with scenic views</li>
+              <li>Private space for families</li>
+              <li>Heritage experience with modern amenities</li>
             </ul>
 
-            {/* Things To Do */}
             <h3 className="font-ivy font-semibold text-black sm:text-2xl mobile:text-xl mt-6">
-              Things to Do Around Kudajadri Drizzle
+              Things to Do Nearby
             </h3>
 
-            <p>When you’re not in the pool, Wayanad has plenty to offer:</p>
-
             <ol className="list-decimal list-inside pl-2">
-              <li>Visit nearby waterfalls and tea estates</li>
+              <li>Visit waterfalls and tea plantations</li>
               <li>Explore wildlife sanctuaries</li>
-              <li>Experience local culture and food</li>
+              <li>Enjoy Wayanad cuisine and culture</li>
             </ol>
 
-            {/* Comfort Meets Nature */}
             <h3 className="font-ivy font-semibold text-black sm:text-2xl mobile:text-xl mt-6">
               Comfort Meets Nature
             </h3>
 
             <p>
-              Kudajadri Drizzle combines modern amenities with homely warmth.
-              Whether you travel with family, friends, or as a couple,
-              our poolside stay makes your Wayanad holiday memorable and relaxing.
+              Whether you’re travelling as a couple, family, or solo, Kudajadri Drizzle
+              offers a memorable poolside stay in Wayanad.
             </p>
+
           </div>
         </div>
       </div>
-    </section>
+    </article>
   );
 };
 
