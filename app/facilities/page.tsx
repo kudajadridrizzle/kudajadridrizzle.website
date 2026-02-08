@@ -1,89 +1,82 @@
 import { Metadata } from "next";
-import FacilitiesSession from "@/components/facilities/FacilitiesSession";
-import ListSession from "@/components/facilities/ListSession";
-import FacilitiesAccordion from "@/components/facilities/FacilitiesAccordion";
-import HeroSection from "@/components/HeroSection";
-import Header from "@/components/Header";
-import FAQSection from "@/components/FAQSection";
-import { getPageFAQBySlug } from "@/lib/getFaqs";
-import ContentSection from "@/components/ContentSection";
-import Wrapper from "@/components/layout/Wrapper";
-import ImageTextSectionComponent from "@/components/ImageTextSection";
-
+import FacilitiesClient from "@/components/facilities/facilities-client";
+import { getFacilitiesData } from "@/lib/contentful-facilities";
 
 export const dynamic = "force-dynamic";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
 
-const CANONICAL_URL = `${SITE_URL}/facilities`;
-const OG_IMAGE = `${SITE_URL}/aboutHero.jpg`;
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getFacilitiesData();
 
-const META_TITLE =
-  "Swimming pool homestays in Wayanad: homestay with swimming pool";
-
-const META_DESCRIPTION =
-  "Homestays in Wayanad with swimming pools offer the best facilities, comfort, and scenic views for a perfect relaxing getaway with family and friends.";
-
-export const metadata: Metadata = {
-  title: META_TITLE,
-  description: META_DESCRIPTION,
-
-  robots: "index, follow",
-
-  alternates: {
-    canonical: CANONICAL_URL,
-  },
-
-  openGraph: {
-    title: META_TITLE,
-    description: META_DESCRIPTION,
-    url: CANONICAL_URL,
-    siteName: "Kudajadri Drizzle",
-    images: [
-      {
-        url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "Kudajadri Drizzle Facilities",
+  if (!data || !data.meta) {
+    return {
+      title: "Swimming pool homestays in Wayanad: homestay with swimming pool",
+      description:
+        "Homestays in Wayanad with swimming pools offer the best facilities, comfort, and scenic views for a perfect relaxing getaway with family and friends.",
+      alternates: {
+        canonical: `${SITE_URL}/facilities`,
       },
-    ],
-    locale: "en_IN",
-    type: "website",
-  },
+    };
+  }
 
-  twitter: {
-    card: "summary_large_image",
-    title: META_TITLE,
-    description: META_DESCRIPTION,
-    images: [OG_IMAGE],
-  },
-};
+  const { meta } = data;
+  const ogImageUrl = meta.openGraphImage
+    ? `https:${meta.openGraphImage.fields.file.url}`
+    : `${SITE_URL}/aboutHero.jpg`;
+
+  return {
+    title: meta.metaTitle,
+    description: meta.metaDescription,
+
+    robots: meta.noIndex ? "noindex, nofollow" : "index, follow",
+
+    alternates: {
+      canonical: meta.canonicalUrl || `${SITE_URL}/facilities`,
+    },
+
+    openGraph: {
+      title: meta.metaTitle,
+      description: meta.metaDescription,
+      url: `${SITE_URL}/facilities`,
+      siteName: "Kudajadri Drizzle",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: meta.metaTitle,
+        },
+      ],
+      locale: "en_IN",
+      type: "website",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: meta.metaTitle,
+      description: meta.metaDescription,
+      images: [ogImageUrl],
+    },
+  };
+}
 
 export default async function Facilities() {
-  const faqData = await getPageFAQBySlug("facilities");
+  const data = await getFacilitiesData();
 
-  return (
-    <div>
-      <Header />
+  if (!data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Unable to load Facilities page</h1>
+          <p className="text-gray-600">
+            Please check your Contentful configuration.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-      <HeroSection
-        preTitle="Kudajadri Drizzle"
-        title="Facilities & Amenities at Kudajadri Drizzle Homestay"
-        bgImage="/FacilitiesHero.jpg"
-        showButton={true}
-        buttonLabel="Book Now"
-        redirectTo="/contact"
-      />
-      <Wrapper>
-        <FacilitiesSession />
-        <ListSession />
-        <ContentSection />
-      </Wrapper>
-
-      {faqData && faqData.faqs.length >= 2 && (
-        <FAQSection title={faqData.title} faqs={faqData.faqs} />
-      )}
-    </div>
-  );
+  return <FacilitiesClient data={data} />;
 }
