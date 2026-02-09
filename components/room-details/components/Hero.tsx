@@ -1,19 +1,20 @@
-'use client'
+'use client';
 
 import { usePathname } from 'next/navigation';
 import { roomData } from '../constants';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
+/* -------------------- Image Carousel (Mobile) -------------------- */
 const ImageCarousel = ({ images }: { images: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   const goToIndex = (index: number) => {
@@ -21,8 +22,8 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
   };
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => goToNext(),
-    onSwipedRight: () => goToPrevious(),
+    onSwipedLeft: goToNext,
+    onSwipedRight: goToPrevious,
     trackMouse: true,
     preventScrollOnSwipe: true,
   });
@@ -58,36 +59,21 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
                 e.stopPropagation();
                 goToPrevious();
               }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all focus:outline-none z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/75 transition z-10"
               aria-label="Previous image"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
+              ‹
             </button>
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 goToNext();
               }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all focus:outline-none z-10"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/75 transition z-10"
               aria-label="Next image"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              ›
             </button>
           </>
         )}
@@ -99,8 +85,8 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
             <button
               key={index}
               onClick={() => goToIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all ${
-                index === currentIndex ? 'bg-primary w-6' : 'bg-gray-300'
+              className={`h-2 rounded-full transition-all ${
+                index === currentIndex ? 'bg-primary w-6' : 'bg-gray-300 w-2'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -111,31 +97,19 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
   );
 };
 
+/* -------------------- Hero Section -------------------- */
 const Hero = () => {
   const pathname = usePathname();
-  
-  // Extract room ID from pathname (assuming format like /rooms/:id or /rooms/classic-rooms/:id)
+
   const pathSegments = pathname?.split('/').filter(Boolean) || [];
   const roomId = pathSegments[pathSegments.length - 1];
 
-  const [desktopPadding, setDesktopPadding] = useState('12vw');
-
-  useEffect(() => {
-    const handleResize = () => {
-      setDesktopPadding(window.innerWidth > 2000 ? '18vw' : '12vw');
-    };
-
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
-    
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  if (!roomId || typeof roomId !== 'string' || !roomData[roomId]) {
+  if (!roomId || !roomData[roomId]) {
     return <div>No room data available</div>;
   }
 
   const room = roomData[roomId];
+
   const roomImages = [
     room.imageOne,
     room.imageTwo,
@@ -147,16 +121,10 @@ const Hero = () => {
   return (
     <div className="w-full">
       {/* Desktop Layout */}
-      <div
-        className="hidden md:block w-full h-[80vh] py-12"
-        style={{
-          paddingLeft: desktopPadding,
-          paddingRight: desktopPadding,
-        }}
-      >
+      <div className="hidden md:block w-full h-[80vh] py-12">
         <div className="grid grid-cols-4 grid-rows-2 gap-2 w-full h-full">
-          {/* Large image - spans 2 columns and 2 rows */}
-          <div className="col-span-2 row-span-2 overflow-hidden rounded-xl w-full h-full">
+          {/* Large Image */}
+          <div className="col-span-2 row-span-2 overflow-hidden rounded-xl">
             <img
               src={room.imageOne}
               alt="Room overview"
@@ -164,10 +132,13 @@ const Hero = () => {
             />
           </div>
 
-          {/* 2x2 grid of smaller images */}
+          {/* Small Images */}
           {[room.imageTwo, room.imageThree, room.imageFour, room.imageFive].map(
             (img, index) => (
-              <div key={index} className="overflow-hidden rounded-xl w-full h-full">
+              <div
+                key={index}
+                className="overflow-hidden rounded-xl w-full h-full"
+              >
                 <img
                   src={img}
                   alt={`Room view ${index + 1}`}
@@ -179,7 +150,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Mobile Layout with Carousel */}
+      {/* Mobile Layout */}
       <div className="md:hidden px-4 pt-8 pb-8 mt-4">
         <div className="relative w-full overflow-hidden rounded-xl aspect-video">
           <ImageCarousel images={roomImages} />
