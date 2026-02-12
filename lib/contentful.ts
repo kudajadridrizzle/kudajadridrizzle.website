@@ -197,6 +197,19 @@ export type PageTypeThree = {
 };
 
 /* ===============================
+   PAGE TYPE FOUR TYPES (ABOUT PAGE)
+================================ */
+
+export type PageTypeFour = {
+  internalName: string;
+  meta: SeoMeta;
+  hero: HeroSection;
+  aboutSection: ImageTextSection;
+  contentSection: ImageTextSection[];
+  faQs: PageFaq;
+};
+
+/* ===============================
    FETCH FUNCTIONS
 ================================ */
 
@@ -210,7 +223,7 @@ export async function getAboutSection(): Promise<AboutSectionData> {
       `&limit=1`;
 
     const res = await fetch(url, {
-      cache: 'no-store', // Disable caching to ensure fresh data on every request
+      cache: 'no-store',
     });
 
     if (!res.ok) return null;
@@ -244,6 +257,103 @@ export async function getAboutSection(): Promise<AboutSectionData> {
   }
 }
 
+export async function getAboutPageContent(): Promise<PageTypeFour> {
+  const url =
+    `${CONTENTFUL_API_BASE}/entries` +
+    `?access_token=${CONTENTFUL_ACCESS_TOKEN}` +
+    `&content_type=pageTypeFour` +
+    `&locale=${CONTENTFUL_LOCALE}` +
+    `&include=3` +
+    `&limit=1`;
+
+  try {
+    const res = await fetch(url, {
+      cache: 'no-store',
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch About page: ${res.status}`);
+    }
+
+    const data: ContentfulResponse = await res.json();
+
+    if (!data.items || data.items.length === 0) {
+      throw new Error('About page content not found');
+    }
+
+    const entry = data.items[0];
+    const includes = data.includes || { Entry: [], Asset: [] };
+
+    // Helper to resolve linked entries/assets
+    const resolveLink = (link: ContentfulLink) => {
+      const entryMatch = includes.Entry?.find((e) => e.sys.id === link.sys.id);
+      if (entryMatch) return entryMatch;
+
+      const assetMatch = includes.Asset?.find((a) => a.sys.id === link.sys.id);
+      if (assetMatch) return assetMatch;
+
+      return null;
+    };
+
+    const fields = entry.fields as any;
+
+    // Resolve meta
+    const meta = resolveLink(fields.meta) as ContentfulEntry<SeoMeta>;
+
+    // Resolve hero
+    const hero = resolveLink(fields.hero) as ContentfulEntry<HeroSection>;
+    const heroFields = hero?.fields;
+    const heroImage = resolveLink(heroFields.backgroundImage) as ContentfulAsset;
+
+    // Resolve aboutSection
+    const aboutSection = resolveLink(fields.aboutSection) as ContentfulEntry<ImageTextSection>;
+    const aboutFields = aboutSection?.fields;
+    const aboutImage = resolveLink(aboutFields.image) as ContentfulAsset;
+
+    // Resolve contentSection array
+    const contentSection = (fields.contentSection || []).map((link: ContentfulLink) => {
+      const section = resolveLink(link) as ContentfulEntry<ImageTextSection>;
+      const sectionFields = section?.fields;
+      const sectionImage = resolveLink(sectionFields.image) as ContentfulAsset;
+      return {
+        ...sectionFields,
+        image: sectionImage,
+      };
+    });
+
+    // Resolve FAQs
+    const faqsEntry = resolveLink(fields.faQs) as ContentfulEntry<any>;
+    const faqsFields = faqsEntry?.fields;
+
+    // Resolve nested FAQ items
+    const faqItems = (faqsFields?.faqs || []).map((link: ContentfulLink) => {
+      const faqItem = resolveLink(link) as ContentfulEntry<FaqItem>;
+      return faqItem?.fields;
+    });
+
+    return {
+      internalName: fields.internalName,
+      meta: meta?.fields,
+      hero: {
+        ...heroFields,
+        backgroundImage: heroImage,
+      },
+      aboutSection: {
+        ...aboutFields,
+        image: aboutImage,
+      },
+      contentSection,
+      faQs: {
+        ...faqsFields,
+        faqs: faqItems,
+      },
+    };
+  } catch (error) {
+    console.error("getAboutPageContent error:", error);
+    throw error;
+  }
+}
+
 /* ===============================
    GENERIC CONTENT FETCH
 ================================ */
@@ -263,7 +373,7 @@ export async function getContent(
 
   try {
     const res = await fetch(url, {
-      cache: 'no-store', // Disable caching to ensure fresh data on every request
+      cache: 'no-store',
     });
 
     if (!res.ok) {
