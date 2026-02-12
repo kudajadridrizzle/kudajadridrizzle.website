@@ -1,44 +1,24 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { roomDataMap } from '../constants';
+import { RoomBookingCard, SectionIntro } from '@/lib/contentful';
 import { RoomInfoSection } from './RoomInfoSection';
-import { RoomPricingSection } from './RoomPricingSection';
-import { RoomBookingSection } from './RoomBookingSection';
+import BookingCard from './BookingCard';
 
-export const RoomPriceSession = () => {
-  const pathname = usePathname();
-  const roomId = pathname?.split('/').pop() || 'classic';
-  const roomData = roomDataMap[roomId];
+type RoomPriceSessionProps = {
+  card: RoomBookingCard;
+  description: SectionIntro;
+};
 
-  if (!roomData) return null;
-
+export const RoomPriceSession = ({ card, description }: RoomPriceSessionProps) => {
   return (
-    <section className="px-4 pb-20 sm:pb-32">
-      <div className="flex flex-col sm:flex-row gap-12">
+    <section className="pb-20 sm:pb-32">
+      <div className="flex flex-col gap-12 sm:flex-row">
         <RoomInfoSection
-          roomId={roomId}
-          roomType={roomData.roomType}
-          description={roomData.description}
-          offersTitle={roomData.offersTitle}
-          offers={roomData.offers}
+          description={description}
         />
 
-        <aside className="w-full sm:w-[358px] flex flex-col gap-6 sm:px-6 sm:py-11">
-          <RoomPricingSection
-            pricePerNight={roomData.pricePerNight}
-            priceNote={roomData.priceNote}
-            extraPersonRules={roomData.extraPerson.rules}
-          />
-
-          <RoomBookingSection
-            checkIn={roomData.checkIn}
-            checkOut={roomData.checkOut}
-            cancellationTitle={roomData.cancellationPolicyTitle}
-            cancellationPolicy={roomData.cancellationPolicy}
-            bookingButtonText={roomData.bookingButtonText}
-            bookingButtonLink={roomData.bookingButtonLink}
-          />
+        <aside className="sm:sticky sm:top-24 self-start">
+          <BookingCard card={card} />
         </aside>
       </div>
     </section>

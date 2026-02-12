@@ -1,41 +1,42 @@
-import { type Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getRoomPageData } from "@/lib/getRoomPageData";
 import RoomPageClient from "../[id]/RoomPageClient";
+import { Metadata } from "next";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
+// Generate metadata for SEO
+export async function generateMetadata(): Promise<Metadata> {
+  const roomData = await getRoomPageData("deluxe");
 
-const CANONICAL_URL = `${SITE_URL}/rooms/deluxe`;
+  if (!roomData) {
+    return {
+      title: "Room Not Found",
+    };
+  }
 
-/* ⛔ META TEXT IS UNCHANGED */
-const META_TITLE =
-  "Wayanad Cottages: Private Cottages in Wayanad for Family, Group";
+  return {
+    title: roomData.meta.metaTitle,
+    description: roomData.meta.metaDescription,
+    openGraph: roomData.meta.openGraphImage
+      ? {
+          images: [
+            {
+              url: `https:${roomData.meta.openGraphImage.fields.file.url}`,
+              alt: roomData.meta.openGraphImage.fields.title || roomData.meta.metaTitle,
+            },
+          ],
+        }
+      : undefined,
+    ...(roomData.meta.noIndex && { robots: { index: false } }),
+    ...(roomData.meta.canonicalUrl && { alternates: { canonical: roomData.meta.canonicalUrl } }),
+  };
+}
 
-const META_DESCRIPTION =
-  "Stay at our Wayanad cottages designed for families. Our private cottages in Wayanad offer comfort, scenic views, and a peaceful holiday experience.";
+export default async function DeluxeRoomPage() {
+  const roomData = await getRoomPageData("deluxe");
 
-export const metadata: Metadata = {
-  title: META_TITLE,
-  description: META_DESCRIPTION,
+  if (!roomData) {
+    notFound();
+  }
 
-  alternates: {
-    canonical: CANONICAL_URL,
-  },
-
-  openGraph: {
-    title: META_TITLE,             // SAME AS META
-    description: META_DESCRIPTION, // SAME AS META
-    url: CANONICAL_URL,
-    siteName: "Kudajadri Drizzle",
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: META_TITLE,             // SAME AS META
-    description: META_DESCRIPTION, // SAME AS META
-  },
-};
-
-export default function DeluxeRoomPage() {
-  return <RoomPageClient roomId="deluxe" />;
+  return <RoomPageClient roomData={roomData} />;
 }

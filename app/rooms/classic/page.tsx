@@ -1,41 +1,42 @@
-import { type Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getRoomPageData } from "@/lib/getRoomPageData";
 import RoomPageClient from "../[id]/RoomPageClient";
+import { Metadata } from "next";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
+// Generate metadata for SEO
+export async function generateMetadata(): Promise<Metadata> {
+  const roomData = await getRoomPageData("classic");
 
-const CANONICAL_URL = `${SITE_URL}/rooms/classic`;
+  if (!roomData) {
+    return {
+      title: "Room Not Found",
+    };
+  }
 
-/* ⛔ META TEXT IS UNCHANGED */
-const META_TITLE =
-  "Affordable homestay in Wayanad: Best budget Wayanad homestay";
+  return {
+    title: roomData.meta.metaTitle,
+    description: roomData.meta.metaDescription,
+    openGraph: roomData.meta.openGraphImage
+      ? {
+          images: [
+            {
+              url: `https:${roomData.meta.openGraphImage.fields.file.url}`,
+              alt: roomData.meta.openGraphImage.fields.title || roomData.meta.metaTitle,
+            },
+          ],
+        }
+      : undefined,
+    ...(roomData.meta.noIndex && { robots: { index: false } }),
+    ...(roomData.meta.canonicalUrl && { alternates: { canonical: roomData.meta.canonicalUrl } }),
+  };
+}
 
-const META_DESCRIPTION =
-  "Best budget homestay in Wayanad with affordable rooms for families and travelers. Discover low-cost Wayanad homestays with comfort and convenience.";
+export default async function ClassicRoomPage() {
+  const roomData = await getRoomPageData("classic");
 
-export const metadata: Metadata = {
-  title: META_TITLE,
-  description: META_DESCRIPTION,
+  if (!roomData) {
+    notFound();
+  }
 
-  alternates: {
-    canonical: CANONICAL_URL,
-  },
-
-  openGraph: {
-    title: META_TITLE,             // SAME AS META
-    description: META_DESCRIPTION, // SAME AS META
-    url: CANONICAL_URL,
-    siteName: "Kudajadri Drizzle",
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: META_TITLE,             // SAME AS META
-    description: META_DESCRIPTION, // SAME AS META
-  },
-};
-
-export default function ClassicRoomPage() {
-  return <RoomPageClient roomId="classic" />;
+  return <RoomPageClient roomData={roomData} />;
 }

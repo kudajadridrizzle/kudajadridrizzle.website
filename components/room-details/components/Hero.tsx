@@ -1,7 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { roomData } from '../constants';
+import { ImagePreviewGrid } from '@/lib/contentful';
 import { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
@@ -98,25 +97,23 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
 };
 
 /* -------------------- Hero Section -------------------- */
-const Hero = () => {
-  const pathname = usePathname();
 
-  const pathSegments = pathname?.split('/').filter(Boolean) || [];
-  const roomId = pathSegments[pathSegments.length - 1];
+type HeroProps = {
+  heroImages: ImagePreviewGrid;
+};
 
-  if (!roomId || !roomData[roomId]) {
-    return <div>No room data available</div>;
+const Hero = ({ heroImages }: HeroProps) => {
+  // Convert Contentful assets to image URLs
+  const roomImages = heroImages.images.map(
+    (asset) => `https:${asset.fields.file.url}`
+  );
+
+  if (!roomImages || roomImages.length === 0) {
+    return <div>No images available</div>;
   }
 
-  const room = roomData[roomId];
-
-  const roomImages = [
-    room.imageOne,
-    room.imageTwo,
-    room.imageThree,
-    room.imageFour,
-    room.imageFive,
-  ].filter(Boolean) as string[];
+  // Get first 5 images (or all if less than 5)
+  const [imageOne, imageTwo, imageThree, imageFour, imageFive] = roomImages;
 
   return (
     <div className="w-full">
@@ -126,15 +123,16 @@ const Hero = () => {
           {/* Large Image */}
           <div className="col-span-2 row-span-2 overflow-hidden rounded-xl">
             <img
-              src={room.imageOne}
+              src={imageOne}
               alt="Room overview"
               className="w-full h-full object-cover"
             />
           </div>
 
           {/* Small Images */}
-          {[room.imageTwo, room.imageThree, room.imageFour, room.imageFive].map(
-            (img, index) => (
+          {[imageTwo, imageThree, imageFour, imageFive]
+            .filter(Boolean)
+            .map((img, index) => (
               <div
                 key={index}
                 className="overflow-hidden rounded-xl w-full h-full"
@@ -145,8 +143,7 @@ const Hero = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-            )
-          )}
+            ))}
         </div>
       </div>
 

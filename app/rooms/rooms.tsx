@@ -4,8 +4,6 @@ import CMSRoomSession from "@/components/about/CMSRoomSession";
 import { IndividualRooms } from "@/components/home/individual-rooms";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import FAQSection from "@/components/FAQSection";
-import { roomsFaqData } from "@/data/faqs/rooms";
 
 export default function Rooms() {
   return (

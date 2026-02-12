@@ -1,40 +1,42 @@
-import { type Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getRoomPageData } from "@/lib/getRoomPageData";
 import RoomPageClient from "../[id]/RoomPageClient";
+import { Metadata } from "next";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.kudajadridrizzle.com";
+// Generate metadata for SEO
+export async function generateMetadata(): Promise<Metadata> {
+  const roomData = await getRoomPageData("premium");
 
-const CANONICAL_URL = `${SITE_URL}/rooms/premium`;
+  if (!roomData) {
+    return {
+      title: "Room Not Found",
+    };
+  }
 
-const META_TITLE =
-  "Premium homestay in Wayanad: Best luxury Wayanad homestays";
+  return {
+    title: roomData.meta.metaTitle,
+    description: roomData.meta.metaDescription,
+    openGraph: roomData.meta.openGraphImage
+      ? {
+          images: [
+            {
+              url: `https:${roomData.meta.openGraphImage.fields.file.url}`,
+              alt: roomData.meta.openGraphImage.fields.title || roomData.meta.metaTitle,
+            },
+          ],
+        }
+      : undefined,
+    ...(roomData.meta.noIndex && { robots: { index: false } }),
+    ...(roomData.meta.canonicalUrl && { alternates: { canonical: roomData.meta.canonicalUrl } }),
+  };
+}
 
-const META_DESCRIPTION =
-  "Best Premium homestay in Wayanad offering deluxe and luxury stays with top-tier amenities. Enjoy elegant rooms, scenic views, and a peaceful retreat in Wayanad";
+export default async function PremiumRoomPage() {
+  const roomData = await getRoomPageData("premium");
 
-export const metadata: Metadata = {
-  title: META_TITLE,
-  description: META_DESCRIPTION,
+  if (!roomData) {
+    notFound();
+  }
 
-  alternates: {
-    canonical: CANONICAL_URL,
-  },
-
-  openGraph: {
-    title: META_TITLE,             // SAME AS META
-    description: META_DESCRIPTION, // SAME AS META
-    url: CANONICAL_URL,
-    siteName: "Kudajadri Drizzle",
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: META_TITLE,             // SAME AS META
-    description: META_DESCRIPTION, // SAME AS META
-  },
-};
-
-export default function PremiumRoomPage() {
-  return <RoomPageClient roomId="premium" />;
+  return <RoomPageClient roomData={roomData} />;
 }

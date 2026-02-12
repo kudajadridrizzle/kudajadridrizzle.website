@@ -140,6 +140,65 @@ export type ContentfulGenericResponse = {
   };
 };
 
+/* ===============================
+   PAGE TYPE THREE TYPES (ROOM PAGES)
+================================ */
+
+export type ImagePreviewGrid = {
+  internalName?: string;
+  images: ContentfulAsset[];
+};
+
+export type RoomBookingCard = {
+  internalName?: string;
+  roomName?: string;
+  priceLabel: string;
+  pricingBadge?: string;
+  extraPersonCharge?: string;
+  childPricing?: string;
+  agePolicy?: string;
+  checkInTime?: string;
+  checkOutTime?: string;
+  policies?: string[];
+  ctaLabel?: string;
+  ctaRoute?: string;
+};
+
+export type EditorialSection = {
+  internalName?: string;
+  title: string;
+  description: Document;
+  listTitle?: string;
+  listItems?: Document;
+  image?: ContentfulAsset;
+  imagePosition?: "left" | "right";
+};
+
+export type CallToAction = {
+  internalName?: string;
+  preTitle?: string;
+  title: string;
+  description?: Document | string;
+  ctaLabel: string;
+  ctaLink: string;
+  backgroundImage?: ContentfulAsset;
+};
+
+export type PageTypeThree = {
+  internalName: string;
+  slug: string;
+  meta: SeoMeta;
+  heroImages: ImagePreviewGrid;
+  description: SectionIntro;
+  card: RoomBookingCard;
+  contentSection: EditorialSection[];
+  ctaSection: CallToAction;
+  faQs: PageFaq;
+};
+
+/* ===============================
+   FETCH FUNCTIONS
+================================ */
 
 export async function getAboutSection(): Promise<AboutSectionData> {
   try {
