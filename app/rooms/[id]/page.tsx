@@ -1,5 +1,7 @@
 import { type Metadata } from "next";
 import RoomPageClient from "./RoomPageClient";
+import { getRoomPageData } from "@/lib/getRoomPageData";
+import { notFound } from "next/navigation";
 
 const metadataMap: Record<string, { title: string; description: string }> = {
   classic: {
@@ -27,12 +29,33 @@ const metadataMap: Record<string, { title: string; description: string }> = {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  return metadataMap[params.id] ?? metadataMap.classic;
+  const { id } = await params;
+  const roomData = await getRoomPageData(id);
+  
+  if (roomData?.meta) {
+    return {
+      title: roomData.meta.metaTitle,
+      description: roomData.meta.metaDescription,
+    };
+  }
+  
+  return metadataMap[id] ?? metadataMap.classic;
 }
 
-export default function RoomPage({ params }: { params: { id: string } }) {
-  return <RoomPageClient roomId={params.id} />;
+export default async function RoomPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
+  const { id } = await params;
+  const roomData = await getRoomPageData(id);
+
+  if (!roomData) {
+    notFound();
+  }
+
+  return <RoomPageClient roomData={roomData} />;
 }
 

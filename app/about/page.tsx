@@ -1,13 +1,13 @@
+import { Metadata } from "next";
+
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import AboutSession from "@/components/about/AboutSession";
 import ImageTextSectionComponent from "@/components/ImageTextSection";
 import FAQSection from "@/components/FAQSection";
-import ReviewSection from "@/components/home/review-section";
 import Wrapper from "@/components/layout/Wrapper";
 
 import { getAboutPageContent } from "@/lib/contentful";
-import { Metadata } from "next";
 import { ImageTextSection } from "@/lib/contentful";
 
 const GOOGLE_REVIEWS_URL =
@@ -15,7 +15,7 @@ const GOOGLE_REVIEWS_URL =
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getAboutPageContent();
-  
+
   return {
     title: data.meta.metaTitle,
     description: data.meta.metaDescription,
@@ -35,12 +35,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function About() {
   const data = await getAboutPageContent();
-  
+
   const { hero, aboutSection, contentSection, faQs } = data;
 
   // Debug logs
-  console.log('FAQs data:', faQs);
-  console.log('FAQ items:', faQs?.faqs);
+  console.log("FAQs data:", faQs);
+  console.log("FAQ items:", faQs?.faqs);
 
   return (
     <div>
@@ -56,49 +56,48 @@ export default async function About() {
         redirectTo={hero.ctaLink}
       />
 
-      {/* ABOUT SESSION */}
-      <AboutSession 
-        title={aboutSection.title}
-        description={aboutSection.description}
-        imageUrl={`https:${aboutSection.image.fields.file.url}`}
-        imageAlt={aboutSection.imageAlt || aboutSection.title}
-      />
-
-      {/* CONTENT SECTIONS */}
-      {contentSection && contentSection.length > 0 && (
-        <section className="py-12 px-4 md:px-8 lg:px-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto space-y-16">
-            {contentSection.map((section: ImageTextSection, index: number) => (
-              <ImageTextSectionComponent
-                key={section.internalName || index}
-                title={section.title}
-                description={section.description}
-                imageUrl={`https:${section.image.fields.file.url}`}
-                imageAlt={
-                  section.imageAlt ||
-                  section.image.fields.title ||
-                  section.title
-                }
-                ctaVisible={section.ctaVisible}
-                ctaLabel={section.ctaLabel}
-                ctaLink={section.ctaLink}
-                imagePosition={
-                  section.imagePosition ||
-                  (index % 2 === 0 ? "left" : "right")
-                }
-              />
-            ))}
-          </div>
-        </section>
-      )}
-
-  
-
-      {faQs && faQs.faqs && faQs.faqs.length > 0 && (
-        <FAQSection 
-          title={faQs.title}
-          faqs={faQs.faqs}
+      <Wrapper>
+        <AboutSession
+          title={aboutSection.title}
+          description={aboutSection.description}
+          imageUrl={`https:${aboutSection.image.fields.file.url}`}
+          imageAlt={aboutSection.imageAlt || aboutSection.title}
         />
+
+        {/* CONTENT SECTIONS */}
+        {contentSection && contentSection.length > 0 && (
+          <section className="">
+            <div className="mx-auto space-y-16">
+              {contentSection.map(
+                (section: ImageTextSection, index: number) => (
+                  <ImageTextSectionComponent
+                    key={section.internalName || index}
+                    title={section.title}
+                    description={section.description}
+                    imageUrl={`https:${section.image.fields.file.url}`}
+                    imageAlt={
+                      section.imageAlt ||
+                      section.image.fields.title ||
+                      section.title
+                    }
+                    ctaVisible={section.ctaVisible}
+                    ctaLabel={section.ctaLabel}
+                    ctaLink={section.ctaLink}
+                    imagePosition={
+                      section.imagePosition ||
+                      (index % 2 === 0 ? "left" : "right")
+                    }
+                  />
+                )
+              )}
+            </div>
+          </section>
+        )}
+      </Wrapper>
+
+      {/* FAQ SECTION */}
+      {faQs && faQs.faqs && faQs.faqs.length > 0 && (
+        <FAQSection title={faQs.title} faqs={faQs.faqs} />
       )}
     </div>
   );

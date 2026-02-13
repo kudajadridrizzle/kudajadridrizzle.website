@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import remarkGfm from 'remark-gfm';
-import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
-import { Document } from "@contentful/rich-text-types";
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Document } from '@contentful/rich-text-types';
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 
 interface AboutSessionProps {
   title: string;
@@ -13,23 +13,32 @@ interface AboutSessionProps {
   imageAlt?: string;
 }
 
-const AboutSession = ({ title, description, imageUrl, imageAlt }: AboutSessionProps) => {
+const AboutSession = ({
+  title,
+  description,
+  imageUrl,
+  imageAlt,
+}: AboutSessionProps) => {
   const [expanded, setExpanded] = useState(false);
-  const maxChars = 400;
+  const maxChars = 500;
 
-  // Convert Contentful Document to plain text string
-  const descriptionText = typeof description === 'string' 
-    ? description 
-    : documentToPlainTextString(description);
+  // Convert Contentful Document to plain text
+  const descriptionText =
+    typeof description === 'string'
+      ? description
+      : documentToPlainTextString(description);
 
   const isLong = descriptionText.length > maxChars;
-  const preview = isLong ? descriptionText.slice(0, maxChars) + '...' : descriptionText;
+  const preview = isLong
+    ? descriptionText.slice(0, maxChars) + '...'
+    : descriptionText;
 
   return (
-    <div className="sm:px-[6%] sm:py-32 large:px-[12%] px-4 py-14">
+    <div className="sm:py-32 py-14">
       <div className="flex flex-col gap-12">
+        {/* TEXT SECTION */}
         <div className="flex gap-4 sm:flex-row flex-col">
-          <h1 className="block sm:w-1/2 text-[#000] font-ivy sm:text-[44px] text-[32px]">
+          <h1 className="sm:w-1/2 text-[#000] font-ivy sm:text-[44px] text-[32px]">
             {title}
           </h1>
 
@@ -41,7 +50,7 @@ const AboutSession = ({ title, description, imageUrl, imageAlt }: AboutSessionPr
             {isLong && (
               <button
                 onClick={() => setExpanded(!expanded)}
-                className="mt-2 block text-sm text-primary hover:underline focus:outline-none"
+                className="mt-2 text-sm text-primary hover:underline focus:outline-none"
               >
                 {expanded ? 'Read less' : 'Read more'}
               </button>
@@ -49,11 +58,12 @@ const AboutSession = ({ title, description, imageUrl, imageAlt }: AboutSessionPr
           </div>
         </div>
 
-        <div className="h-[415px] mt-8">
+        {/* IMAGE SECTION — 16:9 */}
+        <div className="mt-8 aspect-video w-full overflow-hidden rounded-[32px]">
           <img
             src={imageUrl}
             alt={imageAlt || title}
-            className="object-cover size-full rounded-[32px]"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>
