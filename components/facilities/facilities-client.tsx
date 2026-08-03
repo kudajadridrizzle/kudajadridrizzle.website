@@ -25,7 +25,7 @@ export default function FacilitiesClient({ data }: FacilitiesClientProps) {
       <HeroSection
         preTitle={hero.preTitle}
         title={hero.title}
-        bgImage={`https:${hero.backgroundImage.fields.file.url}`}
+        bgImage="/FacilitiesHero.jpg"
         showButton={hero.ctaVisible}
         buttonLabel={hero.ctaLabel}
         redirectTo={hero.ctaLink}
@@ -44,6 +44,8 @@ export default function FacilitiesClient({ data }: FacilitiesClientProps) {
 
 
         <ListSession />
+
+        <FacilitiesSession />
 
         {/* CONTENT SECTIONS */}
         <ContentSection sections={contentSections} />

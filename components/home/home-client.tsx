@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import Amenities from "@/components/home/ameties";
+import BestHomestaySection from "@/components/home/BestHomestaySection";
 import Direction from "@/components/direction";
 import GallerySection from "@/components/home/GallerySection";
 import GuestReviewsSection from "@/components/home/GuestReviewsSection";
@@ -54,9 +55,11 @@ export default function HomeClient({ data }: HomeClientProps) {
             preTitle={aboutSection.preTitle}
             title={aboutSection.title}
             description={aboutSection.description}
-            enableReadMore
+            enableReadMore={false}
           />
         </section>
+
+        <BestHomestaySection />
 
         {/* ROOMS */}
         {individualRooms.length > 0 && (

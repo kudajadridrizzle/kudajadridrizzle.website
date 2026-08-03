@@ -41,6 +41,12 @@ export default function EditorialSlider({ slides }: EditorialSliderProps) {
 
   return (
     <section className="relative py-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 mb-12">
+        <h2 className="font-ivy text-[32px] leading-tight text-primary sm:text-[44px]">
+          Attractions Near Kudajadri Drizzle Homestay Wayanad
+        </h2>
+      </div>
+
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center px-4">
 
         {/* TEXT */}

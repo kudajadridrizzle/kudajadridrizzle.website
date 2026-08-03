@@ -9,7 +9,7 @@ const FacilitiesSession = () => {
         <div className="w-full h-full">
           <div className="sticky top-24 aspect-square relative">
             <Image
-              src="/images/pool34.jpg"
+              src="/FacilitiesHero.jpg"
               alt="Homestay in Wayanad with swimming pool"
               fill
               priority
