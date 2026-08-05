@@ -1,10 +1,12 @@
 import { Document } from "@contentful/rich-text-types";
 import { renderRichText } from "@/lib/renderRichText";
+import { type ReactNode } from "react";
 
 interface DirectionProps {
   preTitle?: string;
   title?: string;
   description?: Document;
+  fallbackDescription?: ReactNode;
   buttonText?: string;
   mapUrl?: string;
   iframeMapUrl?: string;
@@ -21,6 +23,7 @@ const Direction = ({
   preTitle = "Direction",
   title = "Getting to Our Wayanad Homestay",
   description,
+  fallbackDescription,
   buttonText = "Get Direction",
   mapUrl = GOOGLE_MAP_URL,
   iframeMapUrl = GOOGLE_MAP_EMBED_URL,
@@ -57,7 +60,7 @@ const Direction = ({
               </div>
             ) : (
               <p className="font-albertSans text-base sm:text-lg leading-relaxed text-secondary">
-                {defaultDescriptionText}
+                {fallbackDescription ?? defaultDescriptionText}
               </p>
             )}
           </div>

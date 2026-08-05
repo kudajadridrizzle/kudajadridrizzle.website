@@ -14,18 +14,35 @@ const AnotherRoomSession: React.FC<AnotherRoomSessionProps> = ({
   roomId,
 }) => {
   const getSectionTitle = () => {
-    switch (roomType.toLowerCase()) {
-      case "classic rooms":
+    const normalizedRoomId = roomId?.trim().toLowerCase();
+    const normalizedRoomType = roomType.trim().toLowerCase();
+
+    // Prefer the URL slug because CMS room names can vary (for example,
+    // "Deluxe Room" instead of "Deluxe Rooms").
+    switch (normalizedRoomId) {
+      case "classic":
         return "More Room Options at Our Affordable Wayanad Homestays";
-      case "deluxe rooms":
+      case "deluxe":
         return "More Room Options at Our Wayanad Cottages";
-      case "deluxe heritage rooms":
+      case "deluxe-heritage":
         return "More Room Options at Our Heritage Wayanad Homestays";
-      case "premium rooms":
+      case "premium":
         return "More Room Options at Our Premium Wayanad Homestays";
-      default:
-        return "More Room Options at Our Affordable Wayanad Homestays";
     }
+
+    if (normalizedRoomType.includes("deluxe heritage")) {
+      return "More Room Options at Our Heritage Wayanad Homestays";
+    }
+
+    if (normalizedRoomType.includes("premium")) {
+      return "More Room Options at Our Premium Wayanad Homestays";
+    }
+
+    if (normalizedRoomType.includes("deluxe")) {
+      return "More Room Options at Our Wayanad Cottages";
+    }
+
+    return "More Room Options at Our Affordable Wayanad Homestays";
   };
 
   const params = useParams<{ id: string }>();
