@@ -49,7 +49,7 @@ export default function ContactClient() {
           </h2>
 
           <h1 className="text-[32px] sm:text-[72px] font-staylista leading-tight">
-            Online Booking of Wayanad Homestays & Cottages
+            Easy Online Booking of Wayanad Homestays & Cottages
           </h1>
         </section>
 

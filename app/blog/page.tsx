@@ -46,8 +46,8 @@ export default async function BlogListingPage() {
             Wayanad Travel Blog
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore Wayanad through curated travel stories, local insights,
-            nature escapes, and expert tips for couples, families, and solo travelers.
+            Explore Wayanad with our Wayanad Travel Blog, featuring travel tips, itineraries, and local insights. Discover the best accommodations, including homestays and heritage cottages, and learn about sightseeing, nature walks, and adventure activities. Perfect for families, couples, and solo travelers, the blog helps plan a memorable and enjoyable Wayanad trip.
+
           </p>
         </div>
 
