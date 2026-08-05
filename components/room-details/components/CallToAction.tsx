@@ -37,9 +37,9 @@ const CallToAction: React.FC<CallToActionProps> = ({ ctaData }) => {
         )}
 
         {/* Title */}
-        <h1 className="text-4xl md:text-6xl font-ivy mb-4">
+        <h2 className="text-4xl md:text-6xl font-ivy mb-4">
           {ctaData.title}
-        </h1>
+        </h2>
 
         {/* Description text - check if it's a string or rich text */}
         {ctaData.description && (

@@ -20,9 +20,9 @@ export const TourHeroContent = () => {
             <span className="uppercase text-primary tracking-[1.6px] text-sm font-albertSans mb-2">
               Wayanad Tours
             </span>
-            <h1 className="text-primary font-ivy sm:text-[44px] mobile:text-[32px] mb-2">
+            <h2 className="text-primary font-ivy sm:text-[44px] mobile:text-[32px] mb-2">
               Wayanad Tour Packages
-            </h1>
+            </h2>
             <div className="h-1 w-20 bg-primary"></div>
           </div>
 

@@ -27,9 +27,9 @@ const PackageCard = ({
       {/* <div className="absolute inset-0 bg-black bg-opacity-50 rounded-[32px] pointer-events-none z-0"></div> */}
       <div className="flex flex-col gap-6 sm:gap-8 md:gap-9 z-10 text-white w-full lg:w-2/3">
         <div className="flex flex-col gap-2 sm:gap-3 opacity-100 border-l-2 sm:border-l-[1px] pt-1 pr-4 sm:pr-5 pb-1 pl-4 sm:pl-5">
-          <h2 className="font-albert font-medium text-3xl sm:text-4xl md:text-[44px] leading-tight tracking-normal capitalize text-white">
+          <h1 className="font-albert font-medium text-3xl sm:text-4xl md:text-[44px] leading-tight tracking-normal capitalize text-white">
             {title}
-          </h2>
+          </h1>
           <p className="text-sm sm:text-base font-medium leading-relaxed tracking-normal capitalize font-albert text-[#CDCDCD] mt-1 sm:mt-2">
             {description}
           </p>
