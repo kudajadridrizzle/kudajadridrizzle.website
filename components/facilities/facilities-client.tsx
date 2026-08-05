@@ -8,6 +8,7 @@ import ContentSection from "@/components/ContentSection";
 import FAQSection from "@/components/FAQSection";
 import Wrapper from "@/components/layout/Wrapper";
 import SectionIntro from "@/components/sectionIntro";
+import Direction from "@/components/direction";
 import { FacilitiesPageData } from "@/lib/contentful-facilities";
 
 interface FacilitiesClientProps {
@@ -41,15 +42,29 @@ export default function FacilitiesClient({ data }: FacilitiesClientProps) {
             enableReadMore
           />
         </section>
-
+        <FacilitiesSession />
 
         <ListSession />
 
-        <FacilitiesSession />
 
         {/* CONTENT SECTIONS */}
         <ContentSection sections={contentSections} />
       </Wrapper>
+
+      <Direction
+        title="Wayanad Homestays with Pools How to Reach"
+        fallbackDescription={
+          <>
+            Reaching our Kudajadri Drizzle Wayanad Homestay is simple and
+            hassle-free. The property is well-connected by road from Kozhikode,
+            Bengaluru, and Mysuru, making travel convenient by car, taxi, or
+            bus. Along the way, you&apos;ll pass through scenic hills and lush
+            plantations, offering a beautiful glimpse of Wayanad&apos;s charm even
+            before you arrive. The journey is smooth, pleasant, and sets the
+            tone for a relaxing stay.
+          </>
+        }
+      />
 
       {/* FAQs SECTION */}
       {faqs && 
