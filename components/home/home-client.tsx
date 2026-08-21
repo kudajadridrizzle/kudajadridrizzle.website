@@ -139,6 +139,9 @@ export default function HomeClient({ data }: HomeClientProps) {
       {featureSection.length > 0 && (
         <section className="py-12 px-4 md:px-8 lg:px-16 bg-gray-50">
           <div className="max-w-7xl mx-auto space-y-16">
+            <h2 className="font-ivy text-[28px] sm:text-[44px] leading-tight text-center">
+              Kudajadri Drizzle: The Best Homestay in Wayanad
+            </h2>
             {featureSection.map(
               (feature: ImageTextSection, index: number) => (
                 <ImageTextSectionComponent

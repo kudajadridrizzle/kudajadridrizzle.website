@@ -86,9 +86,9 @@ export default function SectionIntro({
             {preTitle}
           </p>
 
-          <h2 className="font-ivy text-[28px] sm:text-[44px] leading-tight">
+          <h1 className="font-ivy text-[28px] sm:text-[44px] leading-tight">
             {title}
-          </h2>
+          </h1>
         </header>
 
         {/* Right – 60% */}

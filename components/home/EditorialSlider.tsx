@@ -58,9 +58,9 @@ export default function EditorialSlider({ slides }: EditorialSliderProps) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-ivy leading-tight">
+            <h3 className="text-3xl sm:text-4xl font-ivy leading-tight">
               {slide.title}
-            </h2>
+            </h3>
 
             <div className="mt-6 text-gray-600">
               {renderRichText(slide.description)}

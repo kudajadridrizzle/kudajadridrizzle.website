@@ -59,9 +59,9 @@ const ListSession = () => {
             className="py-5"
           >
             <div>
-              <h2 className="font-ivy text-xl text-primary sm:text-2xl">
+              <h3 className="font-ivy text-xl text-primary sm:text-2xl">
                 {section.title}
-              </h2>
+              </h3>
               <p className="mt-2 text-primary/80 text-sm sm:text-base leading-relaxed">
                 {section.items.join(' | ')}
               </p>

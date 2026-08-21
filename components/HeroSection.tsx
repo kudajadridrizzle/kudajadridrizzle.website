@@ -49,9 +49,9 @@ const HeroSection = ({
             </div>
           )}
 
-          <h1 className="text-white font-staylista text-4xl sm:text-6xl lg:text-7xl max-w-3xl leading-snug sm:leading-tight">
+          <span className="text-white font-staylista text-4xl sm:text-6xl lg:text-7xl max-w-3xl leading-snug sm:leading-tight">
             {title}
-          </h1>
+          </span>
 
           {showButton && (
             <button
