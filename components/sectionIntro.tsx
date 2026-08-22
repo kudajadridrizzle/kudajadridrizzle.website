@@ -10,6 +10,7 @@ interface SectionIntroProps {
   description: Document;
   enableReadMore?: boolean;
   maxChars?: number;
+  headingLevel?: "h1" | "h2";
 }
 
 export default function SectionIntro({
@@ -18,6 +19,7 @@ export default function SectionIntro({
   description,
   enableReadMore = true,
   maxChars = 400,
+  headingLevel = "h1",
 }: SectionIntroProps) {
   const [expanded, setExpanded] = useState(false);
 
@@ -76,6 +78,7 @@ export default function SectionIntro({
   const displayDocument = shouldTruncate
     ? getTruncatedDocument(description)
     : description;
+  const Heading = headingLevel;
 
   return (
     <section className="bg-white">
@@ -86,9 +89,9 @@ export default function SectionIntro({
             {preTitle}
           </p>
 
-          <h1 className="font-ivy text-[28px] sm:text-[44px] leading-tight">
+          <Heading className="font-ivy text-[28px] sm:text-[44px] leading-tight">
             {title}
-          </h1>
+          </Heading>
         </header>
 
         {/* Right – 60% */}

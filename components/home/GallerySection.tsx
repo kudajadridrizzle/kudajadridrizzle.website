@@ -23,6 +23,7 @@ export default function GallerySection({
             title={title}
             description={description}
             enableReadMore
+            headingLevel="h2"
           />
           <GalleryMasonry />
         </div>

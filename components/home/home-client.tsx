@@ -70,6 +70,7 @@ export default function HomeClient({ data }: HomeClientProps) {
                 title={roomsSection[0].title}
                 description={roomsSection[0].description}
                 enableReadMore
+                headingLevel="h2"
               />
             )}
 
