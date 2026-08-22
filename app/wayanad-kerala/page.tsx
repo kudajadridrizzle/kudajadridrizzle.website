@@ -86,6 +86,7 @@ export default async function WayanadPage() {
         preTitle="Kudajadri Drizzle Homestay in Wayanad"
         title="Explore Wayanad: Nature, Serenity & Adventure"
         bgImage="/WayanadHero.jpg"
+        headingLevel="h1"
         showButton={true}
         buttonLabel="Book Now"
         redirectTo="/contact"

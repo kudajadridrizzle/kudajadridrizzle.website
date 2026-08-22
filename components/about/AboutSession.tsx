@@ -38,9 +38,9 @@ const AboutSession = ({
       <div className="flex flex-col gap-12">
         {/* TEXT SECTION */}
         <div className="flex gap-4 sm:flex-row flex-col">
-          <h2 className="sm:w-1/2 text-[#000] font-ivy sm:text-[44px] text-[32px]">
+          <h1 className="sm:w-1/2 text-[#000] font-ivy sm:text-[44px] text-[32px]">
             {title}
-          </h2>
+          </h1>
 
           <div className="sm:w-1/2 text-secondary font-albertSans sm:text-xl">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>

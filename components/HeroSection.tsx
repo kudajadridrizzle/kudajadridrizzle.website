@@ -6,6 +6,7 @@ interface HeroSectionProps {
   preTitle?: string;
   title: string;
   bgImage: string;
+  headingLevel?: "span" | "h1";
   showButton?: boolean;
   buttonLabel?: string;
   redirectTo?: string;
@@ -15,11 +16,13 @@ const HeroSection = ({
   preTitle,
   title,
   bgImage,
+  headingLevel = "span",
   showButton = false,
   buttonLabel = 'Book Now',
   redirectTo = '/',
 }: HeroSectionProps) => {
   const router = useRouter();
+  const Title = headingLevel;
 
   return (
     <div className="relative w-full min-h-[100svh] overflow-hidden bg-black">
@@ -49,9 +52,9 @@ const HeroSection = ({
             </div>
           )}
 
-          <span className="text-white font-staylista text-4xl sm:text-6xl lg:text-7xl max-w-3xl leading-snug sm:leading-tight">
+          <Title className="text-white font-staylista text-4xl sm:text-6xl lg:text-7xl max-w-3xl leading-snug sm:leading-tight">
             {title}
-          </span>
+          </Title>
 
           {showButton && (
             <button

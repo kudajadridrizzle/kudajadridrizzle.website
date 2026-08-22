@@ -14,6 +14,7 @@ export default function TourPackagesClient() {
         preTitle="Kudajadri Drizzle"
         title="Wayanad Tour Packages"
         bgImage="WayanadTourPackages.jpg"
+        headingLevel="h1"
         showButton={true}
         buttonLabel="Book Now"
         redirectTo="/contact"
