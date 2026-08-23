@@ -3,6 +3,7 @@ import { Albert_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Footer from "../components/footer";
+import WhatsAppFloat from "../components/WhatsAppFloat";
 
 const albertSans = Albert_Sans({
   variable: "--font-albert",
@@ -42,6 +43,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         {children}
+        <WhatsAppFloat />
         <Footer />
       </body>
     </html>
