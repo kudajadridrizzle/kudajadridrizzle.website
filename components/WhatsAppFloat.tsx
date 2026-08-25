@@ -24,7 +24,7 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp Booking"
-      className="fixed bottom-8 right-8 z-[9999] bg-[#25D366] text-white p-6 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all duration-300 hover:scale-110"
+      className="!fixed bottom-8 right-8 z-[9999] bg-[#25D366] text-white p-6 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all duration-300 hover:scale-110"
     >
       <FaWhatsapp className="text-3xl" />
     </a>
